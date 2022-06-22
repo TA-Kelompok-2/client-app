@@ -3,6 +3,9 @@
 
 <head>
 
+    <link rel="apple-touch-icon" sizes="76x76" href="images/mii.png">
+    <link rel="icon" type="image/png" href="images/mii.png">
+
     <div th:replace="fragments/master :: header"></div>
     <!-- Datatable -->
     <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -18,6 +21,7 @@
         <div th:replace="fragments/master :: nav-header"></div>
         <div th:replace="fragments/master :: navbar"></div>
         <div th:replace="fragments/master :: dlabnav"></div>
+        
 
         <div class="content-body">
             <div class="container-fluid">
@@ -35,6 +39,14 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Table Employee</h4>
+                                <div class="col-6">
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" class="btn btn-rounded btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#addCountry"><span class="btn-icon-start text-success"><i
+                                                    class="fa fa-plus color-success"></i>
+                                            </span>Add</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">

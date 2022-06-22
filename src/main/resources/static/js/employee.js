@@ -19,9 +19,11 @@ $(document).ready(function () {
             {
                 "data": null,
                 render: function (data, type, row, meta) {
-                    return `<button class="btn btn-primary" onclick = "modalCountry(${data.id})" data-bs-toggle="modal" data-bs-target="#detailCountry"><i class="fa fa-info"></i></button>
-                        <button type = "button" data-bs-toggle = "modal" data-bs-target = "#editCountry" class = "btn btn-warning" onclick = "beforeUpdate(${data.id})"><i class="fa fa-edit" style="font-size:15px"></i></button>
-                        <button type="button" class="btn btn-danger fst-normal px-3" onclick="deleteCountry(${data.id})"><i class="fa fa-trash"></i></button>`
+                    return `<button class="btn btn-rounded btn-primary" onclick = "modalCountry(${data.id})" data-bs-toggle="modal" data-bs-target="#detailCountry"><span class="btn-icon-start text-primary"><i class="fa fa-info"></i>
+                    </span>Detail</button>
+                        <button class = "btn btn-rounded btn-warning" data-bs-toggle = "modal" data-bs-target = "#editCountry" onclick = "beforeUpdate(${data.id})"><span class="btn-icon-start text-warning">
+                        <i class="fa fa-edit"></i></span>Edit</button>
+                        <button class="btn btn-rounded btn-danger" onclick="deleteCountry(${data.id})"><span class="btn-icon-start text-danger"><i class="fa fa-trash"></i></span>Delete</button>`
                 }
             }
         ],
@@ -56,7 +58,7 @@ $('#createCountry').click(function (e) { //modal btn save
     let regioninp = $('#countryRegionInput').val()
     $.ajax({
         method: "POST",
-        url: "country/createCountry",
+        url: "employee/createCountry",
         dataType: "json",
         beforeSend: addCsrfToken(),
         data: JSON.stringify({
@@ -82,7 +84,7 @@ $('#createCountry').click(function (e) { //modal btn save
 function beforeUpdate(id) {
     $.ajax({
         method: "GET",
-        url: "country/getById/" + id,
+        url: "employee/getById/" + id,
         dataType: "json",
         contentType: "application/json",
         success: function (result) {
@@ -115,7 +117,7 @@ $("#updateCountry").click(() => {
         if (result.isConfirmed) {
             $.ajax({
                 method: "PUT",
-                url: "country/updateCountry/" + id,
+                url: "employee/updateCountry/" + id,
                 dataType: "json", //jenis datanya
                 beforeSend: addCsrfToken(),
                 data: JSON.stringify({ //objek dalam bentuk json
@@ -144,7 +146,7 @@ $("#updateCountry").click(() => {
 function deleteCountry(id) {
     Swal.fire({
         title: 'Are you sure?',
-        text: "You won't delete this country!",
+        text: "You won't delete this employee!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -154,7 +156,7 @@ function deleteCountry(id) {
         if (result.isConfirmed) {
             $.ajax({
                 method: "DELETE",
-                url: "country/deleteCountry/" + id,
+                url: "employee/deleteCountry/" + id,
                 dataType: "json",
                 beforeSend: addCsrfToken(),
                 contentType: "application/json",
