@@ -25,7 +25,7 @@ public class Employee {
     private String email;
     private String phoneNumber;
     private User user;
-    private List<Request> requests;
-    private List<History> history;
+//    private List<Request> requests;
+//    private List<History> history;
 
 }

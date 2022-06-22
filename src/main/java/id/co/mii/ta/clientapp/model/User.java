@@ -21,6 +21,6 @@ public class User {
     private Long id;
     private String username;
     private String password;
-    private Employee employee;
-    private List<Role> roles;
+//    private Employee employee;
+//    private List<Role> roles;
 }

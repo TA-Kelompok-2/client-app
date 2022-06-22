@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <div th:replace="fragments/master :: header"></div>
+    <!-- Datatable -->
+    <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!-- PAGE TITLE HERE -->
+    <title>Emloyee</title>
+    <!-- Style css -->
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <div th:replace="fragments/master :: nav-header"></div>
+        <div th:replace="fragments/master :: navbar"></div>
+        <div th:replace="fragments/master :: dlabnav"></div>
+
+        <div class="content-body">
+            <div class="container-fluid">
+
+                <div class="row page-titles">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Employee</a></li>
+                    </ol>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Table Employee</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="tbEMP" style="min-width: 845px" width="100%" class="display text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Phone Number</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Phone Number</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Detail Country -->
+        <div class="modal fade" id="detailCountry" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Employee Detail</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="container">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="inputPassword6" class="col-form-label">ID</label>
+                                </div>
+                                <div class="col-auto">
+                                    <label>: </label>
+                                    <label class="col-form-label" id="id"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="inputPassword6" class="col-form-label">Name</label>
+                                </div>
+                                <div class="col-auto">
+                                    <label>: </label>
+                                    <label class="col-form-label" id="name"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="inputPassword6" class="col-form-label">Email</label>
+                                </div>
+                                <div class="col-auto">
+                                    <label>: </label>
+                                    <label class="col-form-label" id="email"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="inputPassword6" class="col-form-label">Phone Number</label>
+                                </div>
+                                <div class="col-auto">
+                                    <label>: </label>
+                                    <label class="col-form-label" id="phoneNumber"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Add Country -->
+        <div class="modal fade" id="addCountry" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="container">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Input Code</label>
+                                <input class="form-control" id="codeInput" aria-describedby="emailHelp">
+                                <label for="exampleInputEmail1" class="form-label">Input Name</label>
+                                <input class="form-control" id="nameInput" aria-describedby="emailHelp">
+                                <label for="exampleInputEmail1" class="form-label">Input Region</label>
+                                <select class="form-select" id="countryRegionInput">
+                                    <option value="" disabled selected>Select your region</option>
+                                    <option th:each="region : ${regions}" th:text="${region.id +' - '+ region.name}"
+                                        th:value="${region.id}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="createCountry">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Edit Country -->
+        <div class="modal fade" id="editCountry" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Data</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="container">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <input type="hidden" id="editId">
+                                <label for="exampleInputEmail1" class="form-label">Input Code</label>
+                                <input class="form-control" id="codeEdit" aria-describedby="emailHelp">
+                                <label for="exampleInputEmail1" class="form-label">Input Name</label>
+                                <input class="form-control" id="nameEdit" aria-describedby="emailHelp">
+                                <label for="exampleInputEmail1" class="form-label">Input Region</label>
+                                <select class="form-select" id="countryRegionEdit">
+                                    <option value="" disabled selected>Select your region</option>
+                                    <option th:each="region : ${regions}" th:text="${region.id +' - '+ region.name}"
+                                        th:value="${region.id}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="updateCountry">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/master :: script"></div>
+    <!-- Datatable -->
+    <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="js/plugins-init/datatables.init.js"></script>
+
+    <script th:src="@{/js/employee.js}"></script>
+
+</body>
+
+</html>
