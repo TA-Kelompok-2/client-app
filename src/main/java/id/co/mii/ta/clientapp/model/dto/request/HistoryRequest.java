@@ -3,24 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package id.co.mii.ta.clientapp.model;
+package id.co.mii.ta.clientapp.model.dto.request;
 
-import java.util.List;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
  *
- * @author Fathullah
+ * @author Mac
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
-    private Long id;
-    private String username;
-    private String password;
-//    private Employee employee;
-    private List<Role> roles;
+public class HistoryRequest {
+
+    private String keterangan;
+    private String gambar;
+    private LocalDateTime date = LocalDateTime.now();
+    private Long employee;
+    private Long status;
+    private Long fasilitasRuang;
 }

@@ -29,7 +29,7 @@
                 <div class="row page-titles">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Employee</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">History</a></li>
                     </ol>
                 </div>
 
@@ -38,11 +38,11 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Table Employee</h4>
+                                <h4 class="card-title">Table History</h4>
                                 <div class="col-6">
                                     <div class="d-flex justify-content-end">
                                         <button type="button" class="btn btn-rounded btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#addEmployee"><span class="btn-icon-start text-success"><i
+                                            data-bs-target="#addHistory"><span class="btn-icon-start text-success"><i
                                                     class="fa fa-plus color-success"></i>
                                             </span>Add</button>
                                     </div>
@@ -54,20 +54,26 @@
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Phone Number</th>
-                                                <th>Role</th>
+                                                <th>Keterangan</th>
+                                                <th>Gambar</th>
+                                                <th>Date</th>
+                                                <th>Request</th>
+                                                <th>Status</th>
+                                                <th>Fasilitas</th>
+                                                <th>Ruang</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Phone Number</th>
-                                                <th>Role</th>
+                                                <th>Keterangan</th>
+                                                <th>Gambar</th>
+                                                <th>Date</th>
+                                                <th>Request</th>
+                                                <th>Status</th>
+                                                <th>Fasilitas</th>
+                                                <th>Ruang</th>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>
@@ -80,12 +86,12 @@
             </div>
         </div>
 
-        <!-- Modal Detail EMployee -->
-        <div class="modal fade" id="detailEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Modal Detail History -->
+        <div class="modal fade" id="detailHistory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Employee Detail</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">History Detail</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="container">
@@ -141,8 +147,8 @@
             </div>
         </div>
 
-        <!-- Modal Add Employee -->
-        <div class="modal fade" id="addEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Modal Add History -->
+        <div class="modal fade" id="addHistory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
 
@@ -168,7 +174,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="createEmployee">Save</button>
+                            <button type="button" class="btn btn-primary" id="createHistory">Save</button>
                         </div>
                     </div>
                 </div>
@@ -181,7 +187,7 @@
     <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="js/plugins-init/datatables.init.js"></script>
 
-    <script th:src="@{/js/employee.js}"></script>
+    <script th:src="@{/js/history.js}"></script>
 
 </body>
 

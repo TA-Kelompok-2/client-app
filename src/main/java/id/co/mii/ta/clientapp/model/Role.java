@@ -21,6 +21,6 @@ public class Role {
 
     private Long id;
     private String name;
-    private List<User> users;
+//    private List<User> users;
     
 }

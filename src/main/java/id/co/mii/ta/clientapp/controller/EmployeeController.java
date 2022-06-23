@@ -47,6 +47,8 @@ public class EmployeeController {
     @GetMapping("/getById/{id}")
     @ResponseBody
     public Employee getById(@PathVariable Long id) {
+        Employee employee = EmployeeService.getById(id);
+        System.out.println(employee.getUser().getRoles().get(0));
         return EmployeeService.getById(id);
     }
 
