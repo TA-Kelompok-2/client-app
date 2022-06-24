@@ -24,18 +24,4 @@ public class HomeController {
         return "home/home";
     }
     
-    @GetMapping("/request")
-    public String request() {
-        return "request/request";
-    }
-
-    @GetMapping("/history")
-    public String history() {
-        return "request/history";
-    }
-
-    @GetMapping("/list_request")
-    public String listRequest() {
-        return "request/listRequest";
-    }
 }

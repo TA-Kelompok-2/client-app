@@ -105,7 +105,7 @@ function deleteEmployee(id) {
                 dataType: "json",
                 beforeSend: addCsrfToken(),
                 contentType: "application/json",
-                success: (result) => {
+                success: function (result) {
                     Swal.fire(
                         'Deleted!',
                         'Your file has been deleted.',

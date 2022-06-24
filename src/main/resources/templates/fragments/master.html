@@ -18,8 +18,6 @@
         <!-- FAVICONS ICON -->
         <link rel="shortcut icon" type="image/png" href="images/favicon.png">
         <link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-        <!--icons awesome-->
-        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
     </div>
 
     <!-- PAGE TITLE HERE -->
@@ -1052,8 +1050,12 @@
     <div th:fragment="script">
         <!-- Required vendors -->
         <script src="vendor/global/global.min.js"></script>
+        <!-- chart -->
         <script src="vendor/chart.js/Chart.bundle.min.js"></script>
+
         <script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+
+
 
         <!-- Apex Chart -->
         <script src="vendor/apexchart/apexchart.js"></script>
@@ -1071,7 +1073,7 @@
 
         <script th:src="@{/js/setCsrfToken.js}"></script>
         <!-- CDN Sweet alert -->
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     </div>
 
 </body>

@@ -21,7 +21,7 @@
         <div th:replace="fragments/master :: nav-header"></div>
         <div th:replace="fragments/master :: navbar"></div>
         <div th:replace="fragments/master :: dlabnav"></div>
-        
+
 
         <div class="content-body">
             <div class="container-fluid">
@@ -81,7 +81,8 @@
         </div>
 
         <!-- Modal Detail EMployee -->
-        <div class="modal fade" id="detailEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="detailEmployee" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -154,16 +155,21 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Input Name</label>
-                                <input class="form-control" id="nameInp" aria-describedby="emailHelp" placeholder="Aldo Mananta...">
+                                <input class="form-control" id="nameInp" aria-describedby="emailHelp"
+                                    placeholder="Aldo Mananta...">
                                 <label for="exampleInputEmail1" class="form-label">Input Email</label>
-                                <input type="email" class="form-control" id="emailInp" aria-describedby="emailHelp" placeholder="aldom432@gmail.com...">
+                                <input type="email" class="form-control" id="emailInp" aria-describedby="emailHelp"
+                                    placeholder="aldom432@gmail.com...">
                                 <label for="exampleInputEmail1" class="form-label">Input Phone Number</label>
-                                <input type="number" class="form-control" id="phoneNumberInp" aria-describedby="emailHelp" placeholder="085713226...">
+                                <input type="number" class="form-control" id="phoneNumberInp"
+                                    aria-describedby="emailHelp" placeholder="085713226...">
                                 <label for="exampleInputEmail1" class="form-label">Input Username</label>
-                                <input class="form-control" id="usernameInp" aria-describedby="emailHelp" placeholder="aldo...">
+                                <input class="form-control" id="usernameInp" aria-describedby="emailHelp"
+                                    placeholder="aldo...">
                                 <label for="exampleInputEmail1" class="form-label">Input Password</label>
-                                <input class="form-control" id="passwordInp" aria-describedby="emailHelp" placeholder="aldo...">
-                                
+                                <input class="form-control" id="passwordInp" aria-describedby="emailHelp"
+                                    placeholder="aldo...">
+
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -182,6 +188,9 @@
     <script src="js/plugins-init/datatables.init.js"></script>
 
     <script th:src="@{/js/employee.js}"></script>
+    
+    <!-- sweet alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 
