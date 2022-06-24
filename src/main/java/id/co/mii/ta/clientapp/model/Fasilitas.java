@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 
 /**
  *
- * @author Fathullah
+ * @author Mac
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FasilitasRuang {
+public class Fasilitas {
     
     private Long id;
-    private Long ruang;
-    private Long fasilitas;
+    private String name;
+    private String keterangan;
     
 }
