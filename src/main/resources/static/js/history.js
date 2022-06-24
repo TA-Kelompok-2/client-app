@@ -1,23 +1,29 @@
 $(document).ready(function () {
     $("#tbEMP").DataTable({
         "ajax": {
-            "url": "/employee/get-all",
+            "url": "/history/get-all",
             "dataSrc": ""
         },
         "columns": [{
-                "data": "id"
+                "data": "request.employee.name"
             },
             {
-                "data": "name"
+                "data": "request.gambar"
             },
             {
-                "data": "email"
+                "data": "request.date"
             },
             {
-                "data": "phoneNumber"
+                "data": "request.status.name"
             },
             {
-                "data": "user.roles[<br>].name"
+                "data": "request.fasilitasRuang.fasilitas.name"
+            },
+            {
+                "data": "request.fasilitasRuang.ruang.name"
+            },
+            {
+                "data": "request.name"
             },
             {
                 "data": null,

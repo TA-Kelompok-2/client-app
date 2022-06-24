@@ -5,7 +5,8 @@
  */
 package id.co.mii.ta.clientapp.service;
 
-import id.co.mii.ta.clientapp.model.Request;
+import id.co.mii.ta.clientapp.model.History;
+import id.co.mii.ta.clientapp.model.dto.request.HistoryRequest;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,51 +18,53 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  *
- * @author Mac
+ * @author Fathullah
  */
 @Service
-public class RequestService {
+public class HistoryService {
 
     private RestTemplate restTemplate; // -> mengkomunikasikan fronend dan beackend
 
-    @Value("${server.baseUrl}/request") // -> server.baserUrl dari application.properties
+    @Value("${server.baseUrl}/history") // -> server.baserUrl dari application.properties
     private String url;
 
     @Autowired
-    public RequestService(RestTemplate restTemplate) {
+    public HistoryService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
- public List<Request> getAll(){
+ public List<History> getAll(){
          return restTemplate.exchange(url,
-                HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<History>>() {
         }).getBody();
     }
     
-    public Request getById(Long id) { // id -> 1 data id
+    public History getById(Long id) { // id -> 1 data id
         return restTemplate.exchange(url.concat("/" + id), // -> pengembalian http kalau getForObject yang disediakan get
-                HttpMethod.GET, null, new ParameterizedTypeReference<Request>() {
+                HttpMethod.GET, null, new ParameterizedTypeReference<History>() {
         }).getBody();
     }
     
-    public Request createRequest(Request request) { // create -> data
+    public History createHistory(HistoryRequest historyRequest) { // create -> data
         return restTemplate.exchange(url,
                 HttpMethod.POST,
-                new HttpEntity(request), // -> requestbody dri method sama seperti postman 
-                new ParameterizedTypeReference<Request>() { // -> tipe pengembalian dri backend karna dri back end region maka typenya region
+                new HttpEntity(historyRequest), // -> requestbody dri method sama seperti postman 
+                new ParameterizedTypeReference<History>() { // -> tipe pengembalian dri backend karna dri back end region maka typenya region
         }).getBody(); // -> ngambil isi respon
     }
 
-    public Request updateRequest(Long id, Request request) { // update ->, id -> mengambil data, Region -> data
+    public History updateHistory(Long id, HistoryRequest historyRequest) { // update ->, id -> mengambil data, Region -> data
         return restTemplate.exchange(url.concat("/" + id),
-                HttpMethod.PUT, new HttpEntity(request), new ParameterizedTypeReference<Request>() {
+                HttpMethod.PUT, new HttpEntity(historyRequest), new ParameterizedTypeReference<History>() {
         }).getBody();
     }
 
-    public Request deleteRequest(Long id) {// delete -> yang dibutuhkan id
+    public History deleteHistory(Long id) {// delete -> yang dibutuhkan id
         return restTemplate.exchange(url.concat("/" + id),
-                HttpMethod.DELETE, null, new ParameterizedTypeReference<Request>() {
+                HttpMethod.DELETE, null, new ParameterizedTypeReference<History>() {
         }).getBody();
     }
-
+    
 }
+
+
