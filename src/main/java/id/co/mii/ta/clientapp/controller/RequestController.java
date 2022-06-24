@@ -31,7 +31,7 @@ public class RequestController {
 
     @GetMapping
     public String getAll(Model model) {
-        return "request/Request";
+        return "request/request";
     }
     
     @GetMapping("/get-all")
@@ -46,7 +46,7 @@ public class RequestController {
         return requestService.getById(id);
     }
 
-    @PostMapping("/createRequest")
+    @PostMapping("/createrequest")
     @ResponseBody
     public Request createRequest(@RequestBody Request request) {                                                                 // valid, ada eror atau enggak
         return requestService.createRequest(request);

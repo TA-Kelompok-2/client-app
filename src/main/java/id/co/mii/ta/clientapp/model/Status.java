@@ -5,10 +5,22 @@
  */
 package id.co.mii.ta.clientapp.model;
 
+import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  *
  * @author Fathullah
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Status {
-    
+
+    private Long id;
+    private String name;
+    private List<Request> requests;
+    private List<History> history;
 }

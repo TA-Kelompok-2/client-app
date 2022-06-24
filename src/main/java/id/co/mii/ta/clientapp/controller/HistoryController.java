@@ -51,8 +51,8 @@ public class HistoryController {
 
     @PostMapping("/createHistory")
     @ResponseBody
-    public History createHistory(@RequestBody HistoryRequest historyRequest) {                                                                 // valid, ada eror atau enggak
-        return historyService.createHistory(historyRequest);
+    public History createHistory(@RequestBody History history) {                                                                 // valid, ada eror atau enggak
+        return historyService.createHistory(history);
     }
 
 

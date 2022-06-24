@@ -24,5 +24,6 @@ public class EmployeeRequest {
     private String username;
     private String password;
     private Long roles;
+   private Boolean isAccountLocked = false;
 
 }

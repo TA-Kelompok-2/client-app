@@ -5,6 +5,7 @@
  */
 package id.co.mii.ta.clientapp.model;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,5 +22,6 @@ public class FasilitasRuang {
     private Long id;
     private Long ruang;
     private Long fasilitas;
+    private List<Request> requests;
     
 }

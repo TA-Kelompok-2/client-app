@@ -22,9 +22,9 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class RequestService {
 
-    private RestTemplate restTemplate; // -> mengkomunikasikan fronend dan beackend
+    private RestTemplate restTemplate;
 
-    @Value("${server.baseUrl}/request") // -> server.baserUrl dari application.properties
+    @Value("${server.baseUrl}/request") 
     private String url;
 
     @Autowired

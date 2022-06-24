@@ -45,10 +45,10 @@ public class HistoryService {
         }).getBody();
     }
     
-    public History createHistory(HistoryRequest historyRequest) { // create -> data
+    public History createHistory(History history) { // create -> data
         return restTemplate.exchange(url,
                 HttpMethod.POST,
-                new HttpEntity(historyRequest), // -> requestbody dri method sama seperti postman 
+                new HttpEntity(history), // -> requestbody dri method sama seperti postman 
                 new ParameterizedTypeReference<History>() { // -> tipe pengembalian dri backend karna dri back end region maka typenya region
         }).getBody(); // -> ngambil isi respon
     }
