@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="apple-touch-icon" sizes="76x76" href="images/mii.png">
+    <link rel="icon" type="image/png" href="images/mii.png">
+
+    <div th:replace="fragments/master :: header"></div>
+    <!-- Datatable -->
+    <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!-- PAGE TITLE HERE -->
+    <title>Ruang</title>
+    <!-- Style css -->
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <div th:replace="fragments/master :: nav-header"></div>
+        <div th:replace="fragments/master :: navbar"></div>
+        <div th:replace="fragments/master :: dlabnav"></div>
+        
+
+        <div class="content-body">
+            <div class="container-fluid">
+
+                <div class="row page-titles">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Ruang</a></li>
+                    </ol>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Table Ruang</h4>
+                                <div class="col-6">
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" class="btn btn-rounded btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#addRuang"><span class="btn-icon-start text-success"><i
+                                                    class="fa fa-plus color-success"></i>
+                                            </span>Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="tbEMP" style="min-width: 845px" width="100%" class="display text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Name</th>
+                                                <th>Lantai</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Name</th>
+                                                <th>Lantai</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Detail Ruang -->
+        <div class="modal fade" id="detailRuang" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ruang Detail</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="container">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="inputPassword6" class="col-form-label">ID</label>
+                                </div>
+                                <div class="col-auto">
+                                    <label>: </label>
+                                    <label class="col-form-label" id="id"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="inputPassword6" class="col-form-label">Name</label>
+                                </div>
+                                <div class="col-auto">
+                                    <label>: </label>
+                                    <label class="col-form-label" id="name"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="inputPassword6" class="col-form-label">Lantai</label>
+                                </div>
+                                <div class="col-auto">
+                                    <label>: </label>
+                                    <label class="col-form-label" id="lantai"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Add Ruang -->
+        <div class="modal fade" id="addRuang" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="container">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Input Name</label>
+                                <input class="form-control" id="nameInp" aria-describedby="emailHelp" placeholder="Nama Ruang...">
+                                <label for="exampleInputEmail1" class="form-label">Input Lantai</label>
+                                <input class="form-control" id="lantaiInp" aria-describedby="emailHelp" placeholder="Lantai...">
+                                
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="createRuang">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/master :: script"></div>
+    <!-- Datatable -->
+    <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="js/plugins-init/datatables.init.js"></script>
+
+    <script th:src="@{/js/ruang.js}"></script>
+
+</body>
+
+</html>
