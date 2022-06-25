@@ -23,7 +23,7 @@ public class EmployeeRequest {
     private String phoneNumber;
     private String username;
     private String password;
-    private Long roles;
+    private Integer roles;
    private Boolean isAccountLocked = false;
 
 }

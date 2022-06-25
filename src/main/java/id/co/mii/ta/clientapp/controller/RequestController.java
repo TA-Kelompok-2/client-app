@@ -6,7 +6,11 @@
 package id.co.mii.ta.clientapp.controller;
 
 import id.co.mii.ta.clientapp.model.Request;
+import id.co.mii.ta.clientapp.model.dto.request.HistoryRequest;
+import id.co.mii.ta.clientapp.model.dto.request.RequestDTO;
+import id.co.mii.ta.clientapp.service.FasilitasService;
 import id.co.mii.ta.clientapp.service.RequestService;
+import id.co.mii.ta.clientapp.service.RuangService;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,9 +32,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RequestController {
 
     private RequestService requestService;
+    private RuangService ruangService;
+    private FasilitasService fasilitasService;
 
     @GetMapping
-    public String getAll(Model model) {
+    public String showForm(Model model) {
         return "request/request";
     }
     
@@ -42,26 +48,26 @@ public class RequestController {
 
     @GetMapping("/getById/{id}")
     @ResponseBody
-    public Request getById(@PathVariable Long id) {
+    public Request getById(@PathVariable Integer id) {
         return requestService.getById(id);
     }
 
     @PostMapping("/createrequest")
     @ResponseBody
-    public Request createRequest(@RequestBody Request request) {                                                                 // valid, ada eror atau enggak
-        return requestService.createRequest(request);
+    public Request createRequest(@RequestBody RequestDTO requestDTO) {                                                                 // valid, ada eror atau enggak
+        return requestService.createRequest(requestDTO);
     }
 
 
     @PutMapping("/updateRequest/{id}")
     @ResponseBody
-    public Request updateRequest(@PathVariable Long id, @RequestBody Request request) {
-        return requestService.updateRequest(id, request);
+    public Request updateRequest(@PathVariable Integer id, @RequestBody RequestDTO requestDTO) {
+        return requestService.updateRequest(id, requestDTO);
     }
 
     @DeleteMapping("/deleteRequest/{id}")
     @ResponseBody
-    public Request delete(@PathVariable Long id) {
+    public Request delete(@PathVariable Integer id) {
         return requestService.deleteRequest(id);
         
     }

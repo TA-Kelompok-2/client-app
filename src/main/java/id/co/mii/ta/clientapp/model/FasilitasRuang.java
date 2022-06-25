@@ -19,9 +19,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FasilitasRuang {
     
-    private Long id;
-    private Long ruang;
-    private Long fasilitas;
+    private Integer id;
+    private Integer ruang;
+    private Integer fasilitas;
     private List<Request> requests;
     
 }

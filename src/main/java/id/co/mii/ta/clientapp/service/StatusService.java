@@ -36,7 +36,7 @@ public class StatusService {
         }).getBody();
     }
 
-    public Status getById(Long id) { // id -> 1 data id
+    public Status getById(Integer id) { // id -> 1 data id
         return restTemplate.exchange(url.concat("/" + id), // -> pengembalian http kalau getForObject yang disediakan get
                 HttpMethod.GET, null, new ParameterizedTypeReference<Status>() {
         }).getBody();
@@ -50,13 +50,13 @@ public class StatusService {
         }).getBody(); // -> ngambil isi respon
     }
 
-    public Status updateStatus(Long id, Status status) { // update ->, id -> mengambil data, Region -> data
+    public Status updateStatus(Integer id, Status status) { // update ->, id -> mengambil data, Region -> data
         return restTemplate.exchange(url.concat("/" + id),
                 HttpMethod.PUT, new HttpEntity(status), new ParameterizedTypeReference<Status>() {
         }).getBody();
     }
 
-    public Status deleteStatus(Long id) {// delete -> yang dibutuhkan id
+    public Status deleteStatus(Integer id) {// delete -> yang dibutuhkan id
         return restTemplate.exchange(url.concat("/" + id),
                 HttpMethod.DELETE, null, new ParameterizedTypeReference<Status>() {
         }).getBody();

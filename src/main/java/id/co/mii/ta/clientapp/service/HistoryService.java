@@ -39,7 +39,7 @@ public class HistoryService {
         }).getBody();
     }
     
-    public History getById(Long id) { // id -> 1 data id
+    public History getById(Integer id) { // id -> 1 data id
         return restTemplate.exchange(url.concat("/" + id), // -> pengembalian http kalau getForObject yang disediakan get
                 HttpMethod.GET, null, new ParameterizedTypeReference<History>() {
         }).getBody();
@@ -53,13 +53,13 @@ public class HistoryService {
         }).getBody(); // -> ngambil isi respon
     }
 
-    public History updateHistory(Long id, HistoryRequest historyRequest) { // update ->, id -> mengambil data, Region -> data
+    public History updateHistory(Integer id, HistoryRequest historyRequest) { // update ->, id -> mengambil data, Region -> data
         return restTemplate.exchange(url.concat("/" + id),
                 HttpMethod.PUT, new HttpEntity(historyRequest), new ParameterizedTypeReference<History>() {
         }).getBody();
     }
 
-    public History deleteHistory(Long id) {// delete -> yang dibutuhkan id
+    public History deleteHistory(Integer id) {// delete -> yang dibutuhkan id
         return restTemplate.exchange(url.concat("/" + id),
                 HttpMethod.DELETE, null, new ParameterizedTypeReference<History>() {
         }).getBody();

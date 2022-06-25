@@ -44,7 +44,7 @@ public class RuangController {
 
     @GetMapping("/getById/{id}")
     @ResponseBody
-    public Ruang getById(@PathVariable Long id) {
+    public Ruang getById(@PathVariable Integer id) {
         return ruangService.getById(id);
     }
 
@@ -56,13 +56,13 @@ public class RuangController {
 
     @PutMapping("/updateRuang/{id}")
     @ResponseBody
-    public Ruang updateRuang(@PathVariable Long id, @RequestBody Ruang ruang) {
+    public Ruang updateRuang(@PathVariable Integer id, @RequestBody Ruang ruang) {
         return ruangService.updateRuang(id, ruang);
     }
 
     @DeleteMapping("/deleteRuang/{id}")
     @ResponseBody
-    public Ruang delete(@PathVariable Long id) {
+    public Ruang delete(@PathVariable Integer id) {
         return ruangService.deleteRuang(id);
     }
 

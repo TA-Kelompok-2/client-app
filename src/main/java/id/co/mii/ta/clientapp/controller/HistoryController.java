@@ -26,46 +26,50 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author Fathullah
  */
 @Controller // menuju lokasi html (template)
-@RequestMapping("/history")
+@RequestMapping("/")
 @AllArgsConstructor
 public class HistoryController {
 
     private HistoryService historyService;
 
-    @GetMapping
+    @GetMapping("/history")
     public String getAll(Model model) {
         return "request/history";
     }
-    
-    @GetMapping("/get-all")
+
+    @GetMapping("/historyapprove")
+    public String formApprove(Model model) {
+        return "request/historyapprove";
+    }
+
+    @GetMapping("/history/get-all")
     @ResponseBody
     public List<History> getAllJSON() {
         return historyService.getAll();
     }
 
-    @GetMapping("/getById/{id}")
+    @GetMapping("/history/getById/{id}")
     @ResponseBody
-    public History getById(@PathVariable Long id) {
+    public History getById(@PathVariable Integer id) {
         return historyService.getById(id);
     }
 
-    @PostMapping("/createHistory")
+    @PostMapping("/history/createHistory")
     @ResponseBody
     public History createHistory(@RequestBody History history) {                                                                 // valid, ada eror atau enggak
         return historyService.createHistory(history);
     }
 
-
-    @PutMapping("/updateHistory/{id}")
+    @PutMapping("/history/updateHistory/{id}")
     @ResponseBody
-    public History updateHistory(@PathVariable Long id, @RequestBody HistoryRequest historyRequest) {
+    public History updateHistory(@PathVariable Integer id, @RequestBody HistoryRequest historyRequest) {
         return historyService.updateHistory(id, historyRequest);
     }
 
-    @DeleteMapping("/deleteHistory/{id}")
+    @DeleteMapping("/history/deleteHistory/{id}")
     @ResponseBody
-    public History delete(@PathVariable Long id) {
+    public History delete(@PathVariable Integer id) {
         return historyService.deleteHistory(id);
-        
+
     }
 }

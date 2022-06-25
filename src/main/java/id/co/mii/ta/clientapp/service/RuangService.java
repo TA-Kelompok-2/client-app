@@ -37,7 +37,7 @@ public class RuangService {
         }).getBody();
     }
     
-    public Ruang getById(Long id) { // id -> 1 data id
+    public Ruang getById(Integer id) { // id -> 1 data id
         return restTemplate.exchange(url.concat("/" + id), // -> pengembalian http kalau getForObject yang disediakan get
                 HttpMethod.GET, null, new ParameterizedTypeReference<Ruang>() {
         }).getBody();
@@ -51,13 +51,13 @@ public class RuangService {
         }).getBody(); // -> ngambil isi respon
     }
 
-    public Ruang updateRuang(Long id, Ruang ruang) { // update ->, id -> mengambil data, Region -> data
+    public Ruang updateRuang(Integer id, Ruang ruang) { // update ->, id -> mengambil data, Region -> data
         return restTemplate.exchange(url.concat("/" + id),
                 HttpMethod.PUT, new HttpEntity(ruang), new ParameterizedTypeReference<Ruang>() {
         }).getBody();
     }
 
-    public Ruang deleteRuang(Long id) {// delete -> yang dibutuhkan id
+    public Ruang deleteRuang(Integer id) {// delete -> yang dibutuhkan id
         return restTemplate.exchange(url.concat("/" + id),
                 HttpMethod.DELETE, null, new ParameterizedTypeReference<Ruang>() {
         }).getBody();

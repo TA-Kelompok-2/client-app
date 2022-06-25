@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Status {
 
-    private Long id;
+    private Integer id;
     private String name;
     private List<Request> requests;
     private List<History> history;

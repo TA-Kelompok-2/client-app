@@ -45,7 +45,7 @@ public class EmployeeController {
 
     @GetMapping("/getById/{id}")
     @ResponseBody
-    public Employee getById(@PathVariable Long id) {
+    public Employee getById(@PathVariable Integer id) {
         Employee employee = EmployeeService.getById(id);
         System.out.println(employee.getUser().getRoles().get(0));
         return EmployeeService.getById(id);
@@ -60,13 +60,13 @@ public class EmployeeController {
 
     @PutMapping("/updateEmployee/{id}")
     @ResponseBody
-    public Employee updateEmployee(@PathVariable Long id, @RequestBody EmployeeRequest employeeRequest) {
+    public Employee updateEmployee(@PathVariable Integer id, @RequestBody EmployeeRequest employeeRequest) {
         return EmployeeService.updateEmployee(id, employeeRequest);
     }
 
     @DeleteMapping("/deleteEmployee/{id}")
     @ResponseBody
-    public Employee delete(@PathVariable Long id) {
+    public Employee delete(@PathVariable Integer id) {
         return EmployeeService.deleteEmployee(id);
         
     }

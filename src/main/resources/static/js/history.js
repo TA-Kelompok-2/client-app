@@ -5,32 +5,28 @@ $(document).ready(function () {
             "dataSrc": ""
         },
         "columns": [{
-                "data": "request.employee.name"
+                "data": "id"
             },
             {
-                "data": "request.gambar"
+                "data": "employee.name"
+                // ,
+                // render: function (data, type, row, meta) {
+                //     return `<a th:href="@{/history/approve}">`+ row.employee.name + `</a>`
+                // }
             },
             {
-                "data": "request.date"
+                "data": "employee.phoneNumber"
             },
             {
-                "data": "request.status.name"
+                "data": "date"
             },
             {
-                "data": "request.fasilitasRuang.fasilitas.name"
-            },
-            {
-                "data": "request.fasilitasRuang.ruang.name"
-            },
-            {
-                "data": "request.name"
+                "data": "keterangan"
             },
             {
                 "data": null,
                 render: function (data, type, row, meta) {
-                    return `<button class="btn btn-rounded btn-primary" onclick = "modalEmployee(${data.id})" data-bs-toggle="modal" data-bs-target="#detailEmployee"><span class="btn-icon-start text-primary"><i class="fa fa-info"></i>
-                        </span>Detail</button>
-                        <button class="btn btn-rounded btn-danger" onclick="deleteEmployee(${data.id})"><span class="btn-icon-start text-danger"><i class="fa fa-trash"></i></span>Delete</button>`
+                    return `<button class="btn btn-rounded btn-primary" th:href="@{/history/approve}"><span class="btn-icon-start text-primary"><i class="fa fa-info"></i></span>Detail</button>`
                 }
             }
         ],

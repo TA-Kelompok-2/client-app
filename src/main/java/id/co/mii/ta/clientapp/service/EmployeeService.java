@@ -39,7 +39,7 @@ public class EmployeeService {
         }).getBody();
     }
     
-    public Employee getById(Long id) { // id -> 1 data id
+    public Employee getById(Integer id) { // id -> 1 data id
         return restTemplate.exchange(url.concat("/" + id), // -> pengembalian http kalau getForObject yang disediakan get
                 HttpMethod.GET, null, new ParameterizedTypeReference<Employee>() {
         }).getBody();
@@ -53,13 +53,13 @@ public class EmployeeService {
         }).getBody(); // -> ngambil isi respon
     }
 
-    public Employee updateEmployee(Long id, EmployeeRequest employeeRequest) { // update ->, id -> mengambil data, Region -> data
+    public Employee updateEmployee(Integer id, EmployeeRequest employeeRequest) { // update ->, id -> mengambil data, Region -> data
         return restTemplate.exchange(url.concat("/" + id),
                 HttpMethod.PUT, new HttpEntity(employeeRequest), new ParameterizedTypeReference<Employee>() {
         }).getBody();
     }
 
-    public Employee deleteEmployee(Long id) {// delete -> yang dibutuhkan id
+    public Employee deleteEmployee(Integer id) {// delete -> yang dibutuhkan id
         return restTemplate.exchange(url.concat("/" + id),
                 HttpMethod.DELETE, null, new ParameterizedTypeReference<Employee>() {
         }).getBody();

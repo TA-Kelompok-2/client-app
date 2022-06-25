@@ -38,7 +38,7 @@ public class FasilitasRuangService {
         }).getBody();
     }
     
-    public FasilitasRuang getById(Long id) { // id -> 1 data id
+    public FasilitasRuang getById(Integer id) { // id -> 1 data id
         return restTemplate.exchange(url.concat("/" + id), // -> pengembalian http kalau getForObject yang disediakan get
                 HttpMethod.GET, null, new ParameterizedTypeReference<FasilitasRuang>() {
         }).getBody();
@@ -52,13 +52,13 @@ public class FasilitasRuangService {
         }).getBody(); // -> ngambil isi respon
     }
 
-    public FasilitasRuang updateFasilitasRuang(Long id, FasilitasRuang fasilitas) { // update ->, id -> mengambil data, Region -> data
+    public FasilitasRuang updateFasilitasRuang(Integer id, FasilitasRuang fasilitas) { // update ->, id -> mengambil data, Region -> data
         return restTemplate.exchange(url.concat("/" + id),
                 HttpMethod.PUT, new HttpEntity(fasilitas), new ParameterizedTypeReference<FasilitasRuang>() {
         }).getBody();
     }
 
-    public FasilitasRuang deleteFasilitasRuang(Long id) {// delete -> yang dibutuhkan id
+    public FasilitasRuang deleteFasilitasRuang(Integer id) {// delete -> yang dibutuhkan id
         return restTemplate.exchange(url.concat("/" + id),
                 HttpMethod.DELETE, null, new ParameterizedTypeReference<FasilitasRuang>() {
         }).getBody();

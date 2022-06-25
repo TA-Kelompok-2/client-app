@@ -44,7 +44,7 @@ public class FasilitasController {
 
     @GetMapping("/getById/{id}")
     @ResponseBody
-    public Fasilitas getById(@PathVariable Long id) {
+    public Fasilitas getById(@PathVariable Integer id) {
         return fasilitasService.getById(id);
     }
 
@@ -56,13 +56,13 @@ public class FasilitasController {
 
     @PutMapping("/updateFasilitas/{id}")
     @ResponseBody
-    public Fasilitas updateFasilitas(@PathVariable Long id, @RequestBody Fasilitas fasilitas) {
+    public Fasilitas updateFasilitas(@PathVariable Integer id, @RequestBody Fasilitas fasilitas) {
         return fasilitasService.updateFasilitas(id, fasilitas);
     }
 
     @DeleteMapping("/deleteFasilitas/{id}")
     @ResponseBody
-    public Fasilitas delete(@PathVariable Long id) {
+    public Fasilitas delete(@PathVariable Integer id) {
         return fasilitasService.deleteFasilitas(id);
 
     }
