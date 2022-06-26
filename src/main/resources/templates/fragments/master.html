@@ -137,7 +137,7 @@
                                 <span class="nav-text">Dashboard</span>
                             </a>
                         </li>
-                        <li><a th:href="@{/employee}" class="" aria-expanded="false">
+                        <li><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/employee}" class="" aria-expanded="false">
                                 <i class="fas fa-user-check"></i>
                                 <span class="nav-text">Employee</span>
                             </a>
@@ -148,15 +148,16 @@
                             </a>
                             <ul aria-expanded="false">
                                 <li><a th:href="@{/request}">Request</a></li>
-                                <li><a th:href="@{/history}">History</a></li>
-                                <li><a th:href="@{/listrequest}">List Request</a></li>
+                                <li><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/history}">History</a></li>
+                                <li><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/listrequest}">List Request</a></li>
+                                <li><a sec:authorize="hasAuthority('ITSUPPORT')" th:href="@{/listrequestits}">List Request</a></li>
                             </ul>
                         </li>
-                        <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                        <li><a sec:authorize="hasAuthority('ADMIN')" class="has-arrow " href="javascript:void()" aria-expanded="false">
                                 <i class="fas fa-file-alt"></i>
                                 <span class="nav-text">Manage Data</span>
                             </a>
-                            <ul aria-expanded="false">
+                            <ul sec:authorize="hasAuthority('ADMIN')" aria-expanded="false">
                                 <li><a th:href="@{/fasilitasruang}">Fasilitas Ruang</a></li>
                                 <li><a th:href="@{/fasilitas}">Fasilitas</a></li>
                                 <li><a th:href="@{/ruang}">Ruang</a></li>

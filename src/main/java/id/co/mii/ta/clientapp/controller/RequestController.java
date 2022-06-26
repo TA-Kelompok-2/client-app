@@ -38,8 +38,6 @@ public class RequestController {
 
     private RequestService requestService;
     private FasilitasRuangService fasilitasRuangService;
-    private FasilitasService fasilitasService;
-    private RuangService ruangService;
 
     @GetMapping
     public String showForm(Model model, RequestDTO requestDTO) {
