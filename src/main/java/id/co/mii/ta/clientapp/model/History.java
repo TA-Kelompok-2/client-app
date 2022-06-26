@@ -23,8 +23,8 @@ public class History {
     private Integer id;
     private String keterangan;
     private LocalDateTime date;
-//    private Request request;
-    private Employee employee;
+    private Request request;
+//    private Employee employee;
 //    private Status status;
     
 }

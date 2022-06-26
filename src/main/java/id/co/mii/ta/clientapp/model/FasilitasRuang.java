@@ -20,8 +20,8 @@ import lombok.NoArgsConstructor;
 public class FasilitasRuang {
     
     private Integer id;
-    private Integer ruang;
-    private Integer fasilitas;
-    private List<Request> requests;
+    private Ruang ruang;
+    private Fasilitas fasilitas;
+//    private List<Request> requests;
     
 }

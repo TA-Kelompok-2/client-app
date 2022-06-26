@@ -5,29 +5,34 @@ $(document).ready(function () {
             "dataSrc": ""
         },
         "columns": [{
-                "data": "id"
-            },
-            {
-                "data": "employee.name"
-                // ,
-                // render: function (data, type, row, meta) {
-                //     return `<a th:href="@{/history/approve}">`+ row.employee.name + `</a>`
-                // }
-            },
-            {
-                "data": "employee.phoneNumber"
-            },
-            {
-                "data": "date"
-            },
-            {
-                "data": "keterangan"
+                "data": null,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
             },
             {
                 "data": null,
                 render: function (data, type, row, meta) {
-                    return `<button class="btn btn-rounded btn-primary" th:href="@{/history/approve}"><span class="btn-icon-start text-primary"><i class="fa fa-info"></i></span>Detail</button>`
+                    return `<a href="historyapprove">` + row.request.employee.name + `</a>`
                 }
+            },
+            {
+                "data": "request.employee.phoneNumber"
+            },
+            {
+                "data": "request.date"
+            },
+            {
+                "data": "request.fasilitasRuang.fasilitas"
+            },
+            {
+                "data": "request.fasilitasRuang.ruang"
+            },
+            {
+                "data": "request.keterangan"
+            },
+            {
+                "data": "request.status.name"
             }
         ],
         language: {

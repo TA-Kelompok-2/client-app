@@ -5,6 +5,7 @@
  */
 package id.co.mii.ta.clientapp.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/manage_data")
+@AllArgsConstructor
 public class ManageDataController {
 
     @GetMapping

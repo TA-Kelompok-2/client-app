@@ -22,5 +22,4 @@ public class Ruang {
     private Integer id;
     private String name;
     private String lantai;
-    private Set<FasilitasRuang> fasilitasRuang;
 }

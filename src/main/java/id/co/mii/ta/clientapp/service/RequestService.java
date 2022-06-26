@@ -34,7 +34,7 @@ public class RequestService {
         this.restTemplate = restTemplate;
     }
 
- public List<Request> getAll(){
+    public List<Request> getAll() {
         return restTemplate.exchange(url,
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
         }).getBody();

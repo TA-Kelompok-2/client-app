@@ -27,6 +27,6 @@ public class Request {
     private Employee employee;
     private Status status;
     private FasilitasRuang fasilitasRuang;
-    private List<History> history;
+//    private List<History> history;
 
 }

@@ -7,6 +7,9 @@ package id.co.mii.ta.clientapp.controller;
 
 import id.co.mii.ta.clientapp.model.dto.request.LoginRequest;
 import id.co.mii.ta.clientapp.service.LoginService;
+import id.co.mii.ta.clientapp.service.UserService;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -26,6 +29,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
     private LoginService loginService;
+    private UserService userService;
+    public static Integer empId;
 
     @GetMapping
     public String login(LoginRequest loginRequest) {
@@ -40,10 +45,21 @@ public class LoginController {
 
     @PostMapping
     public String checkLogin(LoginRequest loginRequest) {
-        if(!loginService.login(loginRequest)){
-            return "redirect:/login?error=true";
+
+        if (!loginService.login(loginRequest)) {
+            System.out.println("Gagal");
+            return "redirect:login?error=true";
         }
-        return "redirect:/";
+        System.out.println("Berhasil");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        String a = "redirect:/"; 
+        Set<String> roles = auth.getAuthorities().stream()
+                .map(r -> r.getAuthority()).collect(Collectors.toSet());
+        empId = userService.getDetailByUsername(auth.getName()).getId();
+        System.out.println(empId);
+
+        return a;
     }
 
 }
