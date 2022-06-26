@@ -13,7 +13,8 @@ $(document).ready(function () {
             {
                 "data": null,
                 render: function (data, type, row, meta) {
-                    return `<a href="historyapprove">` + row.request.employee.name + `</a>`
+                    return `<a class="text-info" href="historyapprove" data-bs-toggle="modal"
+                    data-bs-target="#detailRequest" onclick="modalHistory(${data.id})" onclick="approve(${data.id})">` + row.request.employee.name + `</a>`
                 }
             },
             {
@@ -45,18 +46,19 @@ $(document).ready(function () {
     });
 });
 
-function modalEmployee(id) {
+function modalHistory(id) {
     $.ajax({
         type: 'GET',
-        url: "/employee/getById/" + id,
+        url: "/history/getById/" + id,
         dataType: 'json',
         contentType: ''
     }).done((result) => {
-        $('#id').text(result.id);
-        $('#name').text(result.name);
-        $('#email').text(result.email);
-        $('#phoneNumber').text(result.phoneNumber);
-        $('#role').text(result.user.roles[0].name);
+        $('#name').text(result.request.employee.name);
+        $('#phoneNumber').text(result.request.employee.phoneNumber);
+        $('#date').text(result.request.date);
+        $('#fasilitas').text(result.request.fasilitasRuang.fasilitas.name);
+        $('#ruang').text(result.request.fasilitasRuang.ruang.name);
+        $('#keterangan').text(result.request.keterangan);
     }).fail((error) => {
         console.log(error);
     });
@@ -120,6 +122,34 @@ function deleteEmployee(id) {
                     )
                     $('#tbEMP').DataTable().ajax.reload()
                 }
+            })
+        }
+    })
+}
+
+function approve(id) {
+    let status = 2
+    console.log(id)
+
+    $.ajax({
+        method: "PUT",
+        url: "request/getById/" + id,
+        dataType: "json",
+        beforeSend: addCsrfToken(),
+        data: JSON.stringify({
+            status: status,
+        }),
+        contentType: "application/json", // data yang dikirim dalam bentuk json 
+        success: function (result) {
+            console.log(result)
+            $('#tbEMP').DataTable().ajax.reload()
+            $("#detailRequest").modal('hide')
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Country has been changed',
+                showConfirmButton: false,
+                timer: 1500
             })
         }
     })

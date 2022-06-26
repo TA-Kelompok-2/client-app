@@ -21,7 +21,7 @@
         <div th:replace="fragments/master :: nav-header"></div>
         <div th:replace="fragments/master :: navbar"></div>
         <div th:replace="fragments/master :: dlabnav"></div>
-        
+
 
         <div class="content-body">
             <div class="container-fluid">
@@ -72,6 +72,81 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Detail Request -->
+    <div class="modal fade" id="detailRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure want to Approve ?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="container">
+                    <div class="modal-body">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-2">
+                                <label for="inputPassword6" class="col-form-label">Name</label>
+                            </div>
+                            <div class="col-auto">
+                                <label>: </label>
+                                <label class="col-form-label" id="name"></label>
+                            </div>
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-2">
+                                <label for="inputPassword6" class="col-form-label">Phone Number</label>
+                            </div>
+                            <div class="col-auto">
+                                <label>: </label>
+                                <label class="col-form-label" id="phoneNumber"></label>
+                            </div>
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-2">
+                                <label for="inputPassword6" class="col-form-label">date</label>
+                            </div>
+                            <div class="col-auto">
+                                <label>: </label>
+                                <label class="col-form-label" id="date"></label>
+                            </div>
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-2">
+                                <label for="inputPassword6" class="col-form-label">Fasilitas</label>
+                            </div>
+                            <div class="col-auto">
+                                <label>: </label>
+                                <label class="col-form-label" id="fasilitas"></label>
+                            </div>
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-2">
+                                <label for="inputPassword6" class="col-form-label">Ruang</label>
+                            </div>
+                            <div class="col-auto">
+                                <label>: </label>
+                                <label class="col-form-label" id="ruang"></label>
+                            </div>
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-2">
+                                <label for="inputPassword6" class="col-form-label">Keterangan</label>
+                            </div>
+                            <div class="col-auto">
+                                <label>: </label>
+                                <label class="col-form-label" id="keterangan"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center align-content-center">
+                    <button id="approve" class="btn btn-rounded btn-success" data-bs-dismiss="modal"><span class="btn-icon-start text-success"><i
+                                class="fa fa-check"></i>
+                        </span>Ok</button>
                 </div>
             </div>
         </div>

@@ -43,14 +43,14 @@
                                 <form th:method="POST" th:action="@{/request}" th:object="${requestDTO}" >
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="mb-5 row">
+                                            <div class="mb-3 mt-3 row  d-flex align-items-center">
                                                 <label class="col-3 col-form-label">ID Employee</label>
                                                 <div class="col-9">
                                                     <input type="text" th:value="${idEmp}" name="employee" id="employee"
                                                         class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="mb-3 row">
+                                            <div class="mb-3 row  d-flex align-items-center">
                                                 <label class="col-3 col-form-label">Gambar</label>
                                                 <div class="col-9">
                                                     <div class="input-group mb-3">
@@ -63,7 +63,7 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="mb-3 row">
+                                            <div class="mb-3 row  d-flex align-items-center">
                                                 <label class="col-3 col-form-label">Fasilitas Ruang</label>
                                                 <div class="col-9">
                                                     <!-- <select multiple="" class="default-select form-control wide mt-3">
