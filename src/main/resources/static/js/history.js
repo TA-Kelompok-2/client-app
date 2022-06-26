@@ -23,10 +23,10 @@ $(document).ready(function () {
                 "data": "request.date"
             },
             {
-                "data": "request.fasilitasRuang.fasilitas"
+                "data": "request.fasilitasRuang.fasilitas.name"
             },
             {
-                "data": "request.fasilitasRuang.ruang"
+                "data": "request.fasilitasRuang.ruang.name"
             },
             {
                 "data": "request.keterangan"

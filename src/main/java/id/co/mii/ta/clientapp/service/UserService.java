@@ -30,7 +30,7 @@ public class UserService {
     }
 
     public User getDetailByUsername(String username) {
-        return restTemplate.exchange(url + username, HttpMethod.GET, null,
+        return restTemplate.exchange(url + "/" +username, HttpMethod.GET, null,
                 new ParameterizedTypeReference<User>() {
         }).getBody();
     }
