@@ -49,7 +49,9 @@ function modalEmployee(id) {
 
 $('#createFasilitas').click(function (e) { //modal btn save
     let name = $('#nameInp').val()
-    let keterangan = $('#ketranganInp').val()
+    let keterangan = $('#keteranganInp').val()
+    console.log(name)
+    console.log(keterangan)
     $.ajax({
         method: "POST",
         url: "fasilitas/createFasilitas",
@@ -62,7 +64,7 @@ $('#createFasilitas').click(function (e) { //modal btn save
         contentType: "application/json",
         success: function (result) {
             $('#tbEMP').DataTable().ajax.reload()
-            $("#addEmployee").modal('hide')
+            $("#addHistory").modal('hide')
             Swal.fire({
                 position: 'center',
                 icon: 'success',

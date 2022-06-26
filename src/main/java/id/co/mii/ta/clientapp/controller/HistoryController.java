@@ -34,6 +34,7 @@ public class HistoryController {
 
     @GetMapping("/history")
     public String getAll(Model model) {
+        model.addAttribute("idEmp", LoginController.empId);
         return "request/history";
     }
 

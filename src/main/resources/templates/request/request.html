@@ -40,43 +40,57 @@
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form>
+                                <form th:method="POST" th:action="@{/request}" th:object="${requestDTO}" >
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="mb-3 row">
+                                            <div class="mb-5 row">
                                                 <label class="col-3 col-form-label">ID Employee</label>
                                                 <div class="col-9">
-                                                    <input type="text" th:value="${idEmp}" name="empId" class="form-control">
+                                                    <input type="text" th:value="${idEmp}" name="employee" id="employee"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="mb-3 row">
-                                                <label class="col-3 col-form-label">Status</label>
+                                                <label class="col-3 col-form-label">Gambar</label>
                                                 <div class="col-9">
-                                                    <input type="text" class="form-control">
+                                                    <div class="input-group mb-3">
+                                                        <div class="form-file">
+                                                            <input type="file" class="form-file-input form-control" th:field="*{gambar}">
+                                                        </div>
+                                                        <span class="input-group-text">Upload</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3 row">
-                                                <label class="col-3 col-form-label">Ruang</label>
+                                                <label class="col-3 col-form-label">Fasilitas Ruang</label>
                                                 <div class="col-9">
-                                                    <input type="text" class="form-control">
-                                                    <option th:each="ruang : ${ruangs}"
-                                                        th:text="${ruang.id +' - '+ ruang.name}"
-                                                        th:value="${ruang.id}">
-                                                    </option>
+                                                    <!-- <select multiple="" class="default-select form-control wide mt-3">
+                                                        <option th:each="ruang : ${ruangs}"
+                                                            th:text="${ruang.id +' - '+ ruang.name +' '+ ruang.lantai}"
+                                                            th:value="${ruang.id}">
+                                                        </option>
+                                                    </select> -->
+                                                    <select multiple="" class="default-select form-control wide mt-3" th:field="*{fasilitasruang}">
+                                                        <option th:each="fasilitasRuangs : ${fasilitasRuangs}"
+                                                            th:text="${fasilitasRuangs.id +' - '+ fasilitasRuangs.ruang.name +' '+ fasilitasRuangs.fasilitas.name}"
+                                                            th:value="${fasilitasRuangs.id}">
+                                                        </option>
+                                                    </select>
                                                 </div>
                                             </div>
-                                            <div class="mb-3 row">
+                                            <!-- <div class="mb-3 row">
                                                 <label class="col-3 col-form-label">Fasilitas</label>
                                                 <div class="col-9">
-                                                    <input type="text" class="form-control">
-                                                    <option th:each="fasilitas : ${fasilitas}"
-                                                        th:text="${fasilitas.id +' - '+ fasilitas.name}"
-                                                        th:value="${fasilitas.id}">
-                                                    </option>
+                                                    <select multiple="" class="default-select form-control wide mt-3">
+                                                        <option th:each="fasilitas : ${fasilitas}"
+                                                            th:text="${fasilitas.id +' - '+ fasilitas.name +' '+ fasilitas.keterangan}"
+                                                            th:value="${fasilitas.id}">
+                                                        </option>
+                                                    </select>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
 
                                     </div>
@@ -86,18 +100,7 @@
                                             <label class="col-3 col-form-label">Keterangan</label>
                                             <div class="col-9">
                                                 <textarea class="form-control" rows="4" id="comment"
-                                                    style="height:200px"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 row">
-                                            <label class="col-3 col-form-label">Gambar</label>
-                                            <div class="col-9">
-                                                <div class="input-group mb-3">
-                                                    <div class="form-file">
-                                                        <input type="file" class="form-file-input form-control">
-                                                    </div>
-                                                    <span class="input-group-text">Upload</span>
-                                                </div>
+                                                    style="height:200px" th:field="*{keterangan}"></textarea>
                                             </div>
                                         </div>
                                     </div>

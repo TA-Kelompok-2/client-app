@@ -42,15 +42,10 @@ public class RequestController {
     private RuangService ruangService;
 
     @GetMapping
-    public String showForm(Model model) {
+    public String showForm(Model model, RequestDTO requestDTO) {
         List<FasilitasRuang> fasilitasRuangs = fasilitasRuangService.getAll();
         model.addAttribute("fasilitasRuangs", fasilitasRuangs);
-        List<Fasilitas> fasilitas = fasilitasService.getAll();
-        model.addAttribute("fasilitas", fasilitas);
-        List<Ruang> ruangs = ruangService.getAll();
-        model.addAttribute("ruangs", ruangs);
         model.addAttribute("idEmp", LoginController.empId);
-        System.out.println(fasilitasRuangs);
         return "request/request";
     }
     
@@ -66,10 +61,10 @@ public class RequestController {
         return requestService.getById(id);
     }
 
-    @PostMapping("/createrequest")
-    @ResponseBody
-    public Request createRequest(@RequestBody RequestDTO requestDTO) {                                                                 // valid, ada eror atau enggak
-        return requestService.createRequest(requestDTO);
+    @PostMapping
+    public String createRequest(RequestDTO requestDTO) {              
+        requestService.createRequest(requestDTO);
+        return "redirect:/request";
     }
 
 
