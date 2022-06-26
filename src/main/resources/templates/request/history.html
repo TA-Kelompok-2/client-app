@@ -39,142 +39,37 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Table History</h4>
-                                <div class="col-6">
-                                    <div class="d-flex justify-content-end">
-                                        <button type="button" class="btn btn-rounded btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#addHistory"><span class="btn-icon-start text-success"><i
-                                                    class="fa fa-plus color-success"></i>
-                                            </span>Add</button>
-                                    </div>
-                                </div>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="tbEMP" style="min-width: 845px" width="100%" class="display text-center">
                                         <thead>
                                             <tr>
-                                                <th>Id</th>
-                                                <th>Keterangan</th>
-                                                <th>Gambar</th>
+                                                <th>Nomor</th>
+                                                <th>Name</th>
+                                                <th>Phone Number</th>
                                                 <th>Date</th>
-                                                <th>Request</th>
-                                                <th>Status</th>
                                                 <th>Fasilitas</th>
                                                 <th>Ruang</th>
-                                                <th>Action</th>
+                                                <th>Keterangan</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
-                                                <th>Id</th>
-                                                <th>Keterangan</th>
-                                                <th>Gambar</th>
+                                                <th>Nomor</th>
+                                                <th>Name</th>
+                                                <th>Phone Number</th>
                                                 <th>Date</th>
-                                                <th>Request</th>
-                                                <th>Status</th>
                                                 <th>Fasilitas</th>
                                                 <th>Ruang</th>
-                                                <th>Action</th>
+                                                <th>Keterangan</th>
+                                                <th>Status</th>
                                             </tr>
                                         </tfoot>
                                     </table>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Detail History -->
-        <div class="modal fade" id="detailHistory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">History Detail</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="container">
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">ID</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label>: </label>
-                                    <label class="col-form-label" id="id"></label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Name</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label>: </label>
-                                    <label class="col-form-label" id="name"></label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Email</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label>: </label>
-                                    <label class="col-form-label" id="email"></label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Phone Number</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label>: </label>
-                                    <label class="col-form-label" id="phoneNumber"></label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Role</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label>: </label>
-                                    <label class="col-form-label" id="role"></label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Add History -->
-        <div class="modal fade" id="addHistory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="container">
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Input Name</label>
-                                <input class="form-control" id="nameInp" aria-describedby="emailHelp" placeholder="Aldo Mananta...">
-                                <label for="exampleInputEmail1" class="form-label">Input Email</label>
-                                <input type="email" class="form-control" id="emailInp" aria-describedby="emailHelp" placeholder="aldom432@gmail.com...">
-                                <label for="exampleInputEmail1" class="form-label">Input Phone Number</label>
-                                <input type="number" class="form-control" id="phoneNumberInp" aria-describedby="emailHelp" placeholder="085713226...">
-                                <label for="exampleInputEmail1" class="form-label">Input Username</label>
-                                <input class="form-control" id="usernameInp" aria-describedby="emailHelp" placeholder="aldo...">
-                                <label for="exampleInputEmail1" class="form-label">Input Password</label>
-                                <input class="form-control" id="passwordInp" aria-describedby="emailHelp" placeholder="aldo...">
-                                
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="createHistory">Save</button>
                         </div>
                     </div>
                 </div>

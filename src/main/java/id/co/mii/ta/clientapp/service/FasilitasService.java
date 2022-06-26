@@ -38,7 +38,7 @@ public class FasilitasService {
         }).getBody();
     }
     
-    public Fasilitas getById(Long id) { // id -> 1 data id
+    public Fasilitas getById(Integer id) { // id -> 1 data id
         return restTemplate.exchange(url.concat("/" + id), // -> pengembalian http kalau getForObject yang disediakan get
                 HttpMethod.GET, null, new ParameterizedTypeReference<Fasilitas>() {
         }).getBody();
@@ -52,13 +52,13 @@ public class FasilitasService {
         }).getBody(); // -> ngambil isi respon
     }
 
-    public Fasilitas updateFasilitas(Long id, Fasilitas fasilitas) { // update ->, id -> mengambil data, Region -> data
+    public Fasilitas updateFasilitas(Integer id, Fasilitas fasilitas) { // update ->, id -> mengambil data, Region -> data
         return restTemplate.exchange(url.concat("/" + id),
                 HttpMethod.PUT, new HttpEntity(fasilitas), new ParameterizedTypeReference<Fasilitas>() {
         }).getBody();
     }
 
-    public Fasilitas deleteFasilitas(Long id) {// delete -> yang dibutuhkan id
+    public Fasilitas deleteFasilitas(Integer id) {// delete -> yang dibutuhkan id
         return restTemplate.exchange(url.concat("/" + id),
                 HttpMethod.DELETE, null, new ParameterizedTypeReference<Fasilitas>() {
         }).getBody();

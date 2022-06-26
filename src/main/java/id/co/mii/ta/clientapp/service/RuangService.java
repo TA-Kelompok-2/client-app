@@ -5,7 +5,7 @@
  */
 package id.co.mii.ta.clientapp.service;
 
-import id.co.mii.ta.clientapp.model.FasilitasRuang;
+import id.co.mii.ta.clientapp.model.Ruang;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,50 +17,50 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  *
- * @author Mac
+ * @author Fathullah
  */
 @Service
-public class FasilitasRuangService {
-
+public class RuangService {
     private RestTemplate restTemplate;
-
-    @Value("${server.baseUrl}/fasilitasruang")
+    
+    @Value("${server.baseUrl}/ruang")
     private String url;
 
     @Autowired
-    public FasilitasRuangService(RestTemplate restTemplate) {
+    public RuangService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
     
-     public List<FasilitasRuang> getAll(){
+     public List<Ruang> getAll(){
          return restTemplate.exchange(url,
-                HttpMethod.GET, null, new ParameterizedTypeReference<List<FasilitasRuang>>() {
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<Ruang>>() {
         }).getBody();
     }
     
-    public FasilitasRuang getById(Integer id) { // id -> 1 data id
+    public Ruang getById(Integer id) { // id -> 1 data id
         return restTemplate.exchange(url.concat("/" + id), // -> pengembalian http kalau getForObject yang disediakan get
-                HttpMethod.GET, null, new ParameterizedTypeReference<FasilitasRuang>() {
+                HttpMethod.GET, null, new ParameterizedTypeReference<Ruang>() {
         }).getBody();
     }
     
-    public FasilitasRuang createFasilitasRuang(FasilitasRuang fasilitas) { // create -> data
+    public Ruang createRuang(Ruang ruang) { // create -> data
         return restTemplate.exchange(url,
                 HttpMethod.POST,
-                new HttpEntity(fasilitas), // -> requestbody dri method sama seperti postman 
-                new ParameterizedTypeReference<FasilitasRuang>() { // -> tipe pengembalian dri backend karna dri back end region maka typenya region
+                new HttpEntity(ruang), // -> requestbody dri method sama seperti postman 
+                new ParameterizedTypeReference<Ruang>() { // -> tipe pengembalian dri backend karna dri back end region maka typenya region
         }).getBody(); // -> ngambil isi respon
     }
 
-    public FasilitasRuang updateFasilitasRuang(Integer id, FasilitasRuang fasilitas) { // update ->, id -> mengambil data, Region -> data
+    public Ruang updateRuang(Integer id, Ruang ruang) { // update ->, id -> mengambil data, Region -> data
         return restTemplate.exchange(url.concat("/" + id),
-                HttpMethod.PUT, new HttpEntity(fasilitas), new ParameterizedTypeReference<FasilitasRuang>() {
+                HttpMethod.PUT, new HttpEntity(ruang), new ParameterizedTypeReference<Ruang>() {
         }).getBody();
     }
 
-    public FasilitasRuang deleteFasilitasRuang(Integer id) {// delete -> yang dibutuhkan id
+    public Ruang deleteRuang(Integer id) {// delete -> yang dibutuhkan id
         return restTemplate.exchange(url.concat("/" + id),
-                HttpMethod.DELETE, null, new ParameterizedTypeReference<FasilitasRuang>() {
+                HttpMethod.DELETE, null, new ParameterizedTypeReference<Ruang>() {
         }).getBody();
     }
+    
 }

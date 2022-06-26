@@ -5,8 +5,8 @@
  */
 package id.co.mii.ta.clientapp.service;
 
-import id.co.mii.ta.clientapp.model.Employee;
-import id.co.mii.ta.clientapp.model.dto.request.EmployeeRequest;
+import id.co.mii.ta.clientapp.model.History;
+import id.co.mii.ta.clientapp.model.dto.request.HistoryRequest;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,49 +21,50 @@ import org.springframework.web.client.RestTemplate;
  * @author Fathullah
  */
 @Service
-public class EmployeeService {
+public class HistoryService {
 
     private RestTemplate restTemplate; // -> mengkomunikasikan fronend dan beackend
 
-    @Value("${server.baseUrl}/employee") // -> server.baserUrl dari application.properties
+    @Value("${server.baseUrl}/history") // -> server.baserUrl dari application.properties
     private String url;
 
     @Autowired
-    public EmployeeService(RestTemplate restTemplate) {
+    public HistoryService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
- public List<Employee> getAll(){
+ public List<History> getAll(){
          return restTemplate.exchange(url,
-                HttpMethod.GET, null, new ParameterizedTypeReference<List<Employee>>() {
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<History>>() {
         }).getBody();
     }
     
-    public Employee getById(Integer id) { // id -> 1 data id
+    public History getById(Integer id) { // id -> 1 data id
         return restTemplate.exchange(url.concat("/" + id), // -> pengembalian http kalau getForObject yang disediakan get
-                HttpMethod.GET, null, new ParameterizedTypeReference<Employee>() {
+                HttpMethod.GET, null, new ParameterizedTypeReference<History>() {
         }).getBody();
     }
     
-    public Employee createEmployee(EmployeeRequest employeeRequest) { // create -> data
+    public History createHistory(History history) { // create -> data
         return restTemplate.exchange(url,
                 HttpMethod.POST,
-                new HttpEntity(employeeRequest), // -> requestbody dri method sama seperti postman 
-                new ParameterizedTypeReference<Employee>() { // -> tipe pengembalian dri backend karna dri back end region maka typenya region
+                new HttpEntity(history), // -> requestbody dri method sama seperti postman 
+                new ParameterizedTypeReference<History>() { // -> tipe pengembalian dri backend karna dri back end region maka typenya region
         }).getBody(); // -> ngambil isi respon
     }
 
-    public Employee updateEmployee(Integer id, EmployeeRequest employeeRequest) { // update ->, id -> mengambil data, Region -> data
+    public History updateHistory(Integer id, HistoryRequest historyRequest) { // update ->, id -> mengambil data, Region -> data
         return restTemplate.exchange(url.concat("/" + id),
-                HttpMethod.PUT, new HttpEntity(employeeRequest), new ParameterizedTypeReference<Employee>() {
+                HttpMethod.PUT, new HttpEntity(historyRequest), new ParameterizedTypeReference<History>() {
         }).getBody();
     }
 
-    public Employee deleteEmployee(Integer id) {// delete -> yang dibutuhkan id
+    public History deleteHistory(Integer id) {// delete -> yang dibutuhkan id
         return restTemplate.exchange(url.concat("/" + id),
-                HttpMethod.DELETE, null, new ParameterizedTypeReference<Employee>() {
+                HttpMethod.DELETE, null, new ParameterizedTypeReference<History>() {
         }).getBody();
     }
     
 }
+
 

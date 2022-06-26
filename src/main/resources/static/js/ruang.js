@@ -1,38 +1,25 @@
 $(document).ready(function () {
     $("#tbEMP").DataTable({
         "ajax": {
-            "url": "/history/get-all",
+            "url": "/ruang/get-all",
             "dataSrc": ""
         },
         "columns": [{
-                "data": null,
-                render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }
+                "data": "id"
+            },
+            {
+                "data": "name"
+            },
+            {
+                "data": "lantai"
             },
             {
                 "data": null,
                 render: function (data, type, row, meta) {
-                    return `<a href="historyapprove">` + row.request.employee.name + `</a>`
+                    return `<button class="btn btn-rounded btn-primary" onclick = "modalRuang(${data.id})" data-bs-toggle="modal" data-bs-target="#detailRuang"><span class="btn-icon-start text-primary"><i class="fa fa-info"></i>
+                        </span>Detail</button>
+                        <button class="btn btn-rounded btn-danger" onclick="deleteRuang(${data.id})"><span class="btn-icon-start text-danger"><i class="fa fa-trash"></i></span>Delete</button>`
                 }
-            },
-            {
-                "data": "request.employee.phoneNumber"
-            },
-            {
-                "data": "request.date"
-            },
-            {
-                "data": "request.fasilitasRuang.fasilitas"
-            },
-            {
-                "data": "request.fasilitasRuang.ruang"
-            },
-            {
-                "data": "request.keterangan"
-            },
-            {
-                "data": "request.status.name"
             }
         ],
         language: {
@@ -45,49 +32,41 @@ $(document).ready(function () {
     });
 });
 
-function modalEmployee(id) {
+function modalRuang(id) {
     $.ajax({
         type: 'GET',
-        url: "/employee/getById/" + id,
+        url: "/ruang/getById/" + id,
         dataType: 'json',
         contentType: ''
     }).done((result) => {
         $('#id').text(result.id);
         $('#name').text(result.name);
-        $('#email').text(result.email);
-        $('#phoneNumber').text(result.phoneNumber);
-        $('#role').text(result.user.roles[0].name);
+        $('#lantai').text(result.lantai);
     }).fail((error) => {
         console.log(error);
     });
 }
 
-$('#createEmployee').click(function (e) { //modal btn save
+$('#createRuang').click(function (e) { //modal btn save
     let name = $('#nameInp').val()
-    let email = $('#emailInp').val()
-    let phoneNumber = $('#phoneNumberInp').val()
-    let username = $('#usernameInp').val()
-    let password = $('#passwordInp').val()
+    let lantai = $('#lantaiInp').val()
     $.ajax({
         method: "POST",
-        url: "employee/createEmployee",
+        url: "ruang/createRuang",
         dataType: "json",
         beforeSend: addCsrfToken(),
         data: JSON.stringify({
             name: name,
-            email: email,
-            phoneNumber: phoneNumber,
-            username: username,
-            password: password,
+            lantai: lantai
         }),
         contentType: "application/json",
         success: function (result) {
             $('#tbEMP').DataTable().ajax.reload()
-            $("#addEmployee").modal('hide')
+            $("#addRuang").modal('hide')
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Employee has been created',
+                title: 'Ruang has been created',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -95,10 +74,10 @@ $('#createEmployee').click(function (e) { //modal btn save
     })
 })
 
-function deleteEmployee(id) {
+function deleteRuang(id) {
     Swal.fire({
         title: 'Are you sure?',
-        text: "You won't delete this employee!",
+        text: "You won't delete this Ruang!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -108,7 +87,7 @@ function deleteEmployee(id) {
         if (result.isConfirmed) {
             $.ajax({
                 method: "DELETE",
-                url: "employee/deleteEmployee/" + id,
+                url: "ruang/deleteRuang/" + id,
                 dataType: "json",
                 beforeSend: addCsrfToken(),
                 contentType: "application/json",

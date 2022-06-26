@@ -33,7 +33,7 @@ public class FasilitasRuangController {
     
      @GetMapping
     public String getAll(Model model) {
-        return "fasilitasruang/index";
+        return "managedata/fasilitasruang";
     }
 
     @GetMapping("/get-all")
@@ -44,7 +44,7 @@ public class FasilitasRuangController {
 
     @GetMapping("/getById/{id}")
     @ResponseBody
-    public FasilitasRuang getById(@PathVariable Long id) {
+    public FasilitasRuang getById(@PathVariable Integer id) {
         return fasilitasRuangService.getById(id);
     }
 
@@ -56,13 +56,13 @@ public class FasilitasRuangController {
 
     @PutMapping("/updateFasilitasRuang/{id}")
     @ResponseBody
-    public FasilitasRuang updateFasilitas(@PathVariable Long id, @RequestBody FasilitasRuang fasilitas) {
+    public FasilitasRuang updateFasilitas(@PathVariable Integer id, @RequestBody FasilitasRuang fasilitas) {
         return fasilitasRuangService.updateFasilitasRuang(id, fasilitas);
     }
 
     @DeleteMapping("/deleteFasilitasRuang/{id}")
     @ResponseBody
-    public FasilitasRuang delete(@PathVariable Long id) {
+    public FasilitasRuang delete(@PathVariable Integer id) {
         return fasilitasRuangService.deleteFasilitasRuang(id);
 
     }

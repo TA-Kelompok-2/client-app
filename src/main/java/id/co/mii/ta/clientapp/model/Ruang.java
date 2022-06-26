@@ -5,8 +5,7 @@
  */
 package id.co.mii.ta.clientapp.model;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,15 +17,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Request {
+public class Ruang {
 
     private Integer id;
-    private String keterangan;
-    private String gambar;
-    private LocalDateTime date;
-    private Employee employee;
-    private Status status;
-    private FasilitasRuang fasilitasRuang;
-//    private List<History> history;
-
+    private String name;
+    private String lantai;
 }

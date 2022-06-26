@@ -20,11 +20,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class History {
 
-    private Long id;
+    private Integer id;
     private String keterangan;
     private LocalDateTime date;
     private Request request;
-    private Employee employee;
-    private Status status;
+//    private Employee employee;
+//    private Status status;
     
 }

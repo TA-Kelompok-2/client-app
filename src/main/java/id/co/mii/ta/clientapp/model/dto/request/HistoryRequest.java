@@ -22,7 +22,7 @@ public class HistoryRequest {
     private String keterangan;
     private String gambar;
     private LocalDateTime date = LocalDateTime.now();
-    private Long employee;
-    private Long status;
-    private Long fasilitasRuang;
+    private Integer employee;
+    private Integer status;
+    private Integer fasilitasRuang;
 }

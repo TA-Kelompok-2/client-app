@@ -40,7 +40,8 @@ public class LoginService {
     }
 
     public Boolean login(LoginRequest loginRequest) { //ceck data akun yg masuk, jika terdaftar true -> tidak false
-
+        System.out.println(loginRequest.getUsername());
+        System.out.println(loginRequest.getPassword());
         try {
             ResponseEntity<LoginResponse> res = restTemplate.postForEntity(url,
                     new HttpEntity(loginRequest), LoginResponse.class);
