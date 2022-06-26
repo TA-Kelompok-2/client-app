@@ -1,33 +1,45 @@
 $(document).ready(function () {
     $("#tbEMP").DataTable({
         "ajax": {
-            "url": "/fasilitas/get-all",
+            "url": "/request/get-all",
             "dataSrc": ""
         },
         "columns": [{
-                "data": "id"
-            },
-            {
-                "data": "name"
-            },
-            {
-                "data": "keterangan"
-            },
-            {
-                "data": null,
-                render: function (data, type, row, meta) {
-                    return `<button class="btn btn-rounded btn-primary" onclick = "modalEmployee(${data.id})" data-bs-toggle="modal" data-bs-target="#detailHistory"><span class="btn-icon-start text-primary"><i class="fa fa-info"></i>
+            "data": "id"
+        },
+        {
+            "data": "date"
+        },
+        {
+            "data": "gambar"
+        },
+        {
+            "data": "keterangan"
+        },
+        {
+            "data": "employee.name"
+        },
+        {
+            "data": "fasilitasRuang.id"
+        },
+        {
+            "data": "status.name"
+        },
+        {
+            "data": null,
+            render: function (data, type, row, meta) {
+                return `<button class="btn btn-rounded btn-primary" onclick = "modalEmployee(${data.id})" data-bs-toggle="modal" data-bs-target="#detailHistory"><span class="btn-icon-start text-primary"><i class="fa fa-info"></i>
                         </span>Detail</button>
                         <button class="btn btn-rounded btn-danger" onclick="deleteFasilitas(${data.id})"><span class="btn-icon-start text-danger"><i class="fa fa-trash"></i></span>Delete</button>`
-                }
-            }
-        ],
-        language: {
-            paginate: {
-                next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-                previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
             }
         }
+        ],
+        language: {
+        paginate: {
+            next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
+            previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
+        }
+    }
         // console.log()
     });
 });

@@ -54,16 +54,24 @@
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Name</th>
+                                                <th>Date</th>
+                                                <th>Gambar</th>
                                                 <th>Keterangan</th>
+                                                <th>Employee</th>
+                                                <th>Fasilitas dan Ruang</th>
+                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Name</th>
+                                                <th>Date</th>
+                                                <th>Gambar</th>
                                                 <th>Keterangan</th>
+                                                <th>Employee</th>
+                                                <th>Fasilitas dan Ruang</th>
+                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>
@@ -81,7 +89,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">History Detail</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Request Detail</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="container">
@@ -97,7 +105,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Name</label>
+                                    <label for="inputPassword6" class="col-form-label">Date</label>
                                 </div>
                                 <div class="col-auto">
                                     <label>: </label>
@@ -106,7 +114,43 @@
                             </div>
                             <div class="row">
                                 <div class="col-2">
+                                    <label for="inputPassword6" class="col-form-label">Gambar</label>
+                                </div>
+                                <div class="col-auto">
+                                    <label>: </label>
+                                    <label class="col-form-label" id="keterangan"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
                                     <label for="inputPassword6" class="col-form-label">Keterangan</label>
+                                </div>
+                                <div class="col-auto">
+                                    <label>: </label>
+                                    <label class="col-form-label" id="id"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="inputPassword6" class="col-form-label">Employee</label>
+                                </div>
+                                <div class="col-auto">
+                                    <label>: </label>
+                                    <label class="col-form-label" id="name"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="inputPassword6" class="col-form-label">Fasilitas dan Ruang</label>
+                                </div>
+                                <div class="col-auto">
+                                    <label>: </label>
+                                    <label class="col-form-label" id="keterangan"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="inputPassword6" class="col-form-label">Status</label>
                                 </div>
                                 <div class="col-auto">
                                     <label>: </label>
@@ -157,7 +201,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
 
-    <script th:src="@{/js/fasilitas.js}"></script>
+    <script th:src="@{/js/requestlist.js}"></script>
 
 </body>
 
