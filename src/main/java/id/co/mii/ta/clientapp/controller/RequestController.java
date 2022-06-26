@@ -81,8 +81,4 @@ public class RequestController {
         
     }
 
-    @GetMapping("/list_request")
-    public String listRequest() {
-        return "request/listRequest";
-    }
 }
