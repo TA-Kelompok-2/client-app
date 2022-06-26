@@ -29,7 +29,7 @@ $(document).ready(function () {
             "data": null,
             render: function (data, type, row, meta) {
                 return `
-                        <button class="btn btn-rounded btn-success" onclick="deleteFasilitas(${data.id})"><span class="btn-icon-start text-success"><i class="fa fa-check"></i></span>Approval</button>`
+                        <button class="btn btn-rounded btn-success" onclick="deleteFasilitas(${data.id})"><span class="btn-icon-start text-success"><i class="fa fa-check"></i></span>Approve</button>`
             }
         }
         ],
@@ -88,26 +88,52 @@ $('#createFasilitas').click(function (e) { //modal btn save
 })
 
 function deleteFasilitas(id) {
+    let approve = 2
+    let reject = 3
+
     Swal.fire({
         title: 'Are you sure?',
-        text: "You won't delete this fasilitas!",
+        text: "Select your approval",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        cancelButtonText:'Reject',
+        confirmButtonText: 'Approve'
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                method: "DELETE",
-                url: "fasilitas/deleteFasilitas/" + id,
+                method: "PUT",
+                url: "request/updateRequest/" + id,
                 dataType: "json",
                 beforeSend: addCsrfToken(),
+                data: JSON.stringify({
+                    status: approve,
+                }),
                 contentType: "application/json",
                 success: (result) => {
                     Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
+                        'Approved!',
+                        'Request has been approved.',
+                        'success'
+                    )
+                    $('#tbEMP').DataTable().ajax.reload()
+                }
+            })
+        } else{
+            $.ajax({
+                method: "PUT",
+                url: "request/updateRequest/" + id,
+                dataType: "json",
+                beforeSend: addCsrfToken(),
+                data: JSON.stringify({
+                    status: reject,
+                }),
+                contentType: "application/json",
+                success: (result) => {
+                    Swal.fire(
+                        'Rejected!',
+                        'Request has been rejected.',
                         'success'
                     )
                     $('#tbEMP').DataTable().ajax.reload()
