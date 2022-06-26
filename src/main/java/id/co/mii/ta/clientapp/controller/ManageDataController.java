@@ -7,6 +7,7 @@ package id.co.mii.ta.clientapp.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,7 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ManageDataController {
 
     @GetMapping
-    public String manageData() {
+    public String manageData(Model model) {
+        model.addAttribute("idEmp", LoginController.empId);
         return "manage_data/fasilitas_ruang";
     }
 }

@@ -33,6 +33,7 @@ public class RuangController {
 
     @GetMapping
     public String getAll(Model model) {
+        model.addAttribute("idEmp", LoginController.empId);
         return "managedata/ruang";
     }
 

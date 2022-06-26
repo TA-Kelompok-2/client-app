@@ -34,6 +34,7 @@ public class EmployeeController {
 
     @GetMapping
     public String getAll(Model model) {
+        model.addAttribute("idEmp", LoginController.empId);
         return "employee/index";
     }
     
