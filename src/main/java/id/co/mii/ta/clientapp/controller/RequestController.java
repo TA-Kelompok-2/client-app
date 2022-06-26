@@ -5,10 +5,13 @@
  */
 package id.co.mii.ta.clientapp.controller;
 
+import id.co.mii.ta.clientapp.model.Fasilitas;
 import id.co.mii.ta.clientapp.model.FasilitasRuang;
 import id.co.mii.ta.clientapp.model.Request;
+import id.co.mii.ta.clientapp.model.Ruang;
 import id.co.mii.ta.clientapp.model.dto.request.RequestDTO;
 import id.co.mii.ta.clientapp.service.FasilitasRuangService;
+import id.co.mii.ta.clientapp.service.FasilitasService;
 import id.co.mii.ta.clientapp.service.RequestService;
 import id.co.mii.ta.clientapp.service.RuangService;
 import java.util.List;
@@ -34,14 +37,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RequestController {
 
     private RequestService requestService;
-    private RuangService ruangService;
     private FasilitasRuangService fasilitasRuangService;
+    private FasilitasService fasilitasService;
+    private RuangService ruangService;
 
     @GetMapping
     public String showForm(Model model) {
         List<FasilitasRuang> fasilitasRuangs = fasilitasRuangService.getAll();
-        model.addAttribute("idEmp", LoginController.empId);
         model.addAttribute("fasilitasRuangs", fasilitasRuangs);
+        List<Fasilitas> fasilitas = fasilitasService.getAll();
+        model.addAttribute("fasilitas", fasilitas);
+        List<Ruang> ruangs = ruangService.getAll();
+        model.addAttribute("ruangs", ruangs);
+        model.addAttribute("idEmp", LoginController.empId);
         System.out.println(fasilitasRuangs);
         return "request/request";
     }
