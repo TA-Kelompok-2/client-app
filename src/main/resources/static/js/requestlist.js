@@ -28,9 +28,8 @@ $(document).ready(function () {
         {
             "data": null,
             render: function (data, type, row, meta) {
-                return `<button class="btn btn-rounded btn-primary" onclick = "modalEmployee(${data.id})" data-bs-toggle="modal" data-bs-target="#detailHistory"><span class="btn-icon-start text-primary"><i class="fa fa-info"></i>
-                        </span>Detail</button>
-                        <button class="btn btn-rounded btn-danger" onclick="deleteFasilitas(${data.id})"><span class="btn-icon-start text-danger"><i class="fa fa-trash"></i></span>Delete</button>`
+                return `
+                        <button class="btn btn-rounded btn-success" onclick="deleteFasilitas(${data.id})"><span class="btn-icon-start text-success"><i class="fa fa-check"></i></span>Approval</button>`
             }
         }
         ],
