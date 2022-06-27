@@ -65,5 +65,11 @@ public class RequestService {
                 HttpMethod.DELETE, null, new ParameterizedTypeReference<Request>() {
         }).getBody();
     }
+    
+        public List<Request> getByApproval(Integer id) { // id -> 1 data id
+        return restTemplate.exchange(url.concat("/approved/" + id), // -> pengembalian http kalau getForObject yang disediakan get
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
+        }).getBody();
+    }
 
 }

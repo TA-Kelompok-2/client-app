@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("#tbEMP").DataTable({
         "ajax": {
-            "url": "/request/get-all",
+            "url": "/request/approval/1" ,
             "dataSrc": ""
         },
         "columns": [{

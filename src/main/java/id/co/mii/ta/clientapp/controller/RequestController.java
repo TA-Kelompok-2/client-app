@@ -46,7 +46,7 @@ public class RequestController {
         model.addAttribute("idEmp", LoginController.empId);
         return "request/request";
     }
-    
+
     @GetMapping("/get-all")
     @ResponseBody
     public List<Request> getAllJSON() {
@@ -60,11 +60,10 @@ public class RequestController {
     }
 
     @PostMapping
-    public String createRequest(RequestDTO requestDTO) {              
+    public String createRequest(RequestDTO requestDTO) {
         requestService.createRequest(requestDTO);
         return "redirect:/request";
     }
-
 
     @PutMapping("/updateRequest/{id}")
     @ResponseBody
@@ -76,7 +75,13 @@ public class RequestController {
     @ResponseBody
     public Request delete(@PathVariable Integer id) {
         return requestService.deleteRequest(id);
-        
+
+    }
+
+    @GetMapping("/approval/{id}")
+    @ResponseBody
+    public List<Request> getByApproval(@PathVariable Integer id) {
+        return requestService.getByApproval(id);
     }
 
 }
