@@ -31,6 +31,7 @@ public class LoginController {
     private LoginService loginService;
     private UserService userService;
     public static Integer empId;
+//    public static String empName;
 
     @GetMapping
     public String login(LoginRequest loginRequest) {
@@ -58,6 +59,8 @@ public class LoginController {
                 .map(r -> r.getAuthority()).collect(Collectors.toSet());
         empId = userService.getDetailByUsername(auth.getName()).getId();
         System.out.println(empId);
+//        empName = loginRequest.getUsername();
+//        System.out.println(empName);
 
         return a;
     }

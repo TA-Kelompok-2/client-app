@@ -38,11 +38,14 @@ public class RequestController {
 
     private RequestService requestService;
     private FasilitasRuangService fasilitasRuangService;
+    private RuangService ruangService;
 
     @GetMapping
     public String showForm(Model model, RequestDTO requestDTO) {
         List<FasilitasRuang> fasilitasRuangs = fasilitasRuangService.getAll();
         model.addAttribute("fasilitasRuangs", fasilitasRuangs);
+        List<Ruang> ruangs = ruangService.getAll();
+        model.addAttribute("ruangs", ruangs);
         model.addAttribute("idEmp", LoginController.empId);
         return "request/request";
     }
