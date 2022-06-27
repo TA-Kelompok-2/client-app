@@ -95,10 +95,10 @@ function deleteFasilitas(id) {
         title: 'Are you sure?',
         text: "Select your approval",
         icon: 'warning',
+        showDenyButton: true,
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText:'Reject',
+        denyButtonText:'Reject',
         confirmButtonText: 'Approve'
     }).then((result) => {
         if (result.isConfirmed) {
@@ -120,7 +120,7 @@ function deleteFasilitas(id) {
                     $('#tbEMP').DataTable().ajax.reload()
                 }
             })
-        } else{
+        } else if (result.isDenied){
             $.ajax({
                 method: "PUT",
                 url: "request/updateRequest/" + id,
