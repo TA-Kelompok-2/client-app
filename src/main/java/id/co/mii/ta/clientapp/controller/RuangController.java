@@ -8,6 +8,7 @@ package id.co.mii.ta.clientapp.controller;
 import id.co.mii.ta.clientapp.model.Ruang;
 import id.co.mii.ta.clientapp.service.RuangService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,38 +33,49 @@ public class RuangController {
     private RuangService ruangService;
 
     @GetMapping
-    public String getAll(Model model) {
-        model.addAttribute("idEmp", LoginController.empId);
+    public String getAll(Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return "managedata/ruang";
     }
 
     @GetMapping("/get-all")
     @ResponseBody
-    public List<Ruang> getAllJSON() {
+    public List<Ruang> getAllJSON(Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return ruangService.getAll();
     }
 
     @GetMapping("/getById/{id}")
     @ResponseBody
-    public Ruang getById(@PathVariable Integer id) {
+    public Ruang getById(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return ruangService.getById(id);
     }
 
     @PostMapping("/createRuang")
     @ResponseBody
-    public Ruang createRuang(@RequestBody Ruang ruang) { // binding result check dari                                                                                  // valid, ada eror atau enggak
+    public Ruang createRuang(@RequestBody Ruang ruang, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return ruangService.createRuang(ruang);
     }
 
     @PutMapping("/updateRuang/{id}")
     @ResponseBody
-    public Ruang updateRuang(@PathVariable Integer id, @RequestBody Ruang ruang) {
+    public Ruang updateRuang(@PathVariable Integer id, @RequestBody Ruang ruang, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return ruangService.updateRuang(id, ruang);
     }
 
     @DeleteMapping("/deleteRuang/{id}")
     @ResponseBody
-    public Ruang delete(@PathVariable Integer id) {
+    public Ruang delete(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return ruangService.deleteRuang(id);
     }
 

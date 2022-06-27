@@ -15,6 +15,7 @@ import id.co.mii.ta.clientapp.service.FasilitasService;
 import id.co.mii.ta.clientapp.service.RequestService;
 import id.co.mii.ta.clientapp.service.RuangService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,55 +42,70 @@ public class RequestController {
     private RuangService ruangService;
 
     @GetMapping
-    public String showForm(Model model, RequestDTO requestDTO) {
+    public String showForm(Model model, RequestDTO requestDTO, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         List<FasilitasRuang> fasilitasRuangs = fasilitasRuangService.getAll();
         model.addAttribute("fasilitasRuangs", fasilitasRuangs);
         List<Ruang> ruangs = ruangService.getAll();
         model.addAttribute("ruangs", ruangs);
-        model.addAttribute("idEmp", LoginController.empId);
         return "request/request";
     }
 
     @GetMapping("/get-all")
     @ResponseBody
-    public List<Request> getAllJSON() {
+    public List<Request> getAllJSON(Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return requestService.getAll();
     }
 
     @GetMapping("/getById/{id}")
     @ResponseBody
-    public Request getById(@PathVariable Integer id) {
+    public Request getById(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return requestService.getById(id);
     }
 
     @PostMapping
-    public String createRequest(RequestDTO requestDTO) {
+    public String createRequest(RequestDTO requestDTO, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         requestService.createRequest(requestDTO);
         return "redirect:/request";
     }
 
     @PostMapping("/updateRequest/{id}")
     @ResponseBody
-    public Request updateRequest(@PathVariable Integer id, @RequestBody RequestDTO requestDTO) {
+    public Request updateRequest(@PathVariable Integer id, @RequestBody RequestDTO requestDTO, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return requestService.updateRequest(id, requestDTO);
     }
 
     @DeleteMapping("/deleteRequest/{id}")
     @ResponseBody
-    public Request delete(@PathVariable Integer id) {
+    public Request delete(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return requestService.deleteRequest(id);
 
     }
 
     @GetMapping("/approval")
     @ResponseBody
-    public List<Request> getByApproval() {
+    public List<Request> getByApproval(Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return requestService.getByApproval();
     }
     
     @GetMapping("/approvaladmin")
     @ResponseBody
-    public List<Request> getByApprovaladmin() {
+    public List<Request> getByApprovaladmin(Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return requestService.getByApprovaladmin();
     }
 

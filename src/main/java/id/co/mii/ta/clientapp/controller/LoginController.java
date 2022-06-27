@@ -10,6 +10,8 @@ import id.co.mii.ta.clientapp.service.LoginService;
 import id.co.mii.ta.clientapp.service.UserService;
 import java.util.Set;
 import java.util.stream.Collectors;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,7 +33,7 @@ public class LoginController {
     private LoginService loginService;
     private UserService userService;
     public static Integer empId;
-//    public static String empName;
+    public static String empName;
 
     @GetMapping
     public String login(LoginRequest loginRequest) {
@@ -45,7 +47,8 @@ public class LoginController {
     }
 
     @PostMapping
-    public String checkLogin(LoginRequest loginRequest) {
+    public String checkLogin(HttpServletRequest httpServletRequest, LoginRequest loginRequest) {
+        Integer empIdSession;
 
         if (!loginService.login(loginRequest)) {
             System.out.println("Gagal");
@@ -54,15 +57,20 @@ public class LoginController {
         System.out.println("Berhasil");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        String a = "redirect:/"; 
         Set<String> roles = auth.getAuthorities().stream()
                 .map(r -> r.getAuthority()).collect(Collectors.toSet());
         empId = userService.getDetailByUsername(auth.getName()).getId();
         System.out.println(empId);
-//        empName = loginRequest.getUsername();
-//        System.out.println(empName);
-
-        return a;
+        empName = loginRequest.getUsername();
+        System.out.println(empName);
+        
+        //httpsession
+        empIdSession = userService.getDetailByUsername(auth.getName()).getId();
+        System.out.println(empIdSession);
+        HttpSession session = httpServletRequest.getSession();
+        session.setAttribute("empIdSession", empIdSession);
+       
+        return "redirect:/";
     }
 
 }

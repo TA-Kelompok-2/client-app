@@ -9,6 +9,7 @@ import id.co.mii.ta.clientapp.model.History;
 import id.co.mii.ta.clientapp.model.dto.request.HistoryRequest;
 import id.co.mii.ta.clientapp.service.HistoryService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,43 +34,56 @@ public class HistoryController {
     private HistoryService historyService;
 
     @GetMapping("/history")
-    public String getAll(Model model) {
-        model.addAttribute("idEmp", LoginController.empId);
+    public String getAll(Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return "request/history";
     }
 
     @GetMapping("/historyapprove")
-    public String formApprove(Model model) {
+    public String formApprove(Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return "request/historyapprove";
     }
 
     @GetMapping("/history/get-all")
     @ResponseBody
-    public List<History> getAllJSON() {
+    public List<History> getAllJSON(Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return historyService.getAll();
     }
 
     @GetMapping("/history/getById/{id}")
     @ResponseBody
-    public History getById(@PathVariable Integer id) {
+    public History getById(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return historyService.getById(id);
     }
 
     @PostMapping("/history/createHistory")
     @ResponseBody
-    public History createHistory(@RequestBody History history) {                                                                 // valid, ada eror atau enggak
+    public History createHistory(@RequestBody History history, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return historyService.createHistory(history);
     }
 
     @PutMapping("/history/updateHistory/{id}")
     @ResponseBody
-    public History updateHistory(@PathVariable Integer id, @RequestBody HistoryRequest historyRequest) {
+    public History updateHistory(@PathVariable Integer id, @RequestBody HistoryRequest historyRequest, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return historyService.updateHistory(id, historyRequest);
     }
 
     @DeleteMapping("/history/deleteHistory/{id}")
     @ResponseBody
-    public History delete(@PathVariable Integer id) {
+    public History delete(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return historyService.deleteHistory(id);
 
     }

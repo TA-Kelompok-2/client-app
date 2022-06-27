@@ -9,6 +9,7 @@ import id.co.mii.ta.clientapp.model.Employee;
 import id.co.mii.ta.clientapp.model.dto.request.EmployeeRequest;
 import id.co.mii.ta.clientapp.service.EmployeeService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,41 +34,50 @@ public class EmployeeController {
     private EmployeeService EmployeeService;
 
     @GetMapping
-    public String getAll(Model model) {
-        model.addAttribute("idEmp", LoginController.empId);
+    public String getAll(Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return "employee/index";
     }
     
     @GetMapping("/get-all")
     @ResponseBody
-    public List<Employee> getAllJSON() {
+    public List<Employee> getAllJSON(Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return EmployeeService.getAll();
     }
 
     @GetMapping("/getById/{id}")
     @ResponseBody
-    public Employee getById(@PathVariable Integer id) {
- //       Employee employee = EmployeeService.getById(id);
-  //      System.out.println(employee.getUser().getRoles().get(0));
+    public Employee getById(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return EmployeeService.getById(id);
     }
 
     @PostMapping("/createEmployee")
     @ResponseBody
-    public Employee createEmployee(@RequestBody EmployeeRequest employeeRequest) { // binding result check dari                                                                                  // valid, ada eror atau enggak
+    public Employee createEmployee(@RequestBody EmployeeRequest employeeRequest, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);    // valid, ada eror atau enggak
         return EmployeeService.createEmployee(employeeRequest);
     }
 
 
     @PutMapping("/updateEmployee/{id}")
     @ResponseBody
-    public Employee updateEmployee(@PathVariable Integer id, @RequestBody EmployeeRequest employeeRequest) {
+    public Employee updateEmployee(@PathVariable Integer id, @RequestBody EmployeeRequest employeeRequest, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return EmployeeService.updateEmployee(id, employeeRequest);
     }
 
     @DeleteMapping("/deleteEmployee/{id}")
     @ResponseBody
-    public Employee delete(@PathVariable Integer id) {
+    public Employee delete(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return EmployeeService.deleteEmployee(id);
         
     }

@@ -8,6 +8,7 @@ package id.co.mii.ta.clientapp.controller;
 import id.co.mii.ta.clientapp.model.Request;
 import id.co.mii.ta.clientapp.service.RequestService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,14 +27,17 @@ public class ListRequestITSController {
     private RequestService requestService;
 
     @GetMapping
-    public String getAll(Model model) {
-        model.addAttribute("idEmp", LoginController.empId);
+    public String getAll(Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return "request/list_request_its";
     }
 
     @GetMapping("/get-all")
     @ResponseBody
-    public List<Request> getAllJSON() {
+    public List<Request> getAllJSON(Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return requestService.getAll();
     }
 }

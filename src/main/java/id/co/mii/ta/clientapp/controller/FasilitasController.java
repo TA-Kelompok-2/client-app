@@ -8,6 +8,7 @@ package id.co.mii.ta.clientapp.controller;
 import id.co.mii.ta.clientapp.model.Fasilitas;
 import id.co.mii.ta.clientapp.service.FasilitasService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,38 +33,49 @@ public class FasilitasController {
     private FasilitasService fasilitasService;
 
     @GetMapping
-    public String getAll(Model model) {
-        model.addAttribute("idEmp", LoginController.empId);
+    public String getAll(Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return "managedata/fasilitas";
     }
 
     @GetMapping("/get-all")
     @ResponseBody
-    public List<Fasilitas> getAllJSON() {
+    public List<Fasilitas> getAllJSON(Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return fasilitasService.getAll();
     }
 
     @GetMapping("/getById/{id}")
     @ResponseBody
-    public Fasilitas getById(@PathVariable Integer id) {
+    public Fasilitas getById(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return fasilitasService.getById(id);
     }
 
     @PostMapping("/createFasilitas")
     @ResponseBody
-    public Fasilitas createFasilitas(@RequestBody Fasilitas fasilitas) { // binding result check dari                                                                                  // valid, ada eror atau enggak
+    public Fasilitas createFasilitas(@RequestBody Fasilitas fasilitas, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return fasilitasService.createFasilitas(fasilitas);
     }
 
     @PutMapping("/updateFasilitas/{id}")
     @ResponseBody
-    public Fasilitas updateFasilitas(@PathVariable Integer id, @RequestBody Fasilitas fasilitas) {
+    public Fasilitas updateFasilitas(@PathVariable Integer id, @RequestBody Fasilitas fasilitas, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return fasilitasService.updateFasilitas(id, fasilitas);
     }
 
     @DeleteMapping("/deleteFasilitas/{id}")
     @ResponseBody
-    public Fasilitas delete(@PathVariable Integer id) {
+    public Fasilitas delete(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
         return fasilitasService.deleteFasilitas(id);
 
     }
