@@ -26,7 +26,7 @@ public class RequestService {
 
     private RestTemplate restTemplate;
 
-    @Value("${server.baseUrl}/request") 
+    @Value("${server.baseUrl}/request")
     private String url;
 
     @Autowired
@@ -39,13 +39,13 @@ public class RequestService {
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
         }).getBody();
     }
-    
+
     public Request getById(Integer id) { // id -> 1 data id
         return restTemplate.exchange(url.concat("/" + id), // -> pengembalian http kalau getForObject yang disediakan get
                 HttpMethod.GET, null, new ParameterizedTypeReference<Request>() {
         }).getBody();
     }
-    
+
     public Request createRequest(RequestDTO requetDTO) { // create -> data
         return restTemplate.exchange(url,
                 HttpMethod.POST,
@@ -56,7 +56,7 @@ public class RequestService {
 
     public Request updateRequest(Integer id, RequestDTO requestDTO) { // update ->, id -> mengambil data, Region -> data
         return restTemplate.exchange(url.concat("/" + id),
-                HttpMethod.PUT, new HttpEntity(requestDTO), new ParameterizedTypeReference<Request>() {
+                HttpMethod.POST, new HttpEntity(requestDTO), new ParameterizedTypeReference<Request>() {
         }).getBody();
     }
 
@@ -65,9 +65,15 @@ public class RequestService {
                 HttpMethod.DELETE, null, new ParameterizedTypeReference<Request>() {
         }).getBody();
     }
-    
-        public List<Request> getByApproval(Integer id) { // id -> 1 data id
-        return restTemplate.exchange(url.concat("/approved/" + id), // -> pengembalian http kalau getForObject yang disediakan get
+
+    public List<Request> getByApproval() { // id -> 1 data id
+        return restTemplate.exchange(url.concat("/approved"), // -> pengembalian http kalau getForObject yang disediakan get
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
+        }).getBody();
+    }
+
+    public List<Request> getByApprovaladmin() { // id -> 1 data id
+        return restTemplate.exchange(url.concat("/approvedadmin"), // -> pengembalian http kalau getForObject yang disediakan get
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
         }).getBody();
     }

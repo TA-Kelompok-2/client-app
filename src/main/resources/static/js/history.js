@@ -21,7 +21,7 @@ $(document).ready(function () {
                 "data": "request.id"
             },
             {
-                "data": "request.date"
+                "data": "date"
             },
             {
                 "data": "request.fasilitasRuang.fasilitas.name"
@@ -30,10 +30,10 @@ $(document).ready(function () {
                 "data": "request.fasilitasRuang.ruang.name"
             },
             {
-                "data": "request.keterangan"
+                "data": "keterangan"
             },
             {
-                "data": "request.status.name"
+                "data": "status.name"
             }
         ],
         language: {
