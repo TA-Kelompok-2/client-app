@@ -68,7 +68,7 @@ public class RequestController {
         return "redirect:/request";
     }
 
-    @PutMapping("/updateRequest/{id}")
+    @PostMapping("/updateRequest/{id}")
     @ResponseBody
     public Request updateRequest(@PathVariable Integer id, @RequestBody RequestDTO requestDTO) {
         return requestService.updateRequest(id, requestDTO);
@@ -81,10 +81,16 @@ public class RequestController {
 
     }
 
-    @GetMapping("/approval/{id}")
+    @GetMapping("/approval")
     @ResponseBody
-    public List<Request> getByApproval(@PathVariable Integer id) {
-        return requestService.getByApproval(id);
+    public List<Request> getByApproval() {
+        return requestService.getByApproval();
+    }
+    
+    @GetMapping("/approvaladmin")
+    @ResponseBody
+    public List<Request> getByApprovaladmin() {
+        return requestService.getByApprovaladmin();
     }
 
 }

@@ -21,6 +21,6 @@ public class Status {
 
     private Integer id;
     private String name;
-    private List<Request> requests;
-    private List<History> history;
+//    private List<Request> requests;
+//    private List<History> history;
 }

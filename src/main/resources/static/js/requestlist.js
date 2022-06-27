@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("#tbEMP").DataTable({
         "ajax": {
-            "url": "/request/approval/1" ,
+            "url": "/request/approvaladmin" ,
             "dataSrc": ""
         },
         "columns": [{
@@ -103,7 +103,7 @@ function deleteFasilitas(id) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                method: "PUT",
+                method: "POST",
                 url: "request/updateRequest/" + id,
                 dataType: "json",
                 beforeSend: addCsrfToken(),
@@ -122,7 +122,7 @@ function deleteFasilitas(id) {
             })
         } else if (result.isDenied){
             $.ajax({
-                method: "PUT",
+                method: "POST",
                 url: "request/updateRequest/" + id,
                 dataType: "json",
                 beforeSend: addCsrfToken(),

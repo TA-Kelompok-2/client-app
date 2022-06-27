@@ -56,7 +56,7 @@ public class RequestService {
 
     public Request updateRequest(Integer id, RequestDTO requestDTO) { // update ->, id -> mengambil data, Region -> data
         return restTemplate.exchange(url.concat("/" + id),
-                HttpMethod.PUT, new HttpEntity(requestDTO), new ParameterizedTypeReference<Request>() {
+                HttpMethod.POST, new HttpEntity(requestDTO), new ParameterizedTypeReference<Request>() {
         }).getBody();
     }
 
@@ -66,8 +66,14 @@ public class RequestService {
         }).getBody();
     }
 
-        public List<Request> getByApproval(Integer id) { // id -> 1 data id
-        return restTemplate.exchange(url.concat("/approved/" + id), // -> pengembalian http kalau getForObject yang disediakan get
+    public List<Request> getByApproval() { // id -> 1 data id
+        return restTemplate.exchange(url.concat("/approved"), // -> pengembalian http kalau getForObject yang disediakan get
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
+        }).getBody();
+    }
+
+    public List<Request> getByApprovaladmin() { // id -> 1 data id
+        return restTemplate.exchange(url.concat("/approvedadmin"), // -> pengembalian http kalau getForObject yang disediakan get
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
         }).getBody();
     }

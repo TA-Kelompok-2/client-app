@@ -6,7 +6,6 @@
 package id.co.mii.ta.clientapp.model;
 
 import java.time.LocalDateTime;
-import javafx.animation.Animation.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +23,7 @@ public class History {
     private String keterangan;
     private LocalDateTime date;
     private Request request;
-//    private Employee employee;
-//    private Status status;
+    private Employee employee;
+    private Status status;
     
 }
