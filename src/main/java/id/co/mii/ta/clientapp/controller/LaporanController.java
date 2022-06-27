@@ -5,9 +5,15 @@
  */
 package id.co.mii.ta.clientapp.controller;
 
+import id.co.mii.ta.clientapp.model.History;
+import id.co.mii.ta.clientapp.service.HistoryService;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -17,5 +23,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/laporan")
 @AllArgsConstructor
 public class LaporanController {
-    
+    private HistoryService historyService;
+
+    @GetMapping
+    public String getAll(Model model) {
+        model.addAttribute("idEmp", LoginController.empId);
+        return "request/history";
+    }
+
+    @GetMapping("/get-all")
+    @ResponseBody
+    public List<History> getAllJSON() {
+        return historyService.getAll();
+    }
+
 }
