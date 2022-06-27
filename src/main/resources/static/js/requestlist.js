@@ -5,22 +5,22 @@ $(document).ready(function () {
             "dataSrc": ""
         },
         "columns": [{
-            "data": "id"
-        },
-        {
-            "data": "date"
-        },
-        {
-            "data": "gambar"
-        },
-        {
-            "data": "keterangan"
+            "data": null,
+            render: function (data, type, row, meta) {
+                return meta.row + meta.settings._iDisplayStart + 1;
+            }
         },
         {
             "data": "employee.name"
         },
         {
-            "data": "fasilitasRuang.id"
+            "data": "keterangan"
+        },
+        {
+            "data": "fasilitasRuang.ruang.name"
+        },
+        {
+            "data": "fasilitasRuang.fasilitas.name"
         },
         {
             "data": "status.name"

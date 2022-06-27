@@ -68,7 +68,7 @@
                                                 <div class="col-9">
                                                     <select multiple="" class="default-select form-control wide mt-3">
                                                         <option th:each="ruang : ${ruangs}"
-                                                            th:text="${ruang.id +' - '+ ruang.name +' '+ ruang.lantai}"
+                                                            th:text="${ruang.name}"
                                                             th:value="${ruang.id}">
                                                         </option>
                                                     </select>
@@ -85,7 +85,7 @@
                                                     </select> -->
                                                     <select multiple="" class="default-select form-control wide mt-3" th:field="*{fasilitasruang}">
                                                         <option th:each="fasilitasRuangs : ${fasilitasRuangs}"
-                                                            th:text="${fasilitasRuangs.id +' - '+ fasilitasRuangs.ruang.name +' '+ fasilitasRuangs.fasilitas.name}"
+                                                            th:text="${fasilitasRuangs.fasilitas.name}"
                                                             th:value="${fasilitasRuangs.id}">
                                                         </option>
                                                     </select>

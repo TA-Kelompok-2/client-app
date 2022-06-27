@@ -14,20 +14,14 @@ $(document).ready(function () {
                 "data": null,
                 render: function (data, type, row, meta) {
                     return `<a class="text-info" href="historyapprove" data-bs-toggle="modal"
-                    data-bs-target="#detailRequest" onclick="modalHistory(${data.id})" onclick="approve(${data.id})">` + row.request.employee.name + `</a>`
+                    data-bs-target="#detailRequest" onclick="modalHistory(${data.id})" onclick="approve(${data.id})">` + row.employee.name + `</a>`
                 }
             },
             {
-                "data": "request.id"
-            },
-            {
-                "data": "date"
+                "data": "request.fasilitasRuang.ruang.name"
             },
             {
                 "data": "request.fasilitasRuang.fasilitas.name"
-            },
-            {
-                "data": "request.fasilitasRuang.ruang.name"
             },
             {
                 "data": "keterangan"
@@ -55,7 +49,17 @@ function modalHistory(id) {
     }).done((result) => {
         $('#name').text(result.request.employee.name);
         $('#request_id').text(result.request.id);
-        $('#date').text(result.request.date);
+        //formate date
+        let date = new Date(Date.parse(result.date));
+
+        dateFormatted = date.toLocaleString('default', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+        // console.log(dateFormatted);
+        
+        $('#date').text(dateFormatted);
         $('#fasilitas').text(result.request.fasilitasRuang.fasilitas.name);
         $('#ruang').text(result.request.fasilitasRuang.ruang.name);
         $('#keterangan').text(result.request.keterangan);

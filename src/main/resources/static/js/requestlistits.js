@@ -5,22 +5,22 @@ $(document).ready(function () {
             "dataSrc": ""
         },
         "columns": [{
-            "data": "id"
+            "data": null,
+            render: function (data, type, row, meta) {
+                return meta.row + meta.settings._iDisplayStart + 1;
+            }
         },
         {
             "data": "employee.name"
         },
         {
-            "data": "date"
-        },
-        {
-            "data": "gambar"
-        },
-        {
             "data": "keterangan"
         },
         {
-            "data": "fasilitasRuang.id"
+            "data": "fasilitasRuang.ruang.name"
+        },
+        {
+            "data": "fasilitasRuang.fasilitas.name"
         },
         {
             "data": "status.name"
@@ -158,7 +158,7 @@ function selesai(id) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                method: "PUT",
+                method: "POST",
                 url: "request/updateRequest/" + id,
                 dataType: "json",
                 beforeSend: addCsrfToken(),
