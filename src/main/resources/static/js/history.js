@@ -105,6 +105,10 @@ function modalHistories(id) {
     });
 }
 
+function tutup(){
+    window.location.reload();
+}
+
 function approve(id) {
     let status = 2
     console.log(id)
