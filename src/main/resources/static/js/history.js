@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("#tbEMP").DataTable({
         "ajax": {
-            "url": "/history/get-all",
+            "url": "/request/get-all",
             "dataSrc": ""
         },
         "columns": [{
@@ -18,10 +18,10 @@ $(document).ready(function () {
                 }
             },
             {
-                "data": "request.fasilitasRuang.ruang.name"
+                "data": "fasilitasRuang.ruang.name"
             },
             {
-                "data": "request.fasilitasRuang.fasilitas.name"
+                "data": "fasilitasRuang.fasilitas.name"
             },
             {
                 "data": "keterangan"
@@ -82,10 +82,10 @@ function modalHistories(id) {
                     }
                 },
                 {
-                    "data": "request.fasilitasRuang"
+                    "data": "request.fasilitasRuang.ruang.name"
                 },
                 {
-                    "data": "request.fasilitas"
+                    "data": "request.fasilitasRuang.fasilitas.name"
                 },
                 {
                     "data": "keterangan"

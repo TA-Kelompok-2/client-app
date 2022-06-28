@@ -106,19 +106,53 @@
                                             <option value="" disabled selected>Please select an option</option>
                                         </select>
 
-                                        <select multiple="" class="default-select form-control wide mt-3" id="ruang">
-                                            <option th:each="ruang : ${ruangs}" th:text="${ruang.name}"
+                                        <select name="select1" id="select1">
+                                            <option value="1">Fruit</option>
+                                            <option value="2">Animal</option>
+                                            <option value="3">Bird</option>
+                                            <option value="4">Car</option>
+                                        </select>
+
+
+                                        <select name="select2" id="select2">
+                                            <option value="1">Banana</option>
+                                            <option value="1">Apple</option>
+                                            <option value="1">Orange</option>
+                                            <option value="2">Wolf</option>
+                                            <option value="2">Fox</option>
+                                            <option value="2">Bear</option>
+                                            <option value="3">Eagle</option>
+                                            <option value="3">Hawk</option>
+                                            <option value="4">BWM</option>
+                                        </select>
+
+                                        <select id="ruang" name="ruang">
+                                            <option th:each="ruang : ${ruangs}" th:text="${ruang.id} +'-'+${ruang.name}"
                                                 th:value="${ruang.id}">
                                             </option>
                                         </select>
 
-                                        <select multiple="" class="default-select form-control wide mt-3"
-                                            th:field="*{fasilitasruang}" id="fasilitasruang">
+
+                                        <select id="fasilitasruang">
+                                            <option value="1">Banana</option>
+                                            <option value="1">Apple</option>
+                                            <option value="1">Orange</option>
+                                            <option value="2">Wolf</option>
+                                            <option value="2">Fox</option>
+                                            <option value="2">Bear</option>
+                                            <option value="3">Eagle</option>
+                                            <option value="3">Hawk</option>
+                                            <option value="4">BWM</option>
+                                        </select>
+
+                                        <!-- <select th:field="*{fasilitasruang}" id="fasilitasruang" name="fasilitasruang">
                                             <option th:each="fasilitasRuangs : ${fasilitasRuangs}"
                                                 th:text="${fasilitasRuangs.fasilitas.name}"
-                                                th:value="${fasilitasRuangs.id}">
+                                                th:value="${fasilitasRuangs.ruang.id}">
                                             </option>
-                                        </select>
+                                        </select> -->
+
+
 
 
                                     </div>
@@ -143,7 +177,7 @@
     <!-- Datatable -->
     <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="js/plugins-init/datatables.init.js"></script>
-
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
     <script th:src="@{/js/employee.js}"></script>
     <script th:src="@{/js/request.js}"></script>
 
