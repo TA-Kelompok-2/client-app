@@ -162,7 +162,7 @@ $("#reject").click(() => {
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Region has been changed',
+                title: 'Data has been changed',
                 showConfirmButton: false,
                 timer: 1500
             })
