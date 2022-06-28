@@ -14,7 +14,7 @@ $(document).ready(function () {
                 "data": null,
                 render: function (data, type, row, meta) {
                     return `<a class="text-info" href="historyapprove" data-bs-toggle="modal"
-                    data-bs-target="#detailRequest" onclick="modalHistory(${data.id})" onclick="approve(${data.id})">` + row.employee.name + `</a>`
+                    data-bs-target="#detailHistory" onclick="modalHistories(${data.id})" >` + row.employee.name + `</a>`
                 }
             },
             {
@@ -47,7 +47,6 @@ function modalHistory(id) {
         dataType: 'json',
         contentType: ''
     }).done((result) => {
-        $('#id').text(result.id);
         $('#name').text(result.request.employee.name);
         $('#request_id').text(result.request.id);
         //formate date
@@ -66,6 +65,43 @@ function modalHistory(id) {
         $('#keterangan').text(result.request.keterangan);
     }).fail((error) => {
         console.log(error);
+    });
+}
+
+function modalHistories(id) {
+    $(document).ready(function () { 
+        $("#tbHST").DataTable({
+            "ajax": {
+                "url": "/history/getByStatus/" + id,
+                "dataSrc": ""
+            },
+            "columns": [{
+                    "data": null,
+                    render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
+                {
+                    "data": "request.fasilitasRuang"
+                },
+                {
+                    "data": "request.fasilitas"
+                },
+                {
+                    "data": "keterangan"
+                },
+                {
+                    "data": "status.name"
+                }
+            ],
+            language: {
+                paginate: {
+                    next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
+                    previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
+                }
+            }
+            // console.log()
+        });
     });
 }
 

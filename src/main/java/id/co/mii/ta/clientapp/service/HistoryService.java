@@ -33,18 +33,24 @@ public class HistoryService {
         this.restTemplate = restTemplate;
     }
 
- public List<History> getAll(){
-         return restTemplate.exchange(url,
+    public List<History> getAll() {
+        return restTemplate.exchange(url,
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<History>>() {
         }).getBody();
     }
-    
+
     public History getById(Integer id) { // id -> 1 data id
         return restTemplate.exchange(url.concat("/" + id), // -> pengembalian http kalau getForObject yang disediakan get
                 HttpMethod.GET, null, new ParameterizedTypeReference<History>() {
         }).getBody();
     }
-    
+
+    public List<History> getByRequest(Integer id) { // id -> 1 data id
+        return restTemplate.exchange(url.concat("/request/" + id), // -> pengembalian http kalau getForObject yang disediakan get
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<History>>() {
+        }).getBody();
+    }
+
     public History createHistory(History history) { // create -> data
         return restTemplate.exchange(url,
                 HttpMethod.POST,
@@ -64,7 +70,5 @@ public class HistoryService {
                 HttpMethod.DELETE, null, new ParameterizedTypeReference<History>() {
         }).getBody();
     }
-    
+
 }
-
-

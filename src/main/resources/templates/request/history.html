@@ -148,6 +148,44 @@
         </div>
     </div>
 
+        <!-- Modal History Detail -->
+        <div class="modal fade" id="detailHistory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Request Detail</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="container">
+                        <div class="modal-body">
+                            <table id="tbHST">
+                                <thead>
+                                    <tr>
+                                        <th> No </th>
+                                        <th> Ruang </th>
+                                        <th> Fasilitas </th>
+                                        <th> Status </th>
+                                        <th> Keterangan </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="history : ${histories}">
+                                        <td><span  th:text="${history.status.name}" id="hstatus"> Title </span></td>
+                                        <td><span th:text="${history.keterangan}" id="hketerangan"> Author </span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center align-content-center">
+                        <button id="approve" class="btn btn-rounded btn-success" data-bs-dismiss="modal"><span class="btn-icon-start text-success"><i
+                                    class="fa fa-check"></i>
+                            </span>Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <div th:replace="fragments/master :: script"></div>
     <!-- Datatable -->
     <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>

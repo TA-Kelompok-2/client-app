@@ -47,6 +47,16 @@ public class HistoryController {
         return "request/historyapprove";
     }
 
+    @GetMapping("/history/getByStatus/{id}")
+    @ResponseBody
+    public List<History> getByStatus(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
+//        List<History> histories = historyService.getByRequest(id);
+//        model.addAttribute("histories", histories);
+        return historyService.getByRequest(id);
+    }
+
     @GetMapping("/history/get-all")
     @ResponseBody
     public List<History> getAllJSON(Model model, HttpServletRequest httpServletRequest) {
@@ -60,6 +70,7 @@ public class HistoryController {
     public History getById(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+
         return historyService.getById(id);
     }
 
