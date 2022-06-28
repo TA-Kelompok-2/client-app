@@ -214,7 +214,7 @@ function selesai(id) {
 
 $("#approve").click(() => {
     let keterangan = $("#reason").val()
-    let date = $("#date").val()
+    let date = Date.now
     let id = $("#id").val()
     console.log(keterangan)
     console.log(id)
@@ -250,6 +250,7 @@ $("#approve").click(() => {
 $("#reject").click(() => {
     let keterangan = $("#reason").val()
     let id = $("#id").val()
+    let date = Date.now
     let approve = 2
     let reject = 7
 
@@ -260,7 +261,8 @@ $("#reject").click(() => {
         beforeSend: addCsrfToken(),
         data: JSON.stringify({
             status: reject,
-            keterangan: keterangan
+            keterangan: keterangan,
+            date: date
         }),
         contentType: "application/json",
         success: function (result) {

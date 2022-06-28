@@ -137,7 +137,7 @@ function beforeDone(id) {
 $("#approve").click(() => {
     let keterangan = $("#reason").val()
     console.log(keterangan)
-    let date = $("#date").val()
+    let date = Date.now
     let id = $("#id").val()
     let approve = 5
 
@@ -150,6 +150,7 @@ $("#approve").click(() => {
             status: approve,
             keterangan: keterangan,
             date: date
+
         }),
         contentType: "application/json",
         success: function (result) {
