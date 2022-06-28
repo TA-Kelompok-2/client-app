@@ -14,7 +14,7 @@ $(document).ready(function () {
                 "data": null,
                 render: function (data, type, row, meta) {
                     return `<a class="text-info" href="historyapprove" data-bs-toggle="modal"
-                    data-bs-target="#detailHistory" onclick="modalHistories(${data.id})" >` + row.employee.name + `</a>`
+                    data-bs-target="#detailHistory" onclick="modalHistories(${data.id})" onclick="beforeDone(${data.id})" >` + row.employee.name + `</a>`
                 }
             },
             {
@@ -28,6 +28,14 @@ $(document).ready(function () {
             },
             {
                 "data": "status.name"
+            },
+            {
+                "data": null,
+                render: function (data, type, row, meta) {
+                    return `
+                        <button class="btn btn-rounded btn-success" onclick="modalRequest(${data.id})" data-bs-toggle="modal"
+                        data-bs-target="#detailRequest"><span class="btn-icon-start text-success"><i class="fa fa-check"></i></span>Approval</button>`
+                }
             }
         ],
         language: {
@@ -40,16 +48,18 @@ $(document).ready(function () {
     });
 });
 
-function modalHistory(id) {
+function modalRequest(id) {
     $.ajax({
         type: 'GET',
-        url: "/history/getById/" + id,
+        url: "/request/getById/" + id,
         dataType: 'json',
         contentType: ''
     }).done((result) => {
-        $('#name').text(result.request.employee.name);
-        $('#request_id').text(result.request.id);
-        //formate date
+        $('#idT').text(result.id);
+        $('#id').val(result.id);
+        $('#nameT').text(result.employee.name);
+        $('#name').val(result.employee.name);
+
         let date = new Date(Date.parse(result.date));
 
         dateFormatted = date.toLocaleString('default', {
@@ -57,12 +67,14 @@ function modalHistory(id) {
             month: 'long',
             year: 'numeric'
         });
-        // console.log(dateFormatted);
-        
-        $('#date').text(dateFormatted);
-        $('#fasilitas').text(result.request.fasilitasRuang.fasilitas.name);
-        $('#ruang').text(result.request.fasilitasRuang.ruang.name);
-        $('#keterangan').text(result.request.keterangan);
+        $('#dateT').text(dateFormatted);
+        $('#date').val(dateFormatted);
+        $('#ruangT').text(result.fasilitasRuang.ruang.name);
+        $('#ruang').val(result.fasilitasRuang.ruang.name);
+        $('#fasilitasT').text(result.fasilitasRuang.fasilitas.name);
+        $('#fasilitas').val(result.fasilitasRuang.fasilitas.name);
+        $('#keteranganT').text(result.keterangan);
+        $('#keterangan').val(result.keterangan);
     }).fail((error) => {
         console.log(error);
     });
@@ -107,6 +119,19 @@ function modalHistories(id) {
 
 function tutup(){
     window.location.reload();
+}
+
+function beforeDone(id) {
+    $.ajax({
+        type: 'GET',
+        url: "/history/getById/" + id,
+        dataType: 'json',
+        contentType: ''
+    }).done((result) => {
+        $('#id').val(result.request.id);
+    }).fail((error) => {
+        console.log(error);
+    });
 }
 
 $("#approve").click(() => {
