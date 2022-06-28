@@ -51,7 +51,9 @@ function modalRequest(id) {
         dataType: 'json',
         contentType: ''
     }).done((result) => {
+        $('#idT').text(result.id);
         $('#id').val(result.id);
+        $('#nameT').text(result.employee.name);
         $('#name').val(result.employee.name);
 
         let date = new Date(Date.parse(result.date));
@@ -61,9 +63,13 @@ function modalRequest(id) {
             month: 'long',
             year: 'numeric'
         });
+        $('#dateT').text(dateFormatted);
         $('#date').val(dateFormatted);
+        $('#ruangT').text(result.fasilitasRuang.ruang.name);
         $('#ruang').val(result.fasilitasRuang.ruang.name);
+        $('#fasilitasT').text(result.fasilitasRuang.fasilitas.name);
         $('#fasilitas').val(result.fasilitasRuang.fasilitas.name);
+        $('#keteranganT').text(result.keterangan);
         $('#keterangan').val(result.keterangan);
     }).fail((error) => {
         console.log(error);
