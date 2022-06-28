@@ -100,13 +100,21 @@ public class RequestController {
         model.addAttribute("idEmp", empIdSession);
         return requestService.getByApproval();
     }
-    
+
     @GetMapping("/approvaladmin")
     @ResponseBody
     public List<Request> getByApprovaladmin(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
         return requestService.getByApprovaladmin();
+    }
+
+    @GetMapping("/approvalits")
+    @ResponseBody
+    public List<Request> getByApprovalits(Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
+        return requestService.getByApprovalIts();
     }
 
 }

@@ -148,7 +148,8 @@
                             </a>
                             <ul aria-expanded="false">
                                 <li><a th:href="@{/request}">Request</a></li>
-                                <li><a sec:authorize="hasAnyAuthority('ADMIN','ITSUPPORT')" th:href="@{/history}">History</a></li>
+                                <li><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/history}">History</a></li>
+                                <li><a sec:authorize="hasAuthority('ITSUPPORT')" th:href="@{/historyits}">History</a></li>
                                 <li><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/listrequest}">List Request</a></li>
                                 <li><a sec:authorize="hasAuthority('ITSUPPORT')" th:href="@{/listrequestits}">List Request</a></li>
                             </ul>

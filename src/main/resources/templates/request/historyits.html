@@ -175,12 +175,24 @@
                                     </tr>-->
                                 </tbody>
                             </table>
+                            <div class="row d-flex">
+                                <div class="col-1">
+                                    <label for="inputPassword6" class="col-form-label">Reason</label>
+                                </div>
+                                <div class="col-11">
+                                    <textarea class="form-control" rows="4" style="height:100px" id="reason"></textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center align-content-center">
-                        <button id="tutup" class="btn btn-rounded btn-success" data-bs-dismiss="modal" onclick="tutup()"><span class="btn-icon-start text-success"><i
-                                    class="fa fa-check"></i>
-                            </span>Ok</button>
+                        <button class="btn btn-rounded btn-success" id="approve"><span
+                                class="btn-icon-start text-success" ><i class="fa fa-check"
+                                   ></i>
+                            </span>Done</button>
+                        <button class="btn btn-rounded btn-danger" id="tutup"  onclick="tutup()"><span class="btn-icon-start text-danger"
+                                ><i class="fa fa-times"></i>
+                            </span>Close</button>
                     </div>
                 </div>
             </div>
@@ -191,7 +203,7 @@
     <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="js/plugins-init/datatables.init.js"></script>
 
-    <script th:src="@{/js/history.js}"></script>
+    <script th:src="@{/js/historyits.js}"></script>
 
 </body>
 

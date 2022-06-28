@@ -29,8 +29,9 @@ $(document).ready(function () {
             "data": null,
             render: function (data, type, row, meta) {
                 return `
-                        <button class="btn btn-rounded btn-info" onclick="deleteFasilitas(${data.id})"><span class="btn-icon-start text-info"><i class="fa fa-check"></i></span>Approve</button>
-                        <button class="btn btn-rounded btn-success" onclick="selesai(${data.id})"><span class="btn-icon-start text-success"><i class="fa fa-check"></i></span>Done</button>`
+                <button class="btn btn-rounded btn-success" onclick="modalRequest(${data.id})" data-bs-toggle="modal"
+                data-bs-target="#detailRequest"><span class="btn-icon-start text-success"><i class="fa fa-check"></i></span>Approval</button>`
+                        // <button class="btn btn-rounded btn-success" onclick="selesai(${data.id})"><span class="btn-icon-start text-success"><i class="fa fa-check"></i></span>Done</button>
             }
         }
         ],
@@ -87,6 +88,38 @@ $('#createFasilitas').click(function (e) { //modal btn save
         }
     })
 })
+
+function modalRequest(id) {
+    $.ajax({
+        type: 'GET',
+        url: "/request/getById/" + id,
+        dataType: 'json',
+        contentType: ''
+    }).done((result) => {
+        $('#idT').text(result.id);
+        $('#id').val(result.id);
+        $('#nameT').text(result.employee.name);
+        $('#name').val(result.employee.name);
+
+        let date = new Date(Date.parse(result.date));
+
+        dateFormatted = date.toLocaleString('default', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+        $('#dateT').text(dateFormatted);
+        $('#date').val(dateFormatted);
+        $('#ruangT').text(result.fasilitasRuang.ruang.name);
+        $('#ruang').val(result.fasilitasRuang.ruang.name);
+        $('#fasilitasT').text(result.fasilitasRuang.fasilitas.name);
+        $('#fasilitas').val(result.fasilitasRuang.fasilitas.name);
+        $('#keteranganT').text(result.keterangan);
+        $('#keterangan').val(result.keterangan);
+    }).fail((error) => {
+        console.log(error);
+    });
+}
 
 function deleteFasilitas(id) {
     let approve = 6
@@ -178,3 +211,69 @@ function selesai(id) {
         }
     })
 }
+
+$("#approve").click(() => {
+    let keterangan = $("#reason").val()
+    let date = $("#date").val()
+    let id = $("#id").val()
+    console.log(keterangan)
+    console.log(id)
+    console.log(date)
+    let approve = 6
+    let reject = 7
+
+    $.ajax({
+        method: "POST",
+        url: "request/updateRequest/" + id,
+        dataType: "json",
+        beforeSend: addCsrfToken(),
+        data: JSON.stringify({
+            status: approve,
+            keterangan: keterangan,
+            date: date
+        }),
+        contentType: "application/json",
+        success: function (result) {
+            console.log(result)
+            $("#detailRequest").modal('hide')
+            $('#tbEMP').DataTable().ajax.reload()
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Data has been changed',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    })
+})
+$("#reject").click(() => {
+    let keterangan = $("#reason").val()
+    let id = $("#id").val()
+    let approve = 2
+    let reject = 7
+
+    $.ajax({
+        method: "POST",
+        url: "request/updateRequest/" + id,
+        dataType: "json",
+        beforeSend: addCsrfToken(),
+        data: JSON.stringify({
+            status: reject,
+            keterangan: keterangan
+        }),
+        contentType: "application/json",
+        success: function (result) {
+            console.log(result)
+            $("#detailRequest").modal('hide')
+            $('#tbEMP').DataTable().ajax.reload()
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Data has been changed',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    })
+})

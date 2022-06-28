@@ -78,4 +78,9 @@ public class RequestService {
         }).getBody();
     }
     
+        public List<Request> getByApprovalIts() { // id -> 1 data id
+        return restTemplate.exchange(url.concat("/approvedits"), // -> pengembalian http kalau getForObject yang disediakan get
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
+        }).getBody();
+    }
 }
