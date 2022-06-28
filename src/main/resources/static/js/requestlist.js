@@ -1,58 +1,70 @@
 $(document).ready(function () {
     $("#tbEMP").DataTable({
         "ajax": {
-            "url": "/request/approvaladmin" ,
+            "url": "/request/approvaladmin",
             "dataSrc": ""
         },
         "columns": [{
-            "data": null,
-            render: function (data, type, row, meta) {
-                return meta.row + meta.settings._iDisplayStart + 1;
+                "data": null,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                "data": "employee.name"
+            },
+            {
+                "data": "keterangan"
+            },
+            {
+                "data": "fasilitasRuang.ruang.name"
+            },
+            {
+                "data": "fasilitasRuang.fasilitas.name"
+            },
+            {
+                "data": "status.name"
+            },
+            {
+                "data": null,
+                render: function (data, type, row, meta) {
+                    return `
+                        <button class="btn btn-rounded btn-success" onclick="modalRequest(${data.id})" data-bs-toggle="modal"
+                        data-bs-target="#detailRequest"><span class="btn-icon-start text-success"><i class="fa fa-check"></i></span>Approval</button>`
+                }
             }
-        },
-        {
-            "data": "employee.name"
-        },
-        {
-            "data": "keterangan"
-        },
-        {
-            "data": "fasilitasRuang.ruang.name"
-        },
-        {
-            "data": "fasilitasRuang.fasilitas.name"
-        },
-        {
-            "data": "status.name"
-        },
-        {
-            "data": null,
-            render: function (data, type, row, meta) {
-                return `
-                        <button class="btn btn-rounded btn-success" onclick="deleteFasilitas(${data.id})"><span class="btn-icon-start text-success"><i class="fa fa-check"></i></span>Approve</button>`
-            }
-        }
         ],
         language: {
-        paginate: {
-            next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-            previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
+            paginate: {
+                next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
+                previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
+            }
         }
-    }
         // console.log()
     });
 });
 
-function modalEmployee(id) {
+function modalRequest(id) {
     $.ajax({
         type: 'GET',
-        url: "/fasilitas/getById/" + id,
+        url: "/request/getById/" + id,
         dataType: 'json',
         contentType: ''
     }).done((result) => {
-        $('#id').text(result.id);
-        $('#name').text(result.name);
-        $('#keterangan').text(result.keterangan);
+        $('#id').val(result.id);
+        $('#name').val(result.employee.name);
+
+        let date = new Date(Date.parse(result.date));
+
+        dateFormatted = date.toLocaleString('default', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+        $('#date').val(dateFormatted);
+        $('#ruang').val(result.fasilitasRuang.ruang.name);
+        $('#fasilitas').val(result.fasilitasRuang.fasilitas.name);
+        $('#keterangan').val(result.keterangan);
     }).fail((error) => {
         console.log(error);
     });
@@ -87,6 +99,71 @@ $('#createFasilitas').click(function (e) { //modal btn save
     })
 })
 
+$("#approve").click(() => {
+    let keterangan = $("#reason").val()
+    let date = $("#date").val()
+    let id = $("#id").val()
+    console.log(keterangan)
+    console.log(id)
+    console.log(date)
+    let approve = 2
+    let reject = 3
+
+    $.ajax({
+        method: "POST",
+        url: "request/updateRequest/" + id,
+        dataType: "json",
+        beforeSend: addCsrfToken(),
+        data: JSON.stringify({
+            status: approve,
+            keterangan: keterangan
+        }),
+        contentType: "application/json",
+        success: function (result) {
+            console.log(result)
+            $("#detailRequest").modal('hide')
+            $('#tbEMP').DataTable().ajax.reload()
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Data has been changed',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    })
+})
+$("#reject").click(() => {
+    let keterangan = $("#reason").val()
+    let id = $("#id").val()
+    let approve = 2
+    let reject = 3
+
+    $.ajax({
+        method: "POST",
+        url: "request/updateRequest/" + id,
+        dataType: "json",
+        beforeSend: addCsrfToken(),
+        data: JSON.stringify({
+            status: reject,
+            keterangan: keterangan
+        }),
+        contentType: "application/json",
+        success: function (result) {
+            console.log(result)
+            $("#detailRequest").modal('hide')
+            $('#tbEMP').DataTable().ajax.reload()
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Region has been changed',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    })
+})
+
 function deleteFasilitas(id) {
     let approve = 2
     let reject = 3
@@ -98,7 +175,7 @@ function deleteFasilitas(id) {
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
-        denyButtonText:'Reject',
+        denyButtonText: 'Reject',
         confirmButtonText: 'Approve'
     }).then((result) => {
         if (result.isConfirmed) {
@@ -120,7 +197,7 @@ function deleteFasilitas(id) {
                     $('#tbEMP').DataTable().ajax.reload()
                 }
             })
-        } else if (result.isDenied){
+        } else if (result.isDenied) {
             $.ajax({
                 method: "POST",
                 url: "request/updateRequest/" + id,

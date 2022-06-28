@@ -74,80 +74,80 @@
             </div>
         </div>
 
-        <!-- Modal Detail History -->
-        <div class="modal fade" id="detailHistory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+        <!-- Modal Detail Request -->
+        <div class="modal fade" id="detailRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Request Detail</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Are you sure want to Approve ?</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="container">
                         <div class="modal-body">
-                            <div class="row">
+                            <input type="hidden" id="id">
+                            <div class="row d-flex align-items-center">
                                 <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">ID</label>
+                                    <label for="inputPassword6" class="col-form-label">Name</label>
                                 </div>
                                 <div class="col-auto">
                                     <label>: </label>
-                                    <label class="col-form-label" id="id"></label>
+                                    <input class="col-form-label" id="name" readonly></input>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row d-flex align-items-center">
                                 <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Date</label>
+                                    <label for="inputPassword6" class="col-form-label">date</label>
                                 </div>
                                 <div class="col-auto">
                                     <label>: </label>
-                                    <label class="col-form-label" id="name"></label>
+                                    <input class="col-form-label" id="date" readonly></input>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row d-flex align-items-center">
                                 <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Gambar</label>
+                                    <label for="inputPassword6" class="col-form-label">Ruang</label>
                                 </div>
                                 <div class="col-auto">
                                     <label>: </label>
-                                    <label class="col-form-label" id="keterangan"></label>
+                                    <input class="col-form-label" id="ruang" readonly></input>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-2">
+                                    <label for="inputPassword6" class="col-form-label">Fasilitas</label>
+                                </div>
+                                <div class="col-auto">
+                                    <label>: </label>
+                                    <input class="col-form-label" id="fasilitas" readonly></input>
+                                </div>
+                            </div>
+                            <div class="row d-flex align-items-center">
                                 <div class="col-2">
                                     <label for="inputPassword6" class="col-form-label">Keterangan</label>
                                 </div>
                                 <div class="col-auto">
                                     <label>: </label>
-                                    <label class="col-form-label" id="id"></label>
+                                    <input class="col-form-label" id="keterangan" readonly></input>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row d-flex align-items-center">
                                 <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Employee</label>
+                                    <label for="inputPassword6" class="col-form-label">Reason</label>
                                 </div>
                                 <div class="col-auto">
                                     <label>: </label>
-                                    <label class="col-form-label" id="name"></label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Fasilitas dan Ruang</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label>: </label>
-                                    <label class="col-form-label" id="keterangan"></label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Status</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label>: </label>
-                                    <label class="col-form-label" id="keterangan"></label>
+                                    <input class="col-form-label" id="reason"></input>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center align-content-center">
+                        <button class="btn btn-rounded btn-success" id="approve"><span
+                                class="btn-icon-start text-success" id="approve"><i class="fa fa-check" id="approve"></i>
+                            </span>Approve</button>
+                        <button class="btn btn-rounded btn-danger" id="reject"><span
+                                class="btn-icon-start text-danger" id="reject" ><i class="fa fa-times" id="reject"></i>
+                            </span>Reject</button>
                     </div>
                 </div>
             </div>

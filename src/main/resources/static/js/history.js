@@ -47,6 +47,7 @@ function modalHistory(id) {
         dataType: 'json',
         contentType: ''
     }).done((result) => {
+        $('#id').text(result.id);
         $('#name').text(result.request.employee.name);
         $('#request_id').text(result.request.id);
         //formate date
