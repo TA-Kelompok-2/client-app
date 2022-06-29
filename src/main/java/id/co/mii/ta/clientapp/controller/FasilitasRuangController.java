@@ -5,8 +5,13 @@
  */
 package id.co.mii.ta.clientapp.controller;
 
+import id.co.mii.ta.clientapp.model.Fasilitas;
 import id.co.mii.ta.clientapp.model.FasilitasRuang;
+import id.co.mii.ta.clientapp.model.Ruang;
+import id.co.mii.ta.clientapp.model.dto.request.FasilitasDTO;
 import id.co.mii.ta.clientapp.service.FasilitasRuangService;
+import id.co.mii.ta.clientapp.service.FasilitasService;
+import id.co.mii.ta.clientapp.service.RuangService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
@@ -31,11 +36,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class FasilitasRuangController {
 
     FasilitasRuangService fasilitasRuangService;
+    RuangService ruangService;
+    FasilitasService fasilitasService;
 
     @GetMapping
     public String getAll(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        List<Ruang> ruangs = ruangService.getAll();
+        model.addAttribute("ruangs", ruangs);
+        List<Fasilitas> fasilitas = fasilitasService.getAll();
+        model.addAttribute("fasilitas", fasilitas);
         return "managedata/fasilitasruang";
     }
 
@@ -57,7 +68,7 @@ public class FasilitasRuangController {
 
     @PostMapping("/createFasilitasRuang")
     @ResponseBody
-    public FasilitasRuang createFasilitas(@RequestBody FasilitasRuang fasilitas, Model model, HttpServletRequest httpServletRequest) {
+    public FasilitasRuang createFasilitas(@RequestBody FasilitasDTO fasilitas, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
         return fasilitasRuangService.createFasilitasRuang(fasilitas);

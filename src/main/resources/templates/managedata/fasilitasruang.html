@@ -21,7 +21,7 @@
         <div th:replace="fragments/master :: nav-header"></div>
         <div th:replace="fragments/master :: navbar"></div>
         <div th:replace="fragments/master :: dlabnav"></div>
-        
+
 
         <div class="content-body">
             <div class="container-fluid">
@@ -131,11 +131,23 @@
                     <div class="container">
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Input Name</label>
-                                <input class="form-control" id="nameInp" aria-describedby="emailHelp" placeholder="Nama Fasilitas...">
-                                <label for="exampleInputEmail1" class="form-label">Input Keterangan</label>
-                                <input class="form-control" id="keteranganInp" aria-describedby="emailHelp" placeholder="Tipe Fasilitas...">
-                                
+                                <div>
+                                    <label for="exampleInputEmail1" class="form-label">Input Ruang</label>
+
+                                    <select multiple="" class="default-select form-control wide mt-3" id="ruang">
+                                        <option th:each="ruang : ${ruangs}" th:text="${ruang.name}"
+                                            th:value="${ruang.id}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="exampleInputEmail1" class="form-label">Input Fasilitas</label>
+                                    <select multiple="" class="default-select form-control wide mt-3" id="fasilitas">
+                                        <option th:each="fasilitas : ${fasilitas}" th:text="${fasilitas.name}"
+                                            th:value="${fasilitas.id}">
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">

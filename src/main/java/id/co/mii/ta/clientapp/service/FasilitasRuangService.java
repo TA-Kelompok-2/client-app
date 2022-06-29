@@ -6,6 +6,7 @@
 package id.co.mii.ta.clientapp.service;
 
 import id.co.mii.ta.clientapp.model.FasilitasRuang;
+import id.co.mii.ta.clientapp.model.dto.request.FasilitasDTO;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,7 +45,7 @@ public class FasilitasRuangService {
         }).getBody();
     }
     
-    public FasilitasRuang createFasilitasRuang(FasilitasRuang fasilitas) { // create -> data
+    public FasilitasRuang createFasilitasRuang(FasilitasDTO fasilitas) { // create -> data
         return restTemplate.exchange(url,
                 HttpMethod.POST,
                 new HttpEntity(fasilitas), // -> requestbody dri method sama seperti postman 

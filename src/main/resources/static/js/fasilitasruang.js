@@ -11,10 +11,10 @@ $(document).ready(function () {
                 }
             },
             {
-                "data": "fasilitas.name"
+                "data": "ruang.name"
             },
             {
-                "data": "ruang.name"
+                "data": "fasilitas.name"
             },
             {
                 "data": null,
@@ -50,18 +50,18 @@ function modalEmployee(id) {
 }
 
 $('#createFasilitas').click(function (e) { //modal btn save
-    let name = $('#nameInp').val()
-    let keterangan = $('#keteranganInp').val()
-    console.log(name)
-    console.log(keterangan)
+    let ruang_id = $('#ruang').val()
+    let fasilitas_id = $('#fasilitas').val()
+    console.log(ruang_id)
+    console.log(fasilitas_id)
     $.ajax({
         method: "POST",
-        url: "fasilitas/createFasilitas",
+        url: "fasilitasruang/createFasilitasRuang",
         dataType: "json",
         beforeSend: addCsrfToken(),
         data: JSON.stringify({
-            name: name,
-            keterangan: keterangan,
+            ruang_id: ruang_id,
+            fasilitas_id: fasilitas_id,
         }),
         contentType: "application/json",
         success: function (result) {
@@ -70,7 +70,7 @@ $('#createFasilitas').click(function (e) { //modal btn save
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Fasilitas has been created',
+                title: 'Fasilitas and Ruang has been created',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -81,7 +81,7 @@ $('#createFasilitas').click(function (e) { //modal btn save
 function deleteFasilitas(id) {
     Swal.fire({
         title: 'Are you sure?',
-        text: "You won't delete this fasilitas!",
+        text: "You won't delete this!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -91,7 +91,7 @@ function deleteFasilitas(id) {
         if (result.isConfirmed) {
             $.ajax({
                 method: "DELETE",
-                url: "fasilitas/deleteFasilitas/" + id,
+                url: "fasilitasruang/deleteFasilitasRuang/" + id,
                 dataType: "json",
                 beforeSend: addCsrfToken(),
                 contentType: "application/json",
