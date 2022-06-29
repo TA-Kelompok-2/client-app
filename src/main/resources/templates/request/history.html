@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <head>
 
-    <link rel="apple-touch-icon" sizes="76x76" href="images/mii.png">
-    <link rel="icon" type="image/png" href="images/mii.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="images/mii.png">
+        <link rel="icon" type="image/png" href="images/mii.png">
 
     <div th:replace="fragments/master :: header"></div>
     <!-- Datatable -->
@@ -148,43 +148,47 @@
         </div>
     </div>
 
-        <!-- Modal History Detail -->
-        <div class="modal fade" id="detailHistory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Request Detail</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="container">
-                        <div class="modal-body">
-                            <table id="tbHST" width="100%" class="display text-center">
-                                <thead>
-                                    <tr>
-                                        <th> No </th>
-                                        <th> Ruang </th>
-                                        <th> Fasilitas </th>
-                                        <th> Keterangan </th>
-                                        <th> Status </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-<!--                                    <tr th:each="history : ${histories}">
-                                        <td><span  th:text="${history.status.name}" id="hstatus"> Title </span></td>
-                                        <td><span th:text="${history.keterangan}" id="hketerangan"> Author </span></td>
-                                    </tr>-->
-                                </tbody>
-                            </table>
+    <!-- Modal History Detail -->
+    <div class="modal fade" id="detailHistory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Request Detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="container">
+                    <div class="modal-body">
+
+                        <div id="requestGambar" class="modal-body">
+                            </img>
                         </div>
+                        <table id="tbHST" width="100%" class="display text-center">
+                            <thead>
+                                <tr>
+                                    <th> No </th>
+                                    <th> Ruang </th>
+                                    <th> Fasilitas </th>
+                                    <th> Keterangan </th>
+                                    <th> Status </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--                                    <tr th:each="history : ${histories}">
+                                                                        <td><span  th:text="${history.status.name}" id="hstatus"> Title </span></td>
+                                                                        <td><span th:text="${history.keterangan}" id="hketerangan"> Author </span></td>
+                                                                    </tr>-->
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="modal-footer d-flex justify-content-center align-content-center">
-                        <button id="tutup" class="btn btn-rounded btn-success" data-bs-dismiss="modal" onclick="tutup()"><span class="btn-icon-start text-success"><i
-                                    class="fa fa-check"></i>
-                            </span>Ok</button>
-                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center align-content-center">
+                    <button id="tutup" class="btn btn-rounded btn-success" data-bs-dismiss="modal" onclick="tutup()"><span class="btn-icon-start text-success"><i
+                                class="fa fa-check"></i>
+                        </span>Ok</button>
                 </div>
             </div>
         </div>
+    </div>
 
     <div th:replace="fragments/master :: script"></div>
     <!-- Datatable -->

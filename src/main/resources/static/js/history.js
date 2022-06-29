@@ -63,6 +63,9 @@ function modalHistory(id) {
         $('#fasilitas').text(result.request.fasilitasRuang.fasilitas.name);
         $('#ruang').text(result.request.fasilitasRuang.ruang.name);
         $('#keterangan').text(result.request.keterangan);
+        $('#requestGambar').html(`
+          <img src="request-photos/${result.request.id}/${result.request.gambar}" />
+        `);
     }).fail((error) => {
         console.log(error);
     });

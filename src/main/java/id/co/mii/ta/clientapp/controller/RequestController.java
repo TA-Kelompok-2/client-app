@@ -5,29 +5,31 @@
  */
 package id.co.mii.ta.clientapp.controller;
 
-import id.co.mii.ta.clientapp.model.Fasilitas;
 import id.co.mii.ta.clientapp.model.FasilitasRuang;
 import id.co.mii.ta.clientapp.model.Request;
 import id.co.mii.ta.clientapp.model.Ruang;
 import id.co.mii.ta.clientapp.model.dto.request.RequestDTO;
 import id.co.mii.ta.clientapp.service.EmployeeService;
 import id.co.mii.ta.clientapp.service.FasilitasRuangService;
-import id.co.mii.ta.clientapp.service.FasilitasService;
 import id.co.mii.ta.clientapp.service.RequestService;
 import id.co.mii.ta.clientapp.service.RuangService;
+import id.co.mii.ta.clientapp.util.FileUploadUtil;
+import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -73,10 +75,20 @@ public class RequestController {
     }
 
     @PostMapping
-    public String createRequest(RequestDTO requestDTO, Model model, HttpServletRequest httpServletRequest) {
+    public String createRequest(RequestDTO requestDTO, Model model, HttpServletRequest httpServletRequest, 
+            @RequestParam("image") MultipartFile multipartFile) throws IOException {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
-        requestService.createRequest(requestDTO);
+//        requestService.createRequest(requestDTO);
+        
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        requestDTO.setGambar(fileName);
+        
+        Request savedRequest = requestService.createRequest(requestDTO);
+        
+        String uploadDir = "request-photos/" + savedRequest.getId();
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        
         return "redirect:/request";
     }
 

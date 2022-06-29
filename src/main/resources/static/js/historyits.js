@@ -75,6 +75,9 @@ function modalRequest(id) {
         $('#fasilitas').val(result.fasilitasRuang.fasilitas.name);
         $('#keteranganT').text(result.keterangan);
         $('#keterangan').val(result.keterangan);
+        $('#requestGambar').html(`
+          <img src="request-photos/${result.request.id}/${result.request.gambar}" />
+        `);
     }).fail((error) => {
         console.log(error);
     });

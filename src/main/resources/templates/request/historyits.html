@@ -76,124 +76,120 @@
     </div>
 
 
-         <!-- Modal Detail Request -->
-         <div class="modal fade" id="detailRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-md">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Are you sure want to Approve ?</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="container">
-                        <div class="modal-body">
-                            <input type="hidden" id="id">
-                            <div class="row d-flex align-items-center">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Name</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label>: </label>
-                                    <label class="col-form-label" id="nameT"></label>
-                                    <input type="hidden" class="col-form-label" id="name"></input>
-                                </div>
+    <!-- Modal Detail Request -->
+    <div class="modal fade" id="detailRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure want to Approve ?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="container">
+                    <div class="modal-body">
+                        <input type="hidden" id="id">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-2">
+                                <label for="inputPassword6" class="col-form-label">Name</label>
                             </div>
-                            <div class="row d-flex align-items-center">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">date</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label>: </label>
-                                    <label class="col-form-label" id="dateT"></label>
-                                    <input type="hidden" class="col-form-label" id="date"></input>
-                                </div>
+                            <div class="col-auto">
+                                <label>: </label>
+                                <label class="col-form-label" id="nameT"></label>
+                                <input type="hidden" class="col-form-label" id="name"></input>
                             </div>
-                            <div class="row d-flex align-items-center">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Ruang</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label>: </label>
-                                    <label class="col-form-label" id="ruangT"></label>
-                                    <input type="hidden" class="col-form-label" id="ruang"></input>
-                                </div>
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-2">
+                                <label for="inputPassword6" class="col-form-label">date</label>
                             </div>
-                            <div class="row d-flex align-items-center">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Fasilitas</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label>: </label>
-                                    <label class="col-form-label" id="fasilitasT"></label>
-                                    <input type="hidden" class="col-form-label" id="fasilitas"></input>
-                                </div>
+                            <div class="col-auto">
+                                <label>: </label>
+                                <label class="col-form-label" id="dateT"></label>
+                                <input type="hidden" class="col-form-label" id="date"></input>
                             </div>
-                            <div class="row d-flex align-items-center">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Keterangan</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label>: </label>
-                                    <label class="col-form-label" id="keteranganT"></label>
-                                    <input type="hidden" class="col-form-label" id="keterangan"></input>
-                                </div>
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-2">
+                                <label for="inputPassword6" class="col-form-label">Ruang</label>
                             </div>
-                            <div class="row d-flex">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Reason</label>
-                                </div>
-                                <div class="col-10">
-                                    <textarea class="form-control border border-dark" rows="4" style="height:200px" id="reason"></textarea>
-                                </div>
+                            <div class="col-auto">
+                                <label>: </label>
+                                <label class="col-form-label" id="ruangT"></label>
+                                <input type="hidden" class="col-form-label" id="ruang"></input>
+                            </div>
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-2">
+                                <label for="inputPassword6" class="col-form-label">Fasilitas</label>
+                            </div>
+                            <div class="col-auto">
+                                <label>: </label>
+                                <label class="col-form-label" id="fasilitasT"></label>
+                                <input type="hidden" class="col-form-label" id="fasilitas"></input>
+                            </div>
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-2">
+                                <label for="inputPassword6" class="col-form-label">Keterangan</label>
+                            </div>
+                            <div class="col-auto">
+                                <label>: </label>
+                                <label class="col-form-label" id="keteranganT"></label>
+                                <input type="hidden" class="col-form-label" id="keterangan"></input>
+                            </div>
+                        </div>
+                        <div class="row d-flex">
+                            <div class="col-2">
+                                <label for="inputPassword6" class="col-form-label">Reason</label>
+                            </div>
+                            <div class="col-10">
+                                <textarea class="form-control border border-dark" rows="4" style="height:200px"
+                                    id="reason"></textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer d-flex justify-content-center align-content-center">
-                        <button class="btn btn-rounded btn-success" id="approve"><span
-                                class="btn-icon-start text-success" id="approve"><i class="fa fa-check"
-                                    id="approve"></i>
-                            </span>Done</button>
-                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center align-content-center">
+                    <button class="btn btn-rounded btn-success" id="approve"><span class="btn-icon-start text-success"
+                            id="approve"><i class="fa fa-check" id="approve"></i>
+                        </span>Done</button>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Modal History Detail -->
-        <div class="modal fade" id="detailHistory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Request Detail</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Modal History Detail -->
+    <div class="modal fade" id="detailHistory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Request Detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="container">
+                    <div class="modal-body">
+                        <table id="tbHST" width="100%" class="display text-center">
+                            <thead>
+                                <tr>
+                                    <th> No </th>
+                                    <th> Ruang </th>
+                                    <th> Fasilitas </th>
+                                    <th> Keterangan </th>
+                                    <th> Status </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="container">
-                        <div class="modal-body">
-                            <table id="tbHST"  width="100%" class="display text-center">
-                                <thead>
-                                    <tr>
-                                        <th> No </th>
-                                        <th> Ruang </th>
-                                        <th> Fasilitas </th>
-                                        <th> Keterangan </th>
-                                        <th> Status </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-<!--                                    <tr th:each="history : ${histories}">
-                                        <td><span  th:text="${history.status.name}" id="hstatus"> Title </span></td>
-                                        <td><span th:text="${history.keterangan}" id="hketerangan"> Author </span></td>
-                                    </tr>-->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center align-content-center">
-                        <button class="btn btn-rounded btn-danger" id="tutup"  onclick="tutup()"><span class="btn-icon-start text-danger"
-                                ><i class="fa fa-times"></i>
-                            </span>Close</button>
-                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center align-content-center">
+                    <button class="btn btn-rounded btn-danger" id="tutup" onclick="tutup()"><span
+                            class="btn-icon-start text-danger"><i class="fa fa-times"></i>
+                        </span>Close</button>
                 </div>
             </div>
         </div>
+    </div>
 
     <div th:replace="fragments/master :: script"></div>
     <!-- Datatable -->

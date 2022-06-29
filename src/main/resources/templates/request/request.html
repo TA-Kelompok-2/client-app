@@ -40,7 +40,7 @@
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form th:method="POST" th:action="@{/request}" th:object="${requestDTO}">
+                                <form th:method="POST" th:action="@{/request}" th:object="${requestDTO}" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col-6">
                                             <input type="hidden" th:value="${idEmp}" name="employee" id="employee"
@@ -50,8 +50,8 @@
                                                 <div class="col-9">
                                                     <div class="input-group mb-3">
                                                         <div class="form-file">
-                                                            <input type="file" class="form-file-input form-control"
-                                                                th:field="*{gambar}" style="filter: drop-shadow(0 2x 1px black);">
+                                                            <input type="file" name="image" accept="image/png, image/jpeg" class="form-file-input form-control"
+                                                                id="image" style="filter: drop-shadow(0 2x 1px black);">
                                                         </div>
                                                         <span class="input-group-text">Upload</span>
                                                     </div>

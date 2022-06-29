@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <head>
 
-    <link rel="apple-touch-icon" sizes="76x76" href="images/mii.png">
-    <link rel="icon" type="image/png" href="images/mii.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="images/mii.png">
+        <link rel="icon" type="image/png" href="images/mii.png">
 
     <div th:replace="fragments/master :: header"></div>
     <!-- Datatable -->
@@ -85,6 +85,8 @@
                     <div class="container">
                         <div class="modal-body">
                             <input type="hidden" id="id">
+                            <div id="requestGambar">
+                            </div>
                             <div class="row d-flex align-items-center">
                                 <div class="col-2">
                                     <label for="inputPassword6" class="col-form-label">Name</label>
@@ -148,10 +150,10 @@
                     <div class="modal-footer d-flex justify-content-center align-content-center">
                         <button class="btn btn-rounded btn-success" id="approve"><span
                                 class="btn-icon-start text-success" id="approve"><i class="fa fa-check"
-                                    id="approve"></i>
+                                                                                id="approve"></i>
                             </span>Approve</button>
                         <button class="btn btn-rounded btn-danger" id="reject"><span class="btn-icon-start text-danger"
-                                id="reject"><i class="fa fa-times" id="reject"></i>
+                                                                                     id="reject"><i class="fa fa-times" id="reject"></i>
                             </span>Reject</button>
                     </div>
                 </div>
@@ -172,10 +174,10 @@
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Input Name</label>
                                 <input class="form-control" id="nameInp" aria-describedby="emailHelp"
-                                    placeholder="Nama Fasilitas...">
+                                       placeholder="Nama Fasilitas...">
                                 <label for="exampleInputEmail1" class="form-label">Input Keterangan</label>
                                 <input class="form-control" id="keteranganInp" aria-describedby="emailHelp"
-                                    placeholder="Tipe Fasilitas...">
+                                       placeholder="Tipe Fasilitas...">
 
                             </div>
                         </div>
