@@ -76,7 +76,7 @@ function modalRequest(id) {
         $('#keteranganT').text(result.keterangan);
         $('#keterangan').val(result.keterangan);
         $('#requestGambar').html(`
-          <img src="request-photos/${result.request.id}/${result.request.gambar}" />
+          <img src="/request-photos/${result.id}/${result.gambar}"  width="300" />
         `);
     }).fail((error) => {
         console.log(error);
