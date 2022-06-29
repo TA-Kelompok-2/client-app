@@ -82,10 +82,10 @@ public class RequestController {
 //        requestService.createRequest(requestDTO);
         
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        fileName = fileName.replace(" ", "_");
         requestDTO.setGambar(fileName);
         
         Request savedRequest = requestService.createRequest(requestDTO);
-        
         String uploadDir = "request-photos/" + savedRequest.getId();
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         
