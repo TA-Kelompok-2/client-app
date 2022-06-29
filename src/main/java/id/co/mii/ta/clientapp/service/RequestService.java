@@ -77,9 +77,27 @@ public class RequestService {
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
         }).getBody();
     }
-    
-        public List<Request> getByApprovalIts() { // id -> 1 data id
+
+    public List<Request> getByApprovalIts() { // id -> 1 data id
         return restTemplate.exchange(url.concat("/approvedits"), // -> pengembalian http kalau getForObject yang disediakan get
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
+        }).getBody();
+    }
+
+    public List<Request> getByApprovalDTOA() { // id -> 1 data id
+        return restTemplate.exchange(url.concat("/approvedDTOA"), // -> pengembalian http kalau getForObject yang disediakan get
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
+        }).getBody();
+    }
+
+    public List<Request> getByApprovalDTOITS() { // id -> 1 data id
+        return restTemplate.exchange(url.concat("/approvedDTOITS"), // -> pengembalian http kalau getForObject yang disediakan get
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
+        }).getBody();
+    }
+
+    public List<Request> getByApprovalS() { // id -> 1 data id
+        return restTemplate.exchange(url.concat("/approvedS"), // -> pengembalian http kalau getForObject yang disediakan get
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
         }).getBody();
     }

@@ -89,7 +89,7 @@ public class RequestController {
         String uploadDir = "request-photos/" + savedRequest.getId();
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         
-        return "redirect:/request";
+        return "redirect:/";
     }
 
     @PostMapping("/updateRequest/{id}")
