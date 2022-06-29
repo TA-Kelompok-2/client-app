@@ -6,6 +6,7 @@
 package id.co.mii.ta.clientapp.controller;
 
 import id.co.mii.ta.clientapp.model.Request;
+import id.co.mii.ta.clientapp.service.EmployeeService;
 import id.co.mii.ta.clientapp.service.RequestService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -26,11 +27,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ListRequestController {
 
     private RequestService requestService;
+    private EmployeeService EmployeeService;
 
     @GetMapping
     public String getAll(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return "request/list_request";
     }
 
@@ -39,6 +43,8 @@ public class ListRequestController {
     public List<Request> getAllJSON(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return requestService.getAll();
     }
 }

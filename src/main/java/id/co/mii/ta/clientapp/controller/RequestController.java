@@ -10,6 +10,7 @@ import id.co.mii.ta.clientapp.model.FasilitasRuang;
 import id.co.mii.ta.clientapp.model.Request;
 import id.co.mii.ta.clientapp.model.Ruang;
 import id.co.mii.ta.clientapp.model.dto.request.RequestDTO;
+import id.co.mii.ta.clientapp.service.EmployeeService;
 import id.co.mii.ta.clientapp.service.FasilitasRuangService;
 import id.co.mii.ta.clientapp.service.FasilitasService;
 import id.co.mii.ta.clientapp.service.RequestService;
@@ -40,6 +41,7 @@ public class RequestController {
     private RequestService requestService;
     private FasilitasRuangService fasilitasRuangService;
     private RuangService ruangService;
+    private EmployeeService EmployeeService;
 
     @GetMapping
     public String showForm(Model model, RequestDTO requestDTO, HttpServletRequest httpServletRequest) {
@@ -49,6 +51,8 @@ public class RequestController {
         model.addAttribute("fasilitasRuangs", fasilitasRuangs);
         List<Ruang> ruangs = ruangService.getAll();
         model.addAttribute("ruangs", ruangs);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return "request/request";
     }
 

@@ -37,6 +37,8 @@ public class EmployeeController {
     public String getAll(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return "employee/index";
     }
     
@@ -45,6 +47,8 @@ public class EmployeeController {
     public List<Employee> getAllJSON(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return EmployeeService.getAll();
     }
 
@@ -53,6 +57,8 @@ public class EmployeeController {
     public Employee getById(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return EmployeeService.getById(id);
     }
 
@@ -60,7 +66,9 @@ public class EmployeeController {
     @ResponseBody
     public Employee createEmployee(@RequestBody EmployeeRequest employeeRequest, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
-        model.addAttribute("idEmp", empIdSession);    // valid, ada eror atau enggak
+        model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return EmployeeService.createEmployee(employeeRequest);
     }
 
@@ -70,6 +78,8 @@ public class EmployeeController {
     public Employee updateEmployee(@PathVariable Integer id, @RequestBody EmployeeRequest employeeRequest, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return EmployeeService.updateEmployee(id, employeeRequest);
     }
 
@@ -78,6 +88,8 @@ public class EmployeeController {
     public Employee delete(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return EmployeeService.deleteEmployee(id);
         
     }

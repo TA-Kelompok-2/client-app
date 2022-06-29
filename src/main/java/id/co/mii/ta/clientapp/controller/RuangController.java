@@ -6,6 +6,7 @@
 package id.co.mii.ta.clientapp.controller;
 
 import id.co.mii.ta.clientapp.model.Ruang;
+import id.co.mii.ta.clientapp.service.EmployeeService;
 import id.co.mii.ta.clientapp.service.RuangService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -31,11 +32,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RuangController {
 
     private RuangService ruangService;
+    private EmployeeService EmployeeService;
 
     @GetMapping
     public String getAll(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return "managedata/ruang";
     }
 
@@ -44,6 +48,8 @@ public class RuangController {
     public List<Ruang> getAllJSON(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return ruangService.getAll();
     }
 
@@ -52,6 +58,8 @@ public class RuangController {
     public Ruang getById(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return ruangService.getById(id);
     }
 
@@ -60,6 +68,8 @@ public class RuangController {
     public Ruang createRuang(@RequestBody Ruang ruang, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return ruangService.createRuang(ruang);
     }
 
@@ -68,6 +78,8 @@ public class RuangController {
     public Ruang updateRuang(@PathVariable Integer id, @RequestBody Ruang ruang, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return ruangService.updateRuang(id, ruang);
     }
 
@@ -76,6 +88,8 @@ public class RuangController {
     public Ruang delete(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return ruangService.deleteRuang(id);
     }
 
