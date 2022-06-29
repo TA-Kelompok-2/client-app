@@ -27,7 +27,23 @@ $(document).ready(function () {
                 "data": "keterangan"
             },
             {
-                "data": "status.name"
+                "data": null,
+                render: function (data, type, row, meta) {
+                        if (row.status.name == "Diajukan") {
+                            return `<span class="badge badge-info">` + row.status.name + `</span> `
+                        } else if (row.status.name == "Disetujui oleh Admin" || row.status.name == "Disetujui oleh IT Support") {
+                            return `<span class="badge badge-warning">` + row.status.name + `</span> `
+                        } else if (row.status.name == "Ditolak oleh Admin" || row.status.name == "Ditolak oleh IT Support") {
+                            return `<span class="badge badge-danger">` + row.status.name + `</span> `
+                        } else if (row.status.name == "Diproses") {
+                            return `<span class="badge badge-primary">` + row.status.name + `</span> `
+                        } else if (row.status.name == "Selesai") {
+                            return `<span class="badge badge-success">` + row.status.name + `</span> `
+                        } else {
+                            return `<span class="badge badge-warning">` + row.status.name + `</span> `
+                        }
+                    
+                }
             },
             {
                 "data": null,
@@ -109,7 +125,23 @@ function modalHistories(id) {
                     "data": "keterangan"
                 },
                 {
-                    "data": "status.name"
+                    "data": null,
+                    render: function (data, type, row, meta) {
+                            if (row.status.name == "Diajukan") {
+                                return `<span class="badge badge-info">` + row.status.name + `</span> `
+                            } else if (row.status.name == "Disetujui oleh Admin" || row.status.name == "Disetujui oleh IT Support") {
+                                return `<span class="badge badge-warning">` + row.status.name + `</span> `
+                            } else if (row.status.name == "Ditolak oleh Admin" || row.status.name == "Ditolak oleh IT Support") {
+                                return `<span class="badge badge-danger">` + row.status.name + `</span> `
+                            } else if (row.status.name == "Diproses") {
+                                return `<span class="badge badge-primary">` + row.status.name + `</span> `
+                            } else if (row.status.name == "Selesai") {
+                                return `<span class="badge badge-success">` + row.status.name + `</span> `
+                            } else {
+                                return `<span class="badge badge-warning">` + row.status.name + `</span> `
+                            }
+                        
+                    }
                 }
             ],
             language: {
