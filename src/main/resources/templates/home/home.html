@@ -5,13 +5,9 @@
 
     <link rel="apple-touch-icon" sizes="76x76" href="images/mii.png">
     <link rel="icon" type="image/png" href="images/mii.png">
-
     <div th:replace="fragments/master :: header"></div>
-
-    <!-- PAGE TITLE HERE -->
     <title>Dashboard</title>
-
-    <!-- Style css -->
+    <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
 </head>
@@ -21,10 +17,204 @@
         <div th:replace="fragments/master :: nav-header"></div>
         <div th:replace="fragments/master :: navbar"></div>
         <div th:replace="fragments/master :: dlabnav"></div>
-        <div th:replace="fragments/master :: content"></div>
+
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="card">
+                            <div class="ms-3 mt-2">
+                                <h4 class="fs-18 font-w600 text-nowrap">Total Request</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <h2 class=" font-w700" th:text="${totalRequest}"></h2>
+                                </div>
+                                <div id="columnChart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="card">
+                            <div class="ms-3 mt-2">
+                                <h4 class="fs-18 font-w600 text-nowrap">Diproses</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <h2 class=" font-w700" th:text="${diproses}"></h2>
+                                </div>
+                                <div id="columnChart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="card">
+
+                            <div class="ms-3 mt-2">
+                                <h4 class="fs-18 font-w600 text-nowrap">Ditolak</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <h2 class=" font-w700" th:text="${ditolak}"></h2>
+                                </div>
+                                <div id="columnChart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="card">
+
+                            <div class="ms-3 mt-2">
+                                <h4 class="fs-18 font-w600 text-nowrap">Selesai</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <h2 class=" font-w700" th:text="${selesai}"></h2>
+                                </div>
+                                <div id="columnChart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="card">
+                            <div class="ms-3 mt-2">
+                                <h4 class="fs-18 font-w600 text-nowrap">Pending</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <h2 class=" font-w700" th:text="${pending}"></h2>
+                                </div>
+                            </div>
+                            <div id="columnChart"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-sm-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Table Request</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="tbEMP" style="min-width: 845px" width="100%"
+                                            class="display text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Name</th>
+                                                    <th>Fasilitas</th>
+                                                    <th>Ruang</th>
+                                                    <th>Keterangan</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>Nomor</th>
+                                                    <th>Name</th>
+                                                    <th>Fasilitas</th>
+                                                    <th>Ruang</th>
+                                                    <th>Keterangan</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="detailRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure want to Approve ?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="container">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-6 d-flex justify-content-center align-items-center">
+                                <div id="requestGambar"></div>
+                            </div>
+                            <div class="col-6">
+                                <input type="hidden" id="id">
+                                <input type="hidden" th:value="${nameEmp}" name="picName" id="picName"
+                                    class="form-control">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-3">
+                                        <label for="inputPassword6" class="col-form-label">Name</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label>: </label>
+                                        <label class="col-form-label" id="nameT"></label>
+                                        <input type="hidden" class="col-form-label" id="name"></input>
+                                    </div>
+                                </div>
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-3">
+                                        <label for="inputPassword6" class="col-form-label">date</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label>: </label>
+                                        <label class="col-form-label" id="dateT"></label>
+                                        <input type="hidden" class="col-form-label" id="date"></input>
+                                    </div>
+                                </div>
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-3">
+                                        <label for="inputPassword6" class="col-form-label">Ruang</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label>: </label>
+                                        <label class="col-form-label" id="ruangT"></label>
+                                        <input type="hidden" class="col-form-label" id="ruang"></input>
+                                    </div>
+                                </div>
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-3">
+                                        <label for="inputPassword6" class="col-form-label">Fasilitas</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label>: </label>
+                                        <label class="col-form-label" id="fasilitasT"></label>
+                                        <input type="hidden" class="col-form-label" id="fasilitas"></input>
+                                    </div>
+                                </div>
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-3">
+                                        <label for="inputPassword6" class="col-form-label">Keterangan</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label>: </label>
+                                        <label class="col-form-label" id="keteranganT"></label>
+                                        <input type="hidden" class="col-form-label" id="keterangan"></input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 
     <div th:replace="fragments/master :: script"></div>
+    <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="js/plugins-init/datatables.init.js"></script>
+
+    <script th:src="@{/js/home.js}"></script>
 
 </body>
 
