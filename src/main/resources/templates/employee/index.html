@@ -10,7 +10,7 @@
     <!-- Datatable -->
     <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <!-- PAGE TITLE HERE -->
-    <title>Emloyee</title>
+    <title>Employee</title>
     <!-- Style css -->
     <link href="css/style.css" rel="stylesheet">
 
@@ -80,7 +80,7 @@
             </div>
         </div>
 
-        <!-- Modal Detail EMployee -->
+        <!-- Modal Detail Employee -->
         <div class="modal fade" id="detailEmployee" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -91,15 +91,7 @@
                     </div>
                     <div class="container">
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">ID</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label>: </label>
-                                    <label class="col-form-label" id="id"></label>
-                                </div>
-                            </div>
+                            <input type="hidden" id="id">
                             <div class="row">
                                 <div class="col-2">
                                     <label for="inputPassword6" class="col-form-label">Name</label>
@@ -136,7 +128,26 @@
                                     <label class="col-form-label" id="role"></label>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <label for="exampleInputEmail1" class="form-label">Add New Role</label>
+                                </div>
+                                <div class="col-auto">
+                                    <label>: </label>
+                                    <select multiple="" class="default-select form-control" id="roleInp">
+                                        <option th:each="role : ${roles}" th:text="${role.name}"
+                                            th:value="${role.id}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="updateRole">Add New Role</button>
                     </div>
                 </div>
             </div>

@@ -45,7 +45,7 @@ function modalEmployee(id) {
         dataType: 'json',
         contentType: ''
     }).done((result) => {
-        $('#id').text(result.id);
+        $('#id').val(result.id);
         $('#name').text(result.name);
         $('#email').text(result.email);
         $('#phoneNumber').text(result.phoneNumber);
@@ -120,3 +120,30 @@ function deleteEmployee(id) {
         }
     })
 }
+
+$("#updateRole").click(() => {
+    let role = $("#roleInp").val()
+    let id = $("#id").val()
+    $.ajax({
+        method: "PUT",
+        url: "employee/updateEmployee/" + id,
+        dataType: "json",
+        beforeSend: addCsrfToken(),
+        data: JSON.stringify({
+            roles: role[0],
+        }),
+        contentType: "application/json",
+        success: function (result) {
+            console.log(result)
+            $("#detailEmployee").modal('hide')
+            $('#tbEMP').DataTable().ajax.reload()
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Role has been added',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    })
+})
