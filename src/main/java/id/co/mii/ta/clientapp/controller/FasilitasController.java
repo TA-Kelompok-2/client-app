@@ -6,6 +6,7 @@
 package id.co.mii.ta.clientapp.controller;
 
 import id.co.mii.ta.clientapp.model.Fasilitas;
+import id.co.mii.ta.clientapp.service.EmployeeService;
 import id.co.mii.ta.clientapp.service.FasilitasService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -31,11 +32,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class FasilitasController {
 
     private FasilitasService fasilitasService;
+    private EmployeeService EmployeeService;
 
     @GetMapping
     public String getAll(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return "managedata/fasilitas";
     }
 
@@ -44,6 +48,8 @@ public class FasilitasController {
     public List<Fasilitas> getAllJSON(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return fasilitasService.getAll();
     }
 
@@ -52,6 +58,8 @@ public class FasilitasController {
     public Fasilitas getById(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return fasilitasService.getById(id);
     }
 
@@ -60,6 +68,8 @@ public class FasilitasController {
     public Fasilitas createFasilitas(@RequestBody Fasilitas fasilitas, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return fasilitasService.createFasilitas(fasilitas);
     }
 
@@ -68,6 +78,8 @@ public class FasilitasController {
     public Fasilitas updateFasilitas(@PathVariable Integer id, @RequestBody Fasilitas fasilitas, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return fasilitasService.updateFasilitas(id, fasilitas);
     }
 
@@ -76,6 +88,8 @@ public class FasilitasController {
     public Fasilitas delete(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return fasilitasService.deleteFasilitas(id);
 
     }

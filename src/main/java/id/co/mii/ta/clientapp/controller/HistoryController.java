@@ -7,6 +7,7 @@ package id.co.mii.ta.clientapp.controller;
 
 import id.co.mii.ta.clientapp.model.History;
 import id.co.mii.ta.clientapp.model.dto.request.HistoryRequest;
+import id.co.mii.ta.clientapp.service.EmployeeService;
 import id.co.mii.ta.clientapp.service.HistoryService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -32,11 +33,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HistoryController {
 
     private HistoryService historyService;
+    private EmployeeService EmployeeService;
 
     @GetMapping("/history")
     public String getAll(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return "request/history";
     }
 
@@ -44,6 +48,8 @@ public class HistoryController {
     public String formApprove(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return "request/historyapprove";
     }
 
@@ -52,8 +58,8 @@ public class HistoryController {
     public List<History> getByStatus(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
-//        List<History> histories = historyService.getByRequest(id);
-//        model.addAttribute("histories", histories);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return historyService.getByRequest(id);
     }
 
@@ -62,6 +68,8 @@ public class HistoryController {
     public List<History> getAllJSON(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return historyService.getAll();
     }
 
@@ -70,7 +78,8 @@ public class HistoryController {
     public History getById(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
-
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return historyService.getById(id);
     }
 
@@ -79,6 +88,8 @@ public class HistoryController {
     public History createHistory(@RequestBody History history, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return historyService.createHistory(history);
     }
 
@@ -87,6 +98,8 @@ public class HistoryController {
     public History updateHistory(@PathVariable Integer id, @RequestBody HistoryRequest historyRequest, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return historyService.updateHistory(id, historyRequest);
     }
 
@@ -95,6 +108,8 @@ public class HistoryController {
     public History delete(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return historyService.deleteHistory(id);
 
     }

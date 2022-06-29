@@ -6,6 +6,7 @@
 package id.co.mii.ta.clientapp.controller;
 
 import id.co.mii.ta.clientapp.model.History;
+import id.co.mii.ta.clientapp.service.EmployeeService;
 import id.co.mii.ta.clientapp.service.HistoryService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -24,12 +25,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/laporan")
 @AllArgsConstructor
 public class LaporanController {
+
     private HistoryService historyService;
+    private EmployeeService EmployeeService;
 
     @GetMapping
     public String getAll(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return "request/history";
     }
 
@@ -38,6 +43,8 @@ public class LaporanController {
     public List<History> getAllJSON(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return historyService.getAll();
     }
 

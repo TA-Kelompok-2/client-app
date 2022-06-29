@@ -6,6 +6,7 @@
 package id.co.mii.ta.clientapp.controller;
 
 import id.co.mii.ta.clientapp.model.FasilitasRuang;
+import id.co.mii.ta.clientapp.service.EmployeeService;
 import id.co.mii.ta.clientapp.service.FasilitasRuangService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -31,11 +32,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class FasilitasRuangController {
 
     FasilitasRuangService fasilitasRuangService;
+    EmployeeService EmployeeService;
 
     @GetMapping
     public String getAll(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return "managedata/fasilitasruang";
     }
 
@@ -44,6 +48,8 @@ public class FasilitasRuangController {
     public List<FasilitasRuang> getAllJSON(Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return fasilitasRuangService.getAll();
     }
 
@@ -52,6 +58,8 @@ public class FasilitasRuangController {
     public FasilitasRuang getById(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return fasilitasRuangService.getById(id);
     }
 
@@ -60,6 +68,8 @@ public class FasilitasRuangController {
     public FasilitasRuang createFasilitas(@RequestBody FasilitasRuang fasilitas, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return fasilitasRuangService.createFasilitasRuang(fasilitas);
     }
 
@@ -68,6 +78,8 @@ public class FasilitasRuangController {
     public FasilitasRuang updateFasilitas(@PathVariable Integer id, @RequestBody FasilitasRuang fasilitas, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return fasilitasRuangService.updateFasilitasRuang(id, fasilitas);
     }
 
@@ -76,6 +88,8 @@ public class FasilitasRuangController {
     public FasilitasRuang delete(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
         Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
         model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
         return fasilitasRuangService.deleteFasilitasRuang(id);
 
     }
