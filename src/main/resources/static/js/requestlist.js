@@ -72,12 +72,8 @@ function modalRequest(id) {
         $('#keteranganT').text(result.keterangan);
         $('#keterangan').val(result.keterangan);
         $('#requestGambar').html(`
-          <img src="/request-photos/${result.id}/${result.gambar}" />
+          <img src="/request-photos/${result.id}/${result.gambar}"  width="300" />
         `);
-        $('#requestGambar1').html(result.id)
-        $('#requestGambar2').html(result.gambar)
-        console.log(result.id)
-        console.log(result.gambar)
     }).fail((error) => {
         console.log(error);
     });
