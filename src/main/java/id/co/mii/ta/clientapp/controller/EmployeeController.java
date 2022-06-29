@@ -6,8 +6,10 @@
 package id.co.mii.ta.clientapp.controller;
 
 import id.co.mii.ta.clientapp.model.Employee;
+import id.co.mii.ta.clientapp.model.Role;
 import id.co.mii.ta.clientapp.model.dto.request.EmployeeRequest;
 import id.co.mii.ta.clientapp.service.EmployeeService;
+import id.co.mii.ta.clientapp.service.RoleService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
@@ -32,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class EmployeeController {
 
     private EmployeeService EmployeeService;
+    private RoleService roleService;
 
     @GetMapping
     public String getAll(Model model, HttpServletRequest httpServletRequest) {
@@ -39,6 +42,8 @@ public class EmployeeController {
         model.addAttribute("idEmp", empIdSession);
         String empNameSession = EmployeeService.getById(empIdSession).getName();
         model.addAttribute("nameEmp", empNameSession);
+         List<Role> roles = roleService.getAll();
+        model.addAttribute("roles", roles);
         return "employee/index";
     }
     
@@ -69,6 +74,7 @@ public class EmployeeController {
         model.addAttribute("idEmp", empIdSession);
         String empNameSession = EmployeeService.getById(empIdSession).getName();
         model.addAttribute("nameEmp", empNameSession);
+        System.out.println(employeeRequest.getRoles());
         return EmployeeService.createEmployee(employeeRequest);
     }
 

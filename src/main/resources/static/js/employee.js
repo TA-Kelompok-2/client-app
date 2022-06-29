@@ -61,6 +61,8 @@ $('#createEmployee').click(function (e) { //modal btn save
     let phoneNumber = $('#phoneNumberInp').val()
     let username = $('#usernameInp').val()
     let password = $('#passwordInp').val()
+    let role = $('#roleInp').val()
+    console.log(role)
     $.ajax({
         method: "POST",
         url: "employee/createEmployee",
@@ -72,6 +74,7 @@ $('#createEmployee').click(function (e) { //modal btn save
             phoneNumber: phoneNumber,
             username: username,
             password: password,
+            roles: role[0],
         }),
         contentType: "application/json",
         success: function (result) {

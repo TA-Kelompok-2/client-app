@@ -169,7 +169,12 @@
                                 <label for="exampleInputEmail1" class="form-label">Input Password</label>
                                 <input class="form-control" id="passwordInp" aria-describedby="emailHelp"
                                     placeholder="aldo...">
-
+                                <label for="exampleInputEmail1" class="form-label">Input Role</label>
+                                <select multiple="" class="default-select form-control wide mt-3" id="roleInp">
+                                    <option th:each="role : ${roles}" th:text="${role.name}"
+                                        th:value="${role.id}">
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -188,7 +193,7 @@
     <script src="js/plugins-init/datatables.init.js"></script>
 
     <script th:src="@{/js/employee.js}"></script>
-    
+
     <!-- sweet alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
