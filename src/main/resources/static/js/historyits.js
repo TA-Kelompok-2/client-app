@@ -97,6 +97,9 @@ function modalHistories(id) {
                     }
                 },
                 {
+                    "data": "picName"
+                },
+                {
                     "data": "request.fasilitasRuang.ruang.name"
                 },
                 {
@@ -140,6 +143,9 @@ function beforeDone(id) {
 $("#approve").click(() => {
     let keterangan = $("#reason").val()
     console.log(keterangan)
+    let picName = $("#picName").val()
+    console.log(picName)
+    
     let date = Date.now
     let id = $("#id").val()
     let approve = 5
@@ -152,7 +158,8 @@ $("#approve").click(() => {
         data: JSON.stringify({
             status: approve,
             keterangan: keterangan,
-            date: date
+            date: date,
+            picName: picName
 
         }),
         contentType: "application/json",

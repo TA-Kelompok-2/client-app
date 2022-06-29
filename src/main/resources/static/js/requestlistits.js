@@ -182,6 +182,8 @@ function deleteFasilitas(id) {
 
 function selesai(id) {
     let done = 5
+    let picName = $("#picName").val()
+    console.log(picName)
 
     Swal.fire({
         title: 'Are you sure?',
@@ -200,6 +202,7 @@ function selesai(id) {
                 beforeSend: addCsrfToken(),
                 data: JSON.stringify({
                     status: done,
+                    picName: picName
                 }),
                 contentType: "application/json",
                 success: (result) => {
@@ -219,6 +222,8 @@ $("#approve").click(() => {
     let keterangan = $("#reason").val()
     let date = Date.now
     let id = $("#id").val()
+    let picName = $("#picName").val()
+    console.log(picName)
     console.log(keterangan)
     console.log(id)
     console.log(date)
@@ -233,7 +238,8 @@ $("#approve").click(() => {
         data: JSON.stringify({
             status: approve,
             keterangan: keterangan,
-            date: date
+            date: date,
+            picName: picName
         }),
         contentType: "application/json",
         success: function (result) {
@@ -254,6 +260,8 @@ $("#reject").click(() => {
     let keterangan = $("#reason").val()
     let id = $("#id").val()
     let date = Date.now
+    let picName = $("#picName").val()
+    console.log(picName)
     let approve = 2
     let reject = 7
 
@@ -265,7 +273,8 @@ $("#reject").click(() => {
         data: JSON.stringify({
             status: reject,
             keterangan: keterangan,
-            date: date
+            date: date,
+            picName: picName
         }),
         contentType: "application/json",
         success: function (result) {

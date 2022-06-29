@@ -85,6 +85,9 @@ function modalHistories(id) {
                     }
                 },
                 {
+                    "data": "picName"
+                },
+                {
                     "data": "request.fasilitasRuang.ruang.name"
                 },
                 {

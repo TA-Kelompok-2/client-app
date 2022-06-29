@@ -22,7 +22,7 @@ public class RequestDTO {
     private String keterangan;
     private String gambar;
     private LocalDateTime date = LocalDateTime.now();
-    private Integer picid;
+    private String picName;
     private Integer employee;
     private Integer status;
     private Integer fasilitasruang;

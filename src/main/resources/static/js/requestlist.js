@@ -112,6 +112,8 @@ $("#approve").click(() => {
     let keterangan = $("#reason").val()
     let date = Date.now
     let id = $("#id").val()
+    let picName = $("#picName").val()
+    console.log(picName)
     console.log(keterangan)
     console.log(id)
     console.log(date)
@@ -126,7 +128,8 @@ $("#approve").click(() => {
         data: JSON.stringify({
             status: approve,
             keterangan: keterangan,
-            date: date
+            date: date,
+            picName:picName
         }),
         contentType: "application/json",
         success: function (result) {
@@ -147,6 +150,8 @@ $("#reject").click(() => {
     let keterangan = $("#reason").val()
     let id = $("#id").val()
     let date = Date.now
+    let picName = $("#picName").val()
+    console.log(picName)
     let approve = 2
     let reject = 3
 
@@ -158,7 +163,8 @@ $("#reject").click(() => {
         data: JSON.stringify({
             status: reject,
             keterangan: keterangan,
-            date: date
+            date: date,
+            picName: picName
         }),
         contentType: "application/json",
         success: function (result) {
