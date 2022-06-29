@@ -81,6 +81,8 @@ public class FasilitasRuangController {
         model.addAttribute("idEmp", empIdSession);
         String empNameSession = EmployeeService.getById(empIdSession).getName();
         model.addAttribute("nameEmp", empNameSession);
+        System.out.println(fasilitas.getFasilitas());
+        System.out.println(fasilitas.getRuang());
         return fasilitasRuangService.createFasilitasRuang(fasilitas);
     }
 

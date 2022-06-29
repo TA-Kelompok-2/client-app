@@ -60,8 +60,8 @@ $('#createFasilitas').click(function (e) { //modal btn save
         dataType: "json",
         beforeSend: addCsrfToken(),
         data: JSON.stringify({
-            ruang_id: ruang_id,
-            fasilitas_id: fasilitas_id,
+            ruang: ruang_id[0],
+            fasilitas: fasilitas_id[0],
         }),
         contentType: "application/json",
         success: function (result) {
