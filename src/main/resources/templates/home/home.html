@@ -130,8 +130,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="card col-6">
-                    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                <div class="row">
+                    <div class="card col-6">
+                        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -222,11 +224,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/id.min.js"></script>
     <!-- chart -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    
     <script type="text/javascript" th:inline="javascript">
-        var diproses = [[${diproses}]];
-        var ditolak = [[${ditolak}]];
-        var selesai = [[${selesai}]];
-        var pending = [[${pending}]];
+        var diproses = /*[[${diproses}]]*/ ;
+        var ditolak = /*[[${ditolak}]]*/ ;
+        var selesai = /*[[${selesai}]]*/ ;
+        var pending = /*[[${pending}]]*/ ;
         console.log(diproses)
         var xValues = ["Diproses", "Ditolak", "Selesai", "Pending"];
         var yValues = [diproses, ditolak, selesai, pending];
@@ -253,6 +256,9 @@
                 }
             }
         });
+    </script>
+    <script>
+
     </script>
 
 
