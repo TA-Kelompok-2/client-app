@@ -15,9 +15,9 @@ $(document).ready(function () {
             },
             {
                 "data": "date",
-                render: function(data, type, row, meta) {
+                render: function (data, type, row, meta) {
                     return moment(row.date).format('DD MMMM YYYY, LT');
-                    
+
                 }
             },
             {
@@ -32,20 +32,20 @@ $(document).ready(function () {
             {
                 "data": null,
                 render: function (data, type, row, meta) {
-                        if (row.status.name == "Diajukan") {
-                            return `<span class="badge badge-info">` + row.status.name + `</span> `
-                        } else if (row.status.name == "Disetujui oleh Admin" || row.status.name == "Disetujui oleh IT Support") {
-                            return `<span class="badge badge-warning">` + row.status.name + `</span> `
-                        } else if (row.status.name == "Ditolak oleh Admin" || row.status.name == "Ditolak oleh IT Support") {
-                            return `<span class="badge badge-danger">` + row.status.name + `</span> `
-                        } else if (row.status.name == "Diproses") {
-                            return `<span class="badge badge-primary">` + row.status.name + `</span> `
-                        } else if (row.status.name == "Selesai") {
-                            return `<span class="badge badge-success">` + row.status.name + `</span> `
-                        } else {
-                            return `<span class="badge badge-warning">` + row.status.name + `</span> `
-                        }
-                    
+                    if (row.status.name == "Diajukan") {
+                        return `<span class="badge badge-info">` + row.status.name + `</span> `
+                    } else if (row.status.name == "Disetujui oleh Admin" || row.status.name == "Disetujui oleh IT Support") {
+                        return `<span class="badge badge-warning">` + row.status.name + `</span> `
+                    } else if (row.status.name == "Ditolak oleh Admin" || row.status.name == "Ditolak oleh IT Support") {
+                        return `<span class="badge badge-danger">` + row.status.name + `</span> `
+                    } else if (row.status.name == "Diproses") {
+                        return `<span class="badge badge-primary">` + row.status.name + `</span> `
+                    } else if (row.status.name == "Selesai") {
+                        return `<span class="badge badge-success">` + row.status.name + `</span> `
+                    } else {
+                        return `<span class="badge badge-warning">` + row.status.name + `</span> `
+                    }
+
                 }
             },
             {
@@ -54,7 +54,8 @@ $(document).ready(function () {
                     return `
                         <button class="btn btn-rounded btn-success" onclick="modalRequest(${data.id})" data-bs-toggle="modal"
                         data-bs-target="#detailRequest"><span class="btn-icon-start text-success"><i class="fa fa-check"></i></span>Approval</button>`
-                }
+                },
+                "orderable": false
             }
         ],
         language: {
@@ -152,7 +153,7 @@ $("#approve").click(() => {
             status: approve,
             keterangan: keterangan,
             date: date,
-            picName:picName
+            picName: picName
         }),
         contentType: "application/json",
         success: function (result) {
