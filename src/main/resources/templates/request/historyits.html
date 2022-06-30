@@ -169,7 +169,7 @@
 
     <!-- Modal History Detail -->
     <div class="modal fade" id="detailHistory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Request Detail</h5>
@@ -182,6 +182,7 @@
                                 <tr>
                                     <th> No </th>
                                     <th> PIC </th>
+                                    <th> Tanggal </th>
                                     <th> Ruang </th>
                                     <th> Fasilitas </th>
                                     <th> Keterangan </th>
@@ -206,6 +207,10 @@
     <!-- Datatable -->
     <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="js/plugins-init/datatables.init.js"></script>
+
+    <!-- Momentjs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/id.min.js"></script>
 
     <script th:src="@{/js/historyits.js}"></script>
 

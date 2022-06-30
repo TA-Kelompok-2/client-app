@@ -37,13 +37,13 @@ $(document).ready(function () {
 function modalEmployee(id) {
     $.ajax({
         type: 'GET',
-        url: "/fasilitas/getById/" + id,
+        url: "/fasilitasruang/getById/" + id,
         dataType: 'json',
         contentType: ''
     }).done((result) => {
         $('#id').text(result.id);
-        $('#name').text(result.name);
-        $('#keterangan').text(result.keterangan);
+        $('#ruang').text(result.ruang.name);
+        $('#fasilitas').text(result.fasilitas.name);
     }).fail((error) => {
         console.log(error);
     });

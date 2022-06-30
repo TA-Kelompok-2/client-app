@@ -78,7 +78,7 @@
 
         <!-- Modal Detail History -->
         <div class="modal fade" id="detailHistory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-md">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">History Detail</h5>
@@ -97,20 +97,20 @@
                             </div>
                             <div class="row">
                                 <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Name</label>
+                                    <label for="inputPassword6" class="col-form-label">Ruang</label>
                                 </div>
                                 <div class="col-auto">
                                     <label>: </label>
-                                    <label class="col-form-label" id="name"></label>
+                                    <label class="col-form-label" id="ruang"></label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Keterangan</label>
+                                    <label for="inputPassword6" class="col-form-label">Fasilitas</label>
                                 </div>
                                 <div class="col-auto">
                                     <label>: </label>
-                                    <label class="col-form-label" id="keterangan"></label>
+                                    <label class="col-form-label" id="fasilitas"></label>
                                 </div>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
                                 <div>
                                     <label for="exampleInputEmail1" class="form-label">Input Ruang</label>
 
-                                    <select multiple="" class="default-select form-control wide mt-3" id="ruang">
+                                    <select multiple="" class="default-select form-control wide mt-3 border border-dark" id="ruang">
                                         <option th:each="ruang : ${ruangs}" th:text="${ruang.name}"
                                             th:value="${ruang.id}">
                                         </option>
@@ -142,7 +142,7 @@
                                 </div>
                                 <div>
                                     <label for="exampleInputEmail1" class="form-label">Input Fasilitas</label>
-                                    <select multiple="" class="default-select form-control wide mt-3" id="fasilitas">
+                                    <select multiple="" class="default-select form-control wide mt-3 mb-5 border border-dark" id="fasilitas">
                                         <option th:each="fasilitas : ${fasilitas}" th:text="${fasilitas.name}"
                                             th:value="${fasilitas.id}">
                                         </option>

@@ -116,6 +116,13 @@ function modalHistories(id) {
                     "data": "picName"
                 },
                 {
+                    "data": "date",
+                    render: function(data, type, row, meta) {
+                        return moment(row.date).format('DD MMMM YYYY, LT');
+                        
+                    }
+                },
+                {
                     "data": "request.fasilitasRuang.ruang.name"
                 },
                 {

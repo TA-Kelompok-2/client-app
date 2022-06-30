@@ -14,6 +14,13 @@ $(document).ready(function () {
             "data": "employee.name"
         },
         {
+            "data": "date",
+            render: function(data, type, row, meta) {
+                return moment(row.date).format('DD MMMM YYYY, LT');
+                
+            }
+        },
+        {
             "data": "keterangan"
         },
         {
