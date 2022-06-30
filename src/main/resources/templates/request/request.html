@@ -75,6 +75,7 @@
                                                 <div class="col-9">
                                                     <select id="ruangSel" onchange="myFunction()"
                                                         class="form-control wide mt-3 border border-dark">
+                                                        <option disabled selected value="">-- Pilih Ruang --</option>
                                                         <option th:each="ruang : ${ruangs}" th:text="${ruang.name}"
                                                             th:value="${ruang.id}">
                                                         </option>
