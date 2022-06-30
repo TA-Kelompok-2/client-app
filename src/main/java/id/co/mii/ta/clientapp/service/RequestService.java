@@ -101,4 +101,19 @@ public class RequestService {
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
         }).getBody();
     }
+    public List<Request> getByApprovalPYT() { // id -> 1 data id
+        return restTemplate.exchange(url.concat("/approvedPYT"), // -> pengembalian http kalau getForObject yang disediakan get
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
+        }).getBody();
+    }
+    public List<Request> getByApprovalKPT() { // id -> 1 data id
+        return restTemplate.exchange(url.concat("/approvedKPT"), // -> pengembalian http kalau getForObject yang disediakan get
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
+        }).getBody();
+    }
+    public List<Request> getByApprovalAC() { // id -> 1 data id
+        return restTemplate.exchange(url.concat("/approvedAC"), // -> pengembalian http kalau getForObject yang disediakan get
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<Request>>() {
+        }).getBody();
+    }
 }
