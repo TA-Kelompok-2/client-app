@@ -46,24 +46,24 @@
                                         <div class="col-6">
                                             <input type="hidden" th:value="${idEmp}" name="employee" id="employee">
                                             <input type="hidden" th:value="${nameEmp}" name="picName" id="picName">
-                                            <div class="mb-3 mt-2 row  d-flex align-items-center">
-                                                <label class="col-3 fs-4 col-form-label">Gambar</label>
-                                                <div class="col-9 mt-3">
+                                            <div class="mb-3 mt-4 row  d-flex align-items-center">
+                                                <label class="col-3 col-form-label">Gambar</label>
+                                                <div class="col-9">
                                                     <div class="input-group mb-3">
-                                                        <div class="form-file  border border-info">
+                                                        <div class="form-file">
                                                             <input type="file" name="image"
                                                                 accept="image/png, image/jpeg"
                                                                 class="form-file-input form-control" id="image"
                                                                 style="filter: drop-shadow(0 2x 1px black);">
                                                         </div>
-                                                        <span class="input-group-text border border-info">Upload</span>
+                                                        <span class="input-group-text">Upload</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="mb-3 row d-flex">
-                                                <label class="col-3 fs-4 col-form-label">Keterangan</label>
+                                            <div class="mb-3 row">
+                                                <label class="col-3 col-form-label">Keterangan</label>
                                                 <div class="col-9">
-                                                    <textarea class="form-control border border-info" rows="4"
+                                                    <textarea class="form-control border border-dark" rows="4"
                                                         id="comment" style="height:200px;"
                                                         th:field="*{keterangan}"></textarea>
                                                 </div>
@@ -71,20 +71,21 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3 row  d-flex align-items-center">
-                                                <label class="col-3 fs-4 col-form-label">Ruang</label>
+                                                <label class="col-3 col-form-label">Ruang</label>
                                                 <div class="col-9">
-                                                    <select id="ruangSel" class="form-control wide mt-3 border border-info" onchange="myFunction()">
+                                                    <select id="ruangSel" onchange="myFunction()"
+                                                        class="form-control wide mt-3 border border-dark">
                                                         <option th:each="ruang : ${ruangs}" th:text="${ruang.name}"
-                                                            th:value="${ruang.id}"  >
+                                                            th:value="${ruang.id}">
                                                         </option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="mb-3 row d-flex align-items-center">
-                                                <label class="col-3 fs-4 col-form-label">Fasilitas</label>
+                                                <label class="col-3 col-form-label">Fasilitas</label>
                                                 <div class="col-9">
-                                                    <select id="fasilitasSel"
-                                                        class="form-control wide mt-3 border border-info">
+                                                    <select th:field="*{fasilitasruang}"
+                                                        class="form-control wide mt-3 border border-dark fasilitasSel">
                                                     </select>
                                                 </div>
                                             </div>
@@ -111,25 +112,24 @@
 
     <div th:replace="fragments/master :: script"></div>
     <script>
-
         function myFunction() {
             const ruangId = $('#ruangSel :selected').val()
-
             // let fasilitasSel = $('#fasilitasSel').val([0].indexOf.name)
             // let id = $('#ruangSel').val()
             // console.log(id)
             // console.log("tesssss")
             // document.getElementById("selIdi").innerHTML = "I have changed!";
-
             $.ajax({
                 type: 'GET',
                 url: `/fasilitasruang/getByRuang/${ruangId}`,
                 dataType: 'json',
                 contentType: ''
             }).done((result) => {
-                $('#fasilitasSel').html('')
+                $('.fasilitasSel').html('')
                 result.forEach(data => {
-                    $('#fasilitasSel').append(`<option value="${data.fasilitas.id}">${data.fasilitas.name}</option>`)
+                    $('.fasilitasSel').append(
+                        `<option id="${data.id}" name="${data.id}" value="${data.id}">${data.fasilitas.name}</option>`
+                        )
                 })
                 // let res = result.ruang
                 //   document.getElementById("selId").innerHTML = res;
@@ -145,9 +145,6 @@
     <!-- Datatable -->
     <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="js/plugins-init/datatables.init.js"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
-    <script th:src="@{/js/employee.js}"></script>
-    <script th:src="@{/js/request.js}"></script>
 
 </body>
 
