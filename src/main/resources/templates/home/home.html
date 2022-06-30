@@ -107,8 +107,8 @@
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Name</th>
-                                                    <th>Fasilitas</th>
                                                     <th>Ruang</th>
+                                                    <th>Fasilitas</th>
                                                     <th>Keterangan</th>
                                                     <th>Status</th>
                                                 </tr>
@@ -117,8 +117,8 @@
                                                 <tr>
                                                     <th>Nomor</th>
                                                     <th>Name</th>
-                                                    <th>Fasilitas</th>
                                                     <th>Ruang</th>
+                                                    <th>Fasilitas</th>
                                                     <th>Keterangan</th>
                                                     <th>Status</th>
                                                 </tr>
@@ -131,8 +131,18 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="card col-6">
-                        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                    <div class="col-6">
+                        <div class="card">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card">
+                            <h2 class=" font-w700" hidden th:text="${komputer}"></h2>
+                            <h2 class=" font-w700" hidden th:text="${proyektor}"></h2>
+                            <h2 class=" font-w700" hidden th:text="${ac}"></h2>
+                            <canvas id="myChart2"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -224,13 +234,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/id.min.js"></script>
     <!-- chart -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    
+
     <script type="text/javascript" th:inline="javascript">
         var diproses = /*[[${diproses}]]*/ ;
         var ditolak = /*[[${ditolak}]]*/ ;
         var selesai = /*[[${selesai}]]*/ ;
         var pending = /*[[${pending}]]*/ ;
-        console.log(diproses)
         var xValues = ["Diproses", "Ditolak", "Selesai", "Pending"];
         var yValues = [diproses, ditolak, selesai, pending];
         var barColors = [
@@ -257,8 +266,34 @@
             }
         });
     </script>
-    <script>
+    <script type="text/javascript" th:inline="javascript">
+        var komputer = /*[[${komputer}]]*/ ;
+        var proyektor = /*[[${proyektor}]]*/ ;
+        var ac = /*[[${ac}]]*/ ;
+        var xValues = ["Proyektor", "Komputer", "AC"];
+        var yValues = [proyektor, komputer, ac];
+        var barColors = [
+            "#b91d47",
+            "#00aba9",
+            "#2b5797"
+        ];
 
+        new Chart("myChart2", {
+            type: "doughnut",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Fasilitas Request Problem"
+                }
+            }
+        });
     </script>
 
 

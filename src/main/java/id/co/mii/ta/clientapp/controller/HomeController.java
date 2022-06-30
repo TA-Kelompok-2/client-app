@@ -50,6 +50,12 @@ public class HomeController {
         model.addAttribute("ditolak", ditolak);
         model.addAttribute("selesai", getaprovalS);
         model.addAttribute("pending", pending);
+        Integer proyektor = requestService.getByApprovalPYT().size();
+        Integer komputer = requestService.getByApprovalKPT().size();
+        Integer ac = requestService.getByApprovalAC().size();
+        model.addAttribute("proyektor", proyektor);
+        model.addAttribute("komputer", komputer);
+        model.addAttribute("ac", ac);
         return "home/home";
     }
     
