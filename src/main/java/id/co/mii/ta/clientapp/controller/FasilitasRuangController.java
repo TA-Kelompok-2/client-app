@@ -74,6 +74,16 @@ public class FasilitasRuangController {
         return fasilitasRuangService.getById(id);
     }
 
+    @GetMapping("/getByRuang/{id}")
+    @ResponseBody
+    public List<FasilitasRuang> getByRuang(@PathVariable Integer id, Model model, HttpServletRequest httpServletRequest) {
+        Integer empIdSession = (Integer) httpServletRequest.getSession().getAttribute("empIdSession");
+        model.addAttribute("idEmp", empIdSession);
+        String empNameSession = EmployeeService.getById(empIdSession).getName();
+        model.addAttribute("nameEmp", empNameSession);
+        return fasilitasRuangService.getByRuang(id);
+    }
+
     @PostMapping("/createFasilitasRuang")
     @ResponseBody
     public FasilitasRuang createFasilitas(@RequestBody FasilitasDTO fasilitas, Model model, HttpServletRequest httpServletRequest) {

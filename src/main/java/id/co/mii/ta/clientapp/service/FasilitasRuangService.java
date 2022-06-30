@@ -45,6 +45,12 @@ public class FasilitasRuangService {
         }).getBody();
     }
     
+        public List<FasilitasRuang> getByRuang(Integer id) { // id -> 1 data id
+        return restTemplate.exchange(url.concat("/ruang/" + id), // -> pengembalian http kalau getForObject yang disediakan get
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<FasilitasRuang>>() {
+        }).getBody();
+    }
+    
     public FasilitasRuang createFasilitasRuang(FasilitasDTO fasilitas) { // create -> data
         return restTemplate.exchange(url,
                 HttpMethod.POST,
