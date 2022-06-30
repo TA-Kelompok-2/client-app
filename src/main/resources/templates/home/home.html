@@ -130,6 +130,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="card col-6">
+                        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -213,6 +218,49 @@
     <div th:replace="fragments/master :: script"></div>
     <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="js/plugins-init/datatables.init.js"></script>
+
+    <!-- Momentjs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/id.min.js"></script>
+    <!-- chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    
+    <script type="text/javascript" th:inline="javascript">
+        var diproses = /*[[${diproses}]]*/ ;
+        var ditolak = /*[[${ditolak}]]*/ ;
+        var selesai = /*[[${selesai}]]*/ ;
+        var pending = /*[[${pending}]]*/ ;
+        console.log(diproses)
+        var xValues = ["Diproses", "Ditolak", "Selesai", "Pending"];
+        var yValues = [diproses, ditolak, selesai, pending];
+        var barColors = [
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9"
+        ];
+
+        new Chart("myChart", {
+            type: "pie",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Status"
+                }
+            }
+        });
+    </script>
+    <script>
+
+    </script>
+
 
     <script th:src="@{/js/home.js}"></script>
 

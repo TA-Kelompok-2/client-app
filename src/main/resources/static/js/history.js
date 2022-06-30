@@ -56,37 +56,6 @@ $(document).ready(function () {
     });
 });
 
-function modalHistory(id) {
-    $.ajax({
-        type: 'GET',
-        url: "/history/getById/" + id,
-        dataType: 'json',
-        contentType: ''
-    }).done((result) => {
-        $('#name').text(result.request.employee.name);
-        $('#request_id').text(result.request.id);
-        //formate date
-        let date = new Date(Date.parse(result.date));
-
-        dateFormatted = date.toLocaleString('default', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-        });
-        // console.log(dateFormatted);
-        
-        $('#date').text(dateFormatted);
-        $('#fasilitas').text(result.request.fasilitasRuang.fasilitas.name);
-        $('#ruang').text(result.request.fasilitasRuang.ruang.name);
-        $('#keterangan').text(result.request.keterangan);
-        $('#requestGambar').html(`
-          <img src="request-photos/${result.request.id}/${result.request.gambar}" />
-        `);
-    }).fail((error) => {
-        console.log(error);
-    });
-}
-
 function modalHistories(id) {
     $(document).ready(function () { 
         $("#tbHST").DataTable({
@@ -102,6 +71,13 @@ function modalHistories(id) {
                 },
                 {
                     "data": "picName"
+                },
+                {
+                    "data": "date",
+                    render: function(data, type, row, meta) {
+                        return moment(row.date).format('DD MMMM YYYY, LT');
+                        
+                    }
                 },
                 {
                     "data": "request.fasilitasRuang.ruang.name"

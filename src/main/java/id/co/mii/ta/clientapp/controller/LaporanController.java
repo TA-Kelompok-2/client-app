@@ -6,8 +6,10 @@
 package id.co.mii.ta.clientapp.controller;
 
 import id.co.mii.ta.clientapp.model.History;
+import id.co.mii.ta.clientapp.model.Request;
 import id.co.mii.ta.clientapp.service.EmployeeService;
 import id.co.mii.ta.clientapp.service.HistoryService;
+import id.co.mii.ta.clientapp.service.RequestService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
@@ -28,6 +30,7 @@ public class LaporanController {
 
     private HistoryService historyService;
     private EmployeeService EmployeeService;
+    private RequestService requestService;
 
     @GetMapping
     public String getAll(Model model, HttpServletRequest httpServletRequest) {
@@ -35,7 +38,9 @@ public class LaporanController {
         model.addAttribute("idEmp", empIdSession);
         String empNameSession = EmployeeService.getById(empIdSession).getName();
         model.addAttribute("nameEmp", empNameSession);
-        return "request/history";
+        List<Request> histories = requestService.getAll();
+        model.addAttribute("histories", histories);
+        return "laporan/laporan";
     }
 
     @GetMapping("/get-all")

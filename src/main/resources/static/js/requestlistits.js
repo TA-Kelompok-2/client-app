@@ -14,6 +14,13 @@ $(document).ready(function () {
             "data": "employee.name"
         },
         {
+            "data": "date",
+            render: function(data, type, row, meta) {
+                return moment(row.date).format('DD MMMM YYYY, LT');
+                
+            }
+        },
+        {
             "data": "keterangan"
         },
         {
@@ -48,7 +55,8 @@ $(document).ready(function () {
                 <button class="btn btn-rounded btn-success" onclick="modalRequest(${data.id})" data-bs-toggle="modal"
                 data-bs-target="#detailRequest"><span class="btn-icon-start text-success"><i class="fa fa-check"></i></span>Approval</button>`
                         // <button class="btn btn-rounded btn-success" onclick="selesai(${data.id})"><span class="btn-icon-start text-success"><i class="fa fa-check"></i></span>Done</button>
-            }
+            },
+            "orderable": false
         }
         ],
         language: {

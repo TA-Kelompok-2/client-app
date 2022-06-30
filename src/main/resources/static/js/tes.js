@@ -1,8 +1,38 @@
+var minDate, maxDate;
+
+// Custom filtering function which will search data in column four between two values
+$.fn.dataTable.ext.search.push(
+    function (settings, data, dataIndex) {
+        var min = minDate.val();
+        var max = maxDate.val();
+        var date = new Date(data[2]);
+        console.log(date)
+        if (
+            (min === null && max === null) ||
+            (min === null && date <= max) ||
+            (min <= date && max === null) ||
+            (min <= date && date <= max)
+        ) {
+            return true;
+        }
+        return false;
+    }
+);
+
 $(document).ready(function () {
-    $("#tbEMP").DataTable({
+    // Create date inputs
+    minDate = new DateTime($('#min'), {
+        format: 'MMMM DD YYYY'
+    });
+    maxDate = new DateTime($('#max'), {
+        format: 'MMMM DD YYYY'
+    });
+
+    // DataTables initialisation
+    var table = $("#tbEMP").DataTable({
         "ajax": {
             "url": "/request/get-all",
-            "dataSrc": ""
+            "dataSrc": "",
         },
         "columns": [{
                 "data": null,
@@ -14,7 +44,14 @@ $(document).ready(function () {
                 "data": null,
                 render: function (data, type, row, meta) {
                     return `<a class="text-info" href="historyapprove" data-bs-toggle="modal"
-                    data-bs-target="#detailRequest" onclick="modalRequest(${data.id})" >` + row.employee.name + `</a>`
+                    data-bs-target="#detailHistory" onclick="modalHistories(${data.id})" >` + row.employee.name + `</a>`
+                }
+            },
+            {
+                "data": "date",
+                render: function (data, type, row, meta) {
+                    return moment(row.date).format('DD MMMM YYYY, h:mm:ss a');
+
                 }
             },
             {
@@ -52,42 +89,11 @@ $(document).ready(function () {
                 previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
             }
         }
+        // console.log()
+    });
+
+    // Refilter the table
+    $('#min, #max').on('change', function () {
+        table.draw();
     });
 });
-
-function modalRequest(id) {
-    $.ajax({
-        type: 'GET',
-        url: "/request/getById/" + id,
-        dataType: 'json',
-        contentType: ''
-    }).done((result) => {
-        $('#idT').text(result.id);
-        $('#id').val(result.id);
-        $('#nameT').text(result.employee.name);
-        $('#name').val(result.employee.name);
-
-        let date = new Date(Date.parse(result.date));
-
-        dateFormatted = date.toLocaleString('default', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-        });
-        $('#dateT').text(dateFormatted);
-        $('#date').val(dateFormatted);
-        $('#ruangT').text(result.fasilitasRuang.ruang.name);
-        $('#ruang').val(result.fasilitasRuang.ruang.name);
-        $('#fasilitasT').text(result.fasilitasRuang.fasilitas.name);
-        $('#fasilitas').val(result.fasilitasRuang.fasilitas.name);
-        $('#keteranganT').text(result.keterangan);
-        $('#keterangan').val(result.keterangan);
-        $('#requestGambar').html(`
-          <img src="/request-photos/${result.id}/${result.gambar}"  width="300" />
-        `);
-    }).fail((error) => {
-        console.log(error);
-    });
-}
-
-/////////////////////////////////////////chart//////////////////////////////////////

@@ -22,7 +22,8 @@ $(document).ready(function () {
                     return `<button class="btn btn-rounded btn-primary" onclick = "modalEmployee(${data.id})" data-bs-toggle="modal" data-bs-target="#detailHistory"><span class="btn-icon-start text-primary"><i class="fa fa-info"></i>
                         </span>Detail</button>
                         <button class="btn btn-rounded btn-danger" onclick="deleteFasilitas(${data.id})"><span class="btn-icon-start text-danger"><i class="fa fa-trash"></i></span>Delete</button>`
-                }
+                },
+                "orderable": false
             }
         ],
         language: {
@@ -37,13 +38,13 @@ $(document).ready(function () {
 function modalEmployee(id) {
     $.ajax({
         type: 'GET',
-        url: "/fasilitas/getById/" + id,
+        url: "/fasilitasruang/getById/" + id,
         dataType: 'json',
         contentType: ''
     }).done((result) => {
         $('#id').text(result.id);
-        $('#name').text(result.name);
-        $('#keterangan').text(result.keterangan);
+        $('#ruang').text(result.ruang.name);
+        $('#fasilitas').text(result.fasilitas.name);
     }).fail((error) => {
         console.log(error);
     });

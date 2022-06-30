@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="apple-touch-icon" sizes="76x76" href="images/mii.png">
+    <link rel="icon" type="image/png" href="images/mii.png">
+
+    <div th:replace="fragments/master :: header"></div>
+    <!-- Datatable -->
+    <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" rel="stylesheet">
+    <!-- DatePicker -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <!-- PAGE TITLE HERE -->
+    <title>Report</title>
+    <!-- Style css -->
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <div th:replace="fragments/master :: nav-header"></div>
+        <div th:replace="fragments/master :: navbar"></div>
+        <div th:replace="fragments/master :: dlabnav"></div>
+
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-3">
+                                            <input type="text" id="min" name="min" class="form-control border border-info"
+                                                placeholder="Start Date" readonly><span
+                                                class="input-group-text bg-info text-white border border-info"><i
+                                                    class="fas fa-calendar-alt"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-3">
+                                            <input type="text" id="max" name="max" class="form-control border border-info"
+                                                placeholder="End Date" readonly><span
+                                                class="input-group-text bg-info text-white border border-info"><i
+                                                    class="fas fa-calendar-alt"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table id="tbEMP" style="min-width: 845px" width="100%" class="display text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Name</th>
+                                            <th>Tanggal</th>
+                                            <th>Fasilitas</th>
+                                            <th>Ruang</th>
+                                            <th>Keterangan</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Nomor</th>
+                                            <th>Name</th>
+                                            <th>Tanggal</th>
+                                            <th>Fasilitas</th>
+                                            <th>Ruang</th>
+                                            <th>Keterangan</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div th:replace="fragments/master :: script"></div>
+                <!-- Datatable -->
+                <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+                <script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
+                
+                <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+                <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+                <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+                <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+
+
+                <!-- Momentjs -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+
+                <script th:src="@{/js/laporan.js}"></script>
+
+</body>
+
+</html>
