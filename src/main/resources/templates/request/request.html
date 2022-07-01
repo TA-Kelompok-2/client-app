@@ -54,7 +54,7 @@
                                                             <input type="file" name="image"
                                                                 accept="image/png, image/jpeg"
                                                                 class="form-file-input form-control" id="image"
-                                                                style="filter: drop-shadow(0 2x 1px black);">
+                                                                style="filter: drop-shadow(0 2x 1px black);" required>
                                                         </div>
                                                         <span class="input-group-text">Upload</span>
                                                     </div>
@@ -65,7 +65,7 @@
                                                 <div class="col-9">
                                                     <textarea class="form-control border border-dark" rows="4"
                                                         id="comment" style="height:200px;"
-                                                        th:field="*{keterangan}"></textarea>
+                                                        th:field="*{keterangan}" required></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -75,7 +75,7 @@
                                                 <div class="col-9">
                                                     <select id="ruangSel" onchange="myFunction()"
                                                         class="form-control wide mt-3 border border-dark">
-                                                        <option disabled selected value="">-- Pilih Ruang --</option>
+                                                        <option disabled selected value="" required>-- Pilih Ruang --</option>
                                                         <option th:each="ruang : ${ruangs}" th:text="${ruang.name}"
                                                             th:value="${ruang.id}">
                                                         </option>
@@ -86,7 +86,7 @@
                                                 <label class="col-3 col-form-label">Fasilitas</label>
                                                 <div class="col-9">
                                                     <select th:field="*{fasilitasruang}"
-                                                        class="form-control wide mt-3 border border-dark fasilitasSel">
+                                                        class="form-control wide mt-3 border border-dark fasilitasSel" required>
                                                     </select>
                                                 </div>
                                             </div>
