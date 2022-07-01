@@ -132,6 +132,45 @@ $('#createFasilitas').click(function (e) { //modal btn save
     })
 })
 
+$("#done").click(() => {
+    let keterangan = $("#reason").val()
+    let date = Date.now
+    let id = $("#id").val()
+    let picName = $("#picName").val()
+    console.log(picName)
+    console.log(keterangan)
+    console.log(id)
+    console.log(date)
+    let done = 5
+    let reject = 3
+
+    $.ajax({
+        method: "POST",
+        url: "request/updateRequest/" + id,
+        dataType: "json",
+        beforeSend: addCsrfToken(),
+        data: JSON.stringify({
+            status: done,
+            keterangan: keterangan,
+            date: date,
+            picName: picName
+        }),
+        contentType: "application/json",
+        success: function (result) {
+            console.log(result)
+            $("#detailRequest").modal('hide')
+            $('#tbEMP').DataTable().ajax.reload()
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Request has been done',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    })
+})
+
 $("#approve").click(() => {
     let keterangan = $("#reason").val()
     let date = Date.now
@@ -163,7 +202,7 @@ $("#approve").click(() => {
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Data has been changed',
+                title: 'Request has been approved',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -198,7 +237,7 @@ $("#reject").click(() => {
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Data has been changed',
+                title: 'Request has been rejected',
                 showConfirmButton: false,
                 timer: 1500
             })
