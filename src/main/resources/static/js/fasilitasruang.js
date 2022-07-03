@@ -47,6 +47,13 @@ function modalEmployee(id) {
                 },
                 {
                     "data": "fasilitas.keterangan"
+                },
+                {
+                    "data": null,
+                    render: function (data, type, row, meta) {
+                        return `<button class="btn btn-rounded btn-danger" onclick="deleteFasilitas(${data.id})"><span class="btn-icon-start text-danger"><i class="fa fa-trash"></i></span>Delete</button>`
+                    },
+                    "orderable": false
                 }
             ],
             language: {
@@ -116,7 +123,7 @@ function deleteFasilitas(id) {
                         'Your file has been deleted.',
                         'success'
                     )
-                    $('#tbEMP').DataTable().ajax.reload()
+                    $('#fasiliats').DataTable().ajax.reload()
                 }
             })
         }
