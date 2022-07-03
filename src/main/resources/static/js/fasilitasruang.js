@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("#tbEMP").DataTable({
         "ajax": {
-            "url": "/fasilitasruang/get-all",
+            "url": "/ruang/get-all",
             "dataSrc": ""
         },
         "columns": [{
@@ -11,19 +11,13 @@ $(document).ready(function () {
                 }
             },
             {
-                "data": "ruang.name"
-            },
-            {
-                "data": "fasilitas.name"
-            },
-            {
                 "data": null,
                 render: function (data, type, row, meta) {
-                    return `<button class="btn btn-rounded btn-primary" onclick = "modalEmployee(${data.id})" data-bs-toggle="modal" data-bs-target="#detailHistory"><span class="btn-icon-start text-primary"><i class="fa fa-info"></i>
-                        </span>Detail</button>
-                        <button class="btn btn-rounded btn-danger" onclick="deleteFasilitas(${data.id})"><span class="btn-icon-start text-danger"><i class="fa fa-trash"></i></span>Delete</button>`
-                },
-                "orderable": false
+                    return `<a class="text-info" href="fasilitas detail" data-bs-toggle="modal" data-bs-target="#detailHistory" onclick="modalEmployee(${data.id})" >` + row.name + `</a>`
+                }
+            },
+            {
+                "data": "lantai"
             }
         ],
         language: {
@@ -36,18 +30,38 @@ $(document).ready(function () {
 });
 
 function modalEmployee(id) {
-    $.ajax({
-        type: 'GET',
-        url: "/fasilitasruang/getById/" + id,
-        dataType: 'json',
-        contentType: ''
-    }).done((result) => {
-        $('#id').text(result.id);
-        $('#ruang').text(result.ruang.name);
-        $('#fasilitas').text(result.fasilitas.name);
-    }).fail((error) => {
-        console.log(error);
+    $(document).ready(function () { 
+        $("#fasilitas").DataTable({
+            "ajax": {
+                "url": "/fasilitasruang/getByRuang/" + id,
+                "dataSrc": ""
+            },
+            "columns": [{
+                    "data": null,
+                    render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
+                {
+                    "data": "fasilitas.name"
+                },
+                {
+                    "data": "fasilitas.keterangan"
+                }
+            ],
+            language: {
+                paginate: {
+                    next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
+                    previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
+                }
+            }
+            // console.log()
+        });
     });
+}
+
+function tutup(){
+    window.location.reload();
 }
 
 $('#createFasilitas').click(function (e) { //modal btn save
