@@ -86,7 +86,7 @@
             <div class="modal-dialog modal-md">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Employee Detail</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Employee Details</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="container">
@@ -178,7 +178,7 @@
                                 <input class="form-control border border-dark" id="passwordInp" aria-describedby="emailHelp"
                                     placeholder="aldo...">
                                 <label for="exampleInputEmail1" class="form-label">Input Role</label>
-                                <select multiple="" class="default-select form-control wide mt-3 border border-dark" id="roleInp">
+                                <select multiple="" class="default-select form-control wide mt-3 border border-dark" id="roleInpt">
                                     <option th:each="role : ${roles}" th:text="${role.name}"
                                         th:value="${role.id}">
                                     </option>

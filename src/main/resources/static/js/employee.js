@@ -62,7 +62,7 @@ $('#createEmployee').click(function (e) { //modal btn save
     let phoneNumber = $('#phoneNumberInp').val()
     let username = $('#usernameInp').val()
     let password = $('#passwordInp').val()
-    let role = $('#roleInp').val()
+    let role = $('#roleInpt').val()
     console.log(role)
     $.ajax({
         method: "POST",
