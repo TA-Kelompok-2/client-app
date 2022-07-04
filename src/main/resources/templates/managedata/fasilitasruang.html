@@ -55,16 +55,14 @@
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Ruang</th>
-                                                <th>Fasilitas</th>
-                                                <th>Action</th>
+                                                <th>Lantai</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Ruang</th>
-                                                <th>Fasilitas</th>
-                                                <th>Action</th>
+                                                <th>Lantai</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -78,42 +76,40 @@
 
         <!-- Modal Detail History -->
         <div class="modal fade" id="detailHistory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-md">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">History Detail</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Fasilitas</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="container">
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">ID</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label>: </label>
-                                    <label class="col-form-label" id="id"></label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Ruang</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label>: </label>
-                                    <label class="col-form-label" id="ruang"></label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <label for="inputPassword6" class="col-form-label">Fasilitas</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label>: </label>
-                                    <label class="col-form-label" id="fasilitas"></label>
-                                </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="fasilitas" width="100%" class="display text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Fasilitas</th>
+                                            <th>Keterangan</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Fasilitas</th>
+                                            <th>Keterangan</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
                             </div>
                         </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center align-content-center">
+                        <button id="tutup" class="btn btn-rounded btn-success" data-bs-dismiss="modal"
+                            onclick="tutup()"><span class="btn-icon-start text-success"><i class="fa fa-check"></i>
+                            </span>Ok</button>
                     </div>
                 </div>
             </div>
