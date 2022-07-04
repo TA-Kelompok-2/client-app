@@ -123,7 +123,7 @@ function deleteFasilitas(id) {
                         'Your file has been deleted.',
                         'success'
                     )
-                    $('#fasiliats').DataTable().ajax.reload()
+                    $('#fasilitas').DataTable().ajax.reload()
                 }
             })
         }
