@@ -51,8 +51,8 @@ function modalEmployee(id) {
 }
 
 $('#createFasilitas').click(function (e) { //modal btn save
-    let ruang_id = $('#ruang').val()
-    let fasilitas_id = $('#fasilitas').val()
+    let ruang_id = $('#ruanginput').val()
+    let fasilitas_id = $('#fasilitasinput').val()
     console.log(ruang_id)
     console.log(fasilitas_id)
     $.ajax({
